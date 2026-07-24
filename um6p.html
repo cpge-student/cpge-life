@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UM6P - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        /* ============================================
+           STYLES SPÉCIFIQUES UM6P
+           ============================================ */
+        .um6p-page {
+            padding: 0 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .um6p-page {
+            background: var(--color-gray-900);
+        }
+
+        /* ===== VIDÉO EN HAUT ===== */
+        .um6p-video-section {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            min-height: 350px;
+            max-height: 600px;
+            overflow: hidden;
+            background: #0F172A;
+        }
+
+        .um6p-video-section video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        .um6p-video-section .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 30px 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .um6p-video-section .video-overlay h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .um6p-video-section .video-overlay p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+        }
+
+        .um6p-video-section .video-overlay .play-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 24px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: var(--radius-md);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+        }
+
+        .um6p-video-section .video-overlay .play-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.02);
+        }
+
+        /* ===== CONTENU ===== */
+        .um6p-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-top: -30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== CHIFFRES CLÉS ===== */
+        .um6p-stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-gray-200);
+            margin-bottom: 30px;
+        }
+
+        [data-theme="dark"] .um6p-stats {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .um6p-stats .stat-item {
+            text-align: center;
+        }
+
+        .um6p-stats .stat-item .stat-number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+        }
+
+        .um6p-stats .stat-item .stat-label {
+            font-size: 0.75rem;
+            color: var(--color-gray-500);
+            font-weight: 500;
+        }
+
+        /* ===== ONGLETS ===== */
+        .um6p-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-200);
+            padding: 6px 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+        }
+
+        [data-theme="dark"] .um6p-tabs {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .um6p-tabs .tab-btn {
+            padding: 10px 18px;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+        }
+
+        .um6p-tabs .tab-btn:hover {
+            color: var(--color-gray-900);
+            background: var(--color-gray-100);
+        }
+
+        [data-theme="dark"] .um6p-tabs .tab-btn:hover {
+            color: var(--color-white);
+            background: var(--color-gray-700);
+        }
+
+        .um6p-tabs .tab-btn.active {
+            color: white;
+            background: var(--color-secondary);
+        }
+
+        .um6p-tabs .tab-btn .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            margin-left: 4px;
+        }
+
+        .um6p-tabs .tab-btn:not(.active) .badge {
+            background: var(--color-gray-200);
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .um6p-tabs .tab-btn:not(.active) .badge {
+            background: var(--color-gray-700);
+            color: var(--color-gray-400);
+        }
+
+        /* ===== CONTENU DES ONGLETS ===== */
+        .tab-content-um6p {
+            display: none;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 30px 36px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            animation: fadeIn 0.3s ease;
+        }
+
+        [data-theme="dark"] .tab-content-um6p {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .tab-content-um6p.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content-um6p h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-gray-900);
+            margin-bottom: 12px;
+        }
+
+        [data-theme="dark"] .tab-content-um6p h2 {
+            color: var(--color-white);
+        }
+
+        .tab-content-um6p h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin: 20px 0 8px;
+        }
+
+        [data-theme="dark"] .tab-content-um6p h3 {
+            color: var(--color-white);
+        }
+
+        .tab-content-um6p p {
+            color: var(--color-gray-600);
+            line-height: 1.8;
+        }
+
+        [data-theme="dark"] .tab-content-um6p p {
+            color: var(--color-gray-400);
+        }
+
+        /* ===== QUOTE ===== */
+        .um6p-quote {
+            padding: 20px 24px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-secondary);
+            margin: 16px 0;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .um6p-quote {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .um6p-quote .author {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .um6p-quote .author {
+            color: var(--color-white);
+        }
+
+        /* ===== CLASSEMENTS ===== */
+        .classements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .classement-card {
+            padding: 16px 20px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .classement-card {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .classement-card .rank {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+        }
+
+        .classement-card .rank-label {
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+        }
+
+        .classement-card .rank-desc {
+            font-size: 0.9rem;
+            color: var(--color-gray-600);
+            margin-top: 4px;
+        }
+
+        [data-theme="dark"] .classement-card .rank-desc {
+            color: var(--color-gray-400);
+        }
+
+        /* ===== ÉCOLES (ETIQUETTES) ===== */
+        .ecoles-um6p {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .ecole-card-um6p {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        [data-theme="dark"] .ecole-card-um6p {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecole-card-um6p:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-secondary);
+        }
+
+        .ecole-card-um6p .ecole-logo {
+            font-size: 3.5rem;
+            margin-bottom: 8px;
+        }
+
+        .ecole-card-um6p .ecole-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-card-um6p .ecole-name {
+            color: var(--color-white);
+        }
+
+        .ecole-card-um6p .ecole-desc {
+            font-size: 0.8rem;
+            color: var(--color-gray-500);
+            margin: 6px 0 12px;
+            line-height: 1.4;
+        }
+
+        .ecole-card-um6p .btn-ecole {
+            padding: 6px 20px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ecole-card-um6p .btn-ecole:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+        }
+
+        /* ===== CAMPUS ===== */
+        .campus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .campus-card {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .campus-card {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .campus-card .campus-icon {
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+
+        .campus-card h4 {
+            font-weight: 700;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .campus-card h4 {
+            color: var(--color-white);
+        }
+
+        .campus-card p {
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+            line-height: 1.6;
+        }
+
+        .campus-card .campus-ville {
+            font-weight: 600;
+            color: var(--color-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* ===== FRAIS ===== */
+        .frais-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .frais-table th,
+        .frais-table td {
+            padding: 12px 16px;
+            border: 1px solid var(--color-gray-200);
+            text-align: left;
+        }
+
+        [data-theme="dark"] .frais-table th,
+        [data-theme="dark"] .frais-table td {
+            border-color: var(--color-gray-700);
+        }
+
+        .frais-table th {
+            background: var(--color-gray-100);
+            font-weight: 700;
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .frais-table th {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .frais-table td {
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .frais-table td {
+            color: var(--color-gray-400);
+        }
+
+        .frais-table .highlight {
+            color: var(--color-secondary);
+            font-weight: 700;
+        }
+
+        /* ===== BOURSES ===== */
+        .bourses-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .bourse-card {
+            padding: 20px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .bourse-card {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .bourse-card h4 {
+            font-weight: 700;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .bourse-card h4 {
+            color: var(--color-white);
+        }
+
+        .bourse-card p {
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            margin: 4px 0;
+        }
+
+        /* ===== CALENDRIER CANDIDATURE ===== */
+        .calendrier-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .calendrier-table th,
+        .calendrier-table td {
+            padding: 10px 14px;
+            border: 1px solid var(--color-gray-200);
+            text-align: center;
+        }
+
+        [data-theme="dark"] .calendrier-table th,
+        [data-theme="dark"] .calendrier-table td {
+            border-color: var(--color-gray-700);
+        }
+
+        .calendrier-table th {
+            background: var(--color-gray-100);
+            font-weight: 700;
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .calendrier-table th {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .calendrier-table td {
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .calendrier-table td {
+            color: var(--color-gray-400);
+        }
+
+        .calendrier-table .empty {
+            color: var(--color-gray-400);
+        }
+
+        /* ===== CONTACT UM6P ===== */
+        .contact-um6p-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-um6p-card {
+            padding: 16px 20px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .contact-um6p-card {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .contact-um6p-card h4 {
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .contact-um6p-card h4 {
+            color: var(--color-white);
+        }
+
+        .contact-um6p-card p {
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            margin: 2px 0;
+        }
+
+        .contact-um6p-card a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        .contact-um6p-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .um6p-stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .ecoles-um6p {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .classements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .campus-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .bourses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-um6p-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .um6p-video-section {
+                height: 40vh;
+                min-height: 250px;
+            }
+
+            .um6p-video-section .video-overlay h1 {
+                font-size: 1.8rem;
+            }
+
+            .um6p-video-section .video-overlay p {
+                font-size: 0.95rem;
+            }
+
+            .um6p-content {
+                padding: 0 16px;
+                margin-top: -20px;
+            }
+
+            .um6p-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 16px;
+            }
+
+            .um6p-stats .stat-item .stat-number {
+                font-size: 1.4rem;
+            }
+
+            .um6p-tabs .tab-btn {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+
+            .tab-content-um6p {
+                padding: 20px;
+            }
+
+            .tab-content-um6p h2 {
+                font-size: 1.2rem;
+            }
+
+            .ecoles-um6p {
+                grid-template-columns: 1fr;
+            }
+
+            .campus-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .frais-table {
+                font-size: 0.75rem;
+            }
+
+            .frais-table th,
+            .frais-table td {
+                padding: 6px 8px;
+            }
+
+            .calendrier-table {
+                font-size: 0.7rem;
+            }
+
+            .calendrier-table th,
+            .calendrier-table td {
+                padding: 4px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .um6p-video-section {
+                height: 30vh;
+                min-height: 200px;
+            }
+
+            .um6p-video-section .video-overlay h1 {
+                font-size: 1.4rem;
+            }
+
+            .um6p-video-section .video-overlay {
+                padding: 20px 16px 16px;
+            }
+
+            .um6p-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                padding: 12px;
+            }
+
+            .um6p-stats .stat-item .stat-number {
+                font-size: 1.2rem;
+            }
+
+            .um6p-stats .stat-item .stat-label {
+                font-size: 0.65rem;
+            }
+
+            .um6p-tabs .tab-btn {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+
+            .tab-content-um6p {
+                padding: 12px;
+            }
+
+            .um6p-quote {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+
+            .contact-um6p-card {
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html">Grandes Écoles France</a></li>
+                            <li><a href="um6p.html">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE UM6P -->
+    <!-- ============================================================ -->
+    <section class="um6p-page">
+
+        <!-- ===== VIDÉO ===== -->
+        <div class="um6p-video-section">
+            <video id="um6pVideo" muted playsinline>
+                <source src="assets/video/Ecoles/UM6P/um6p-presentation.mp4" type="video/mp4" />
+                Votre navigateur ne supporte pas la lecture vidéo.
+            </video>
+            <div class="video-overlay">
+                <h1>🇲🇦 UM6P</h1>
+                <p>Université Mohammed VI Polytechnique</p>
+                <button class="play-btn" onclick="toggleVideo()">
+                    <i class="fas fa-play"></i> <span id="videoBtnText">Lire la vidéo</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="um6p-content">
+
+            <!-- ===== CHIFFRES CLÉS ===== -->
+            <div class="um6p-stats">
+                <div class="stat-item">
+                    <span class="stat-number">8 756</span>
+                    <span class="stat-label">Étudiants</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1 308</span>
+                    <span class="stat-label">Doctorants</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">39</span>
+                    <span class="stat-label">Nationalités</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">130</span>
+                    <span class="stat-label">Étudiants d'échange</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">45</span>
+                    <span class="stat-label">Programmes</span>
+                </div>
+            </div>
+
+            <!-- ===== ONGLETS ===== -->
+            <div class="um6p-tabs">
+                <button class="tab-btn active" onclick="switchUM6PTab('presentation')">
+                    <i class="fas fa-info-circle"></i> Présentation
+                </button>
+                <button class="tab-btn" onclick="switchUM6PTab('classements')">
+                    <i class="fas fa-chart-line"></i> Classements
+                </button>
+                <button class="tab-btn" onclick="switchUM6PTab('ecoles')">
+                    <i class="fas fa-school"></i> Écoles et collèges
+                </button>
+                <button class="tab-btn" onclick="switchUM6PTab('campus')">
+                    <i class="fas fa-map-marker-alt"></i> Campus et branches
+                </button>
+                <button class="tab-btn" onclick="switchUM6PTab('frais')">
+                    <i class="fas fa-euro-sign"></i> Frais et bourses
+                </button>
+                <button class="tab-btn" onclick="switchUM6PTab('candidater')">
+                    <i class="fas fa-file-signature"></i> Candidater
+                </button>
+                <button class="tab-btn" onclick="switchUM6PTab('doctorat')">
+                    <i class="fas fa-microscope"></i> Doctorat
+                </button>
+                <button class="tab-btn" onclick="switchUM6PTab('contact')">
+                    <i class="fas fa-envelope"></i> Contact
+                </button>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- ONGLET : PRÉSENTATION -->
+            <!-- ============================================================ -->
+            <div class="tab-content-um6p active" id="tab-presentation">
+                <h2>📖 Présentation de l'UM6P</h2>
+
+                <p>
+                    L'Université Mohammed VI Polytechnique (UM6P) est une université marocaine d'excellence,
+                    créée en 2013 sous le haut patronage de Sa Majesté le Roi Mohammed VI.
+                    Située à Benguerir, elle a pour mission de former une nouvelle génération de leaders
+                    capables de contribuer au développement durable du Maroc et de l'Afrique.
+                </p>
+
+                <div class="um6p-quote">
+                    "Notre mission est d’accompagner la nouvelle génération dans la construction de l’Afrique de demain."
+                    <span class="author">— Hicham El Habti, Président de l'UM6P</span>
+                </div>
+
+                <h3>🎯 Mission et vision</h3>
+                <p>
+                    L'UM6P se distingue par une approche innovante de l'enseignement supérieur,
+                    alliant excellence académique, recherche de pointe et entrepreneuriat.
+                    Elle s'engage à former des cadres de haut niveau capables de relever les défis
+                    du XXIe siècle dans les domaines de l'ingénierie, de l'économie et de la technologie.
+                </p>
+
+                <h3>🏛️ Gouvernance</h3>
+                <p>
+                    L'UM6P est gouvernée par un président et un conseil d'administration composé de
+                    personnalités du monde académique et économique. Elle bénéficie d'une autonomie
+                    pédagogique et financière qui lui permet de développer des programmes innovants
+                    et de nouer des partenariats internationaux de premier plan.
+                </p>
+
+                <h3>🤝 Partenariats</h3>
+                <p>
+                    L'UM6P collabore avec des universités et institutions de renom mondial,
+                    notamment dans les domaines de la recherche, de l'innovation et de la mobilité
+                    étudiante. Ces partenariats renforcent son rayonnement international et
+                    offrent aux étudiants des opportunités uniques de formation et de carrière.
+                </p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- ONGLET : CLASSEMENTS -->
+            <!-- ============================================================ -->
+            <div class="tab-content-um6p" id="tab-classements">
+                <h2>📊 Classements mondiaux</h2>
+                <p style="margin-bottom:16px;">
+                    L'UM6P figure parmi les meilleures universités d'Afrique et du monde arabe,
+                    grâce à son excellence académique et sa recherche d'impact.
+                </p>
+
+                <div class="classements-grid">
+                    <div class="classement-card">
+                        <div class="rank">#1</div>
+                        <div class="rank-label">THE Africa University Rankings</div>
+                        <div class="rank-desc">Meilleure université d'Afrique en 2025</div>
+                    </div>
+                    <div class="classement-card">
+                        <div class="rank">#2</div>
+                        <div class="rank-label">THE Arab University Rankings</div>
+                        <div class="rank-desc">2ᵉ université du monde arabe</div>
+                    </div>
+                    <div class="classement-card">
+                        <div class="rank">#3</div>
+                        <div class="rank-label">QS Arab Region University Rankings</div>
+                        <div class="rank-desc">3ᵉ université de la région arabe</div>
+                    </div>
+                    <div class="classement-card">
+                        <div class="rank">Top 100</div>
+                        <div class="rank-label">UI GreenMetric World University Rankings</div>
+                        <div class="rank-desc">Classée parmi les universités les plus durables</div>
+                    </div>
+                </div>
+
+                <h3>📈 Évolution des classements</h3>
+                <p style="font-size:0.95rem;color:var(--color-gray-500);">
+                    L'UM6P progresse chaque année dans les classements internationaux,
+                    témoignant de son engagement constant pour l'excellence et l'innovation.
+                </p>
+
+                <h3>✅ Accréditations</h3>
+                <p>
+                    L'UM6P est accréditée par le Ministère de l'Enseignement Supérieur du Maroc
+                    et ses diplômes sont reconnus internationalement. Plusieurs de ses programmes
+                    bénéficient d'accréditations spécifiques délivrées par des organismes de
+                    renom dans leurs domaines respectifs.
+                </p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- ONGLET : ÉCOLES ET COLLÈGES -->
+            <!-- ============================================================ -->
+            <div class="tab-content-um6p" id="tab-ecoles">
+                <h2>🏫 Écoles et collèges de l'UM6P</h2>
+                <p style="margin-bottom:20px;">
+                    L'UM6P regroupe plusieurs écoles et collèges d'excellence dans des domaines
+                    variés, offrant des formations de haut niveau.
+                </p>
+
+                <div class="ecoles-um6p">
+                    <!-- CC -->
+                    <div class="ecole-card-um6p" onclick="window.location.href='um6p-cc.html'">
+                        <div class="ecole-logo">💻</div>
+                        <div class="ecole-name">Collège of Computing (CC)</div>
+                        <div class="ecole-desc">Informatique, IA, Cybersécurité</div>
+                        <button class="btn-ecole">Voir plus →</button>
+                    </div>
+
+                    <!-- EMINES -->
+                    <div class="ecole-card-um6p" onclick="window.location.href='um6p-emines.html'">
+                        <div class="ecole-logo">🏭</div>
+                        <div class="ecole-name">EMINES</div>
+                        <div class="ecole-desc">Management Industriel</div>
+                        <button class="btn-ecole">Voir plus →</button>
+                    </div>
+
+                    <!-- IST&I -->
+                    <div class="ecole-card-um6p" onclick="window.location.href='um6p-isti.html'">
+                        <div class="ecole-logo">🔬</div>
+                        <div class="ecole-name">IST&I</div>
+                        <div class="ecole-desc">Sciences, Technologies et Innovation</div>
+                        <button class="btn-ecole">Voir plus →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- ONGLET : CAMPUS ET BRANCHES -->
+            <!-- ============================================================ -->
+            <div class="tab-content-um6p" id="tab-campus">
+                <h2>📍 Campus et branches</h2>
+
+                <h3>🏛️ Campus</h3>
+                <div class="campus-grid">
+                    <div class="campus-card">
+                        <div class="campus-icon">🏙️</div>
+                        <h4>Campus Benguerir</h4>
+                        <div class="campus-ville">Benguerir, Maroc</div>
+                        <p>
+                            S'étendant sur 80 hectares au cœur de la ville verte Mohammed VI,
+                            le campus de l'UM6P a été conçu par les architectes Ricardo Bofill et Elie Mouyal,
+                            créateurs du Twin Center de Casablanca.
+                        </p>
+                    </div>
+                    <div class="campus-card">
+                        <div class="campus-icon">🏛️</div>
+                        <h4>Campus Rabat</h4>
+                        <div class="campus-ville">Rabat, Maroc</div>
+                        <p>
+                            Situé dans la municipalité de Salé au sein du quartier universitaire de la capitale,
+                            le campus de Rabat a été établi en 2020. Il couvre quatre hectares et comprend
+                            des jardins paysagers et des espaces collaboratifs en plein air.
+                        </p>
+                    </div>
+                    <div class="campus-card">
+                        <div class="campus-icon">🏜️</div>
+                        <h4>Campus Laâyoune</h4>
+                        <div class="campus-ville">Laâyoune, Maroc</div>
+                        <p>
+                            Dans le sud du Maroc, le campus de Laâyoune sert d'antenne régionale de l'UM6P,
+                            soutenant l'engagement de l'université en faveur du développement inclusif
+                            et de l'équité territoriale.
+                        </p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top:30px;">🌍 Branches internationales (Global Hubs)</h3>
+                <div class="campus-grid">
+                    <div class="campus-card">
+                        <div class="campus-icon">🇫🇷</div>
+                        <h4>Global Hub Paris</h4>
+                        <div class="campus-ville">Paris, France</div>
+                        <p>
+                            Offre un accès direct aux réseaux, institutions et programmes de financement
+                            européens, consolidant les partenariats euro-africains.
+                        </p>
+                    </div>
+                    <div class="campus-card">
+                        <div class="campus-icon">🇨🇦</div>
+                        <h4>Global Hub Montréal</h4>
+                        <div class="campus-ville">Montréal, Canada</div>
+                        <p>
+                            S'appuie sur l'écosystème bilingue du Canada pour renforcer la coopération
+                            autour de la gouvernance, du développement durable et du climat.
+                        </p>
+                    </div>
+                    <div class="campus-card">
+                        <div class="campus-icon">🇺🇸</div>
+                        <h4>Global Hub New York</h4>
+                        <div class="campus-ville">New York, États-Unis</div>
+                        <p>
+                            Évolue au cœur de l'un des écosystèmes d'innovation les plus compétitifs
+                            au monde, favorisant des flux d'innovation réciproques.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="margin-top:24px;padding:16px 20px;background:var(--color-gray-50);border-radius:var(--radius-md);border:1px solid var(--color-gray-200);">
+                    <p style="font-style:italic;color:var(--color-gray-600);margin:0;">
+                        "Bienvenue dans notre réseau de campus dynamiques, chacun conçu avec soin pour
+                        inspirer la collaboration, stimuler la créativité et favoriser un véritable
+                        sentiment d'appartenance."
+                    </p>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- ONGLET : FRAIS ET BOURSES -->
+            <!-- ============================================================ -->
+            <div class="tab-content-um6p" id="tab-frais">
+                <h2>💰 Frais et bourses</h2>
+
+                <h3>📋 Frais de scolarité et logement</h3>
+                <table class="frais-table">
+                    <thead>
+                        <tr>
+                            <th>École</th>
+                            <th>Inscription</th>
+                            <th>Scolarité</th>
+                            <th>Logement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CC</strong></td>
+                            <td>5 000 dh</td>
+                            <td>78 500 dh</td>
+                            <td>
+                                1 500 dh/mois - Chambre individuelle dans un appartement à Benguerir
+                                <br/><span style="font-size:0.75rem;color:var(--color-gray-400);">1 900 dh/mois - Chambre individuelle à Rabat</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>EMINES</strong></td>
+                            <td>5 000 dh</td>
+                            <td>78 750 dh</td>
+                            <td>1 500 dh/mois - Chambre individuelle dans un appartement de 4 chambres (Benguerir)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IST&I</strong></td>
+                            <td>5 000 dh</td>
+                            <td>70 000 dh</td>
+                            <td>1 500 dh/mois - Chambre individuelle dans un appartement de 4 chambres (Benguerir)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>🎓 Bourses d'études</h3>
+                <div class="bourses-grid">
+                    <div class="bourse-card">
+                        <h4>🏆 Bourses d'Excellence</h4>
+                        <p><strong>Couverture :</strong> 25%, 50%, 75% ou 100% de l'ensemble des frais de scolarité</p>
+                        <p><strong>Attribution :</strong> Selon le classement obtenu au concours d'entrée</p>
+                    </div>
+                    <div class="bourse-card">
+                        <h4>🤝 Bourses Sociales</h4>
+                        <p><strong>Couverture :</strong> Jusqu'à 100% des frais complets (scolarité, inscription, logement et nourriture)</p>
+                        <p><strong>Attribution :</strong> Évaluation par la Commission des Bourses</p>
+                    </div>
+                </div>
+                <p style="margin-top:12px;font-size:0.9rem;color:var(--color-gray-500);">
+                    <i class="fas fa-info-circle"></i> Les deux types de bourses sont cumulables.
+                </p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- ONGLET : CANDIDATER -->
+            <!-- ============================================================ -->
+            <div class="tab-content-um6p" id="tab-candidater">
+                <h2>📝 Candidater</h2>
+
+                <h3>📋 Conditions d'admission générales</h3>
+                <p>
+                    Les candidats doivent être titulaires d'un diplôme de 2ème année de Classes Préparatoires
+                    aux Grandes Écoles (MP, PSI ou TSI) ou équivalent, avec un classement jugé favorable.
+                </p>
+
+                <h3>🏫 Conditions par école</h3>
+                <table class="frais-table" style="margin-bottom:16px;">
+                    <thead>
+                        <tr>
+                            <th>École</th>
+                            <th>Conditions de préselection</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>CC</strong></td>
+                            <td>Étudiants issus de filières scientifiques préparatoires option MP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>EMINES</strong></td>
+                            <td>2 années de classes préparatoires scientifiques Options MP, PSI ou TSI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>IST&I</strong></td>
+                            <td>2 années de classes préparatoires scientifiques Options MP, PSI ou TSI</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>📅 Calendrier des candidatures</h3>
+                <table class="calendrier-table">
+                    <thead>
+                        <tr>
+                            <th>Étape</th>
+                            <th>CC</th>
+                            <th>EMINES</th>
+                            <th>IST&I</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ouverture des candidatures</strong></td>
+                            <td>10 Janvier</td>
+                            <td>10 Janvier</td>
+                            <td>10 Janvier</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date limite</strong></td>
+                            <td>30 Mai 2026</td>
+                            <td>11 Mai 2026</td>
+                            <td>10 Mai 2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Résultat de la présélection</strong></td>
+                            <td>18 Mai 2026</td>
+                            <td>20 Mai 2026</td>
+                            <td>02 Juin 2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L'écrit</strong></td>
+                            <td>06 Juin 2026</td>
+                            <td>02 Juin 2026</td>
+                            <td>13 Juin 2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Admissibilité</strong></td>
+                            <td>08 Juin 2026</td>
+                            <td>09 Juin 2026</td>
+                            <td class="empty">—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L'oral</strong></td>
+                            <td>11 Juin 2026</td>
+                            <td>10 Juin 2026</td>
+                            <td class="empty">—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Admission</strong></td>
+                            <td>18 Juin 2026</td>
+                            <td>Mi juin 2026</td>
+                            <td class="empty">—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date limite d'inscription</strong></td>
+                            <td>24 Juin 2026</td>
+                            <td class="empty">—</td>
+                            <td class="empty">—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date limite demande de bourse</strong></td>
+                            <td>30 Juin 2026</td>
+                            <td class="empty">—</td>
+                            <td class="empty">—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Taux de bourse affecté</strong></td>
+                            <td class="empty">—</td>
+                            <td class="empty">—</td>
+                            <td class="empty">—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rentrée scolaire</strong></td>
+                            <td colspan="3" style="font-weight:700;">18 Septembre 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>📄 Pièces à fournir</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> Relevés de notes des 4 semestres de CPGE</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> Classement annuel</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> Lettre de motivation</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> CV</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> Pièce d'identité</li>
+                </ul>
+
+                <h3>🔗 Lien vers la plateforme de candidature</h3>
+                <p>
+                    <a href="https://um6p.ma" target="_blank" style="color:var(--color-secondary);font-weight:600;">
+                        <i class="fas fa-external-link-alt"></i> Candidater en ligne sur le site de l'UM6P
+                    </a>
+                </p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- ONGLET : DOCTORAT -->
+            <!-- ============================================================ -->
+            <div class="tab-content-um6p" id="tab-doctorat">
+                <h2>🔬 Doctorat à l'UM6P</h2>
+                <p style="margin-bottom:16px;">
+                    L'UM6P propose des programmes doctoraux dans ses différents domaines d'excellence,
+                    offrant aux étudiants une formation à la recherche de haut niveau.
+                </p>
+
+                <h3>🧪 Domaines de recherche</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-flask" style="color:var(--color-secondary);"></i> Sciences et ingénierie</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-dna" style="color:var(--color-secondary);"></i> Sciences de la vie et santé</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-microchip" style="color:var(--color-secondary);"></i> Sciences numériques et IA</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-leaf" style="color:var(--color-secondary);"></i> Environnement et développement durable</li>
+                </ul>
+
+                <h3>🏛️ Laboratoires de recherche</h3>
+                <p>
+                    L'UM6P abrite plusieurs laboratoires de recherche de renom dans les domaines
+                    des sciences des matériaux, de l'énergie, du numérique, de l'agronomie et
+                    des sciences sociales.
+                </p>
+
+                <h3>📋 Conditions d'admission en doctorat</h3>
+                <ul style="list-style:none;padding:0;">
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> Master ou diplôme équivalent (Bac+5)</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> Proposition de sujet de thèse</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> Lettres de recommandation</li>
+                    <li style="padding:4px 0;color:var(--color-gray-600);"><i class="fas fa-check-circle" style="color:var(--color-secondary);"></i> Entretien avec le directeur de thèse</li>
+                </ul>
+
+                <h3>💰 Bourses de doctorat</h3>
+                <p>
+                    Des bourses de doctorat sont disponibles pour les étudiants méritants.
+                    Les montants et conditions sont définis par chaque programme doctoral.
+                </p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- ONGLET : CONTACT -->
+            <!-- ============================================================ -->
+            <div class="tab-content-um6p" id="tab-contact">
+                <h2>📧 Contact</h2>
+
+                <div class="contact-um6p-grid">
+                    <div class="contact-um6p-card">
+                        <h4>📍 Adresses</h4>
+                        <p>
+                            <strong>Benguerir :</strong><br/>
+                            Lot 660, Hay Moulay Rachid Ben Guerir, 43150, Morocco
+                        </p>
+                        <p style="margin-top:8px;">
+                            <strong>Rabat :</strong><br/>
+                            Rabat Campus of UM6P, Rocade Rabat Salé, 11103, Morocco
+                        </p>
+                    </div>
+
+                    <div class="contact-um6p-card">
+                        <h4>📞 Téléphones</h4>
+                        <p><strong>Benguerir :</strong> +212 525 073 100</p>
+                        <p><strong>Rabat :</strong> +212 525 072 852</p>
+                    </div>
+
+                    <div class="contact-um6p-card">
+                        <h4>📧 Emails</h4>
+                        <p><strong>UM6P :</strong> <a href="mailto:contact@um6p.ma">contact@um6p.ma</a></p>
+                        <p><strong>CC :</strong> <a href="mailto:Info-CC@gmail.com">Info-CC@gmail.com</a></p>
+                        <p><strong>EMINES :</strong> <a href="mailto:contact@emines-ingenieur.org">contact@emines-ingenieur.org</a></p>
+                    </div>
+
+                    <div class="contact-um6p-card">
+                        <h4>🕐 Horaires</h4>
+                        <p>Lundi - Vendredi : 8h30 - 17h30</p>
+                        <p style="font-size:0.85rem;color:var(--color-gray-400);">Fermé le week-end et jours fériés</p>
+                    </div>
+                </div>
+
+                <div style="margin-top:20px;padding:16px 20px;background:var(--color-gray-50);border-radius:var(--radius-md);border:1px solid var(--color-gray-200);text-align:center;">
+                    <p style="color:var(--color-gray-500);margin:0;">
+                        <i class="fas fa-globe" style="color:var(--color-secondary);"></i>
+                        Retrouvez toutes les informations sur le site officiel :
+                        <a href="https://um6p.ma" target="_blank" style="color:var(--color-secondary);font-weight:600;">um6p.ma</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+
+        // ============================================================
+        // 2. VIDÉO (PLAY / PAUSE)
+        // ============================================================
+        let videoPlaying = false;
+
+        function toggleVideo() {
+            const video = document.getElementById('um6pVideo');
+            const btnText = document.getElementById('videoBtnText');
+
+            if (video.paused) {
+                video.play();
+                videoPlaying = true;
+                btnText.textContent = 'Pause';
+            } else {
+                video.pause();
+                videoPlaying = false;
+                btnText.textContent = 'Lire la vidéo';
+            }
+        }
+
+        // ============================================================
+        // 3. CHANGEMENT D'ONGLET
+        // ============================================================
+        function switchUM6PTab(tabId) {
+            // Mettre à jour les boutons
+            document.querySelectorAll('.um6p-tabs .tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const targetBtn = document.querySelector(`.um6p-tabs .tab-btn[onclick="switchUM6PTab('${tabId}')"]`);
+            if (targetBtn) targetBtn.classList.add('active');
+
+            // Mettre à jour les contenus
+            document.querySelectorAll('.tab-content-um6p').forEach(content => {
+                content.classList.remove('active');
+            });
+            const targetContent = document.getElementById(`tab-${tabId}`);
+            if (targetContent) targetContent.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
