@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Détail École France - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        /* ============================================
+           STYLES SPÉCIFIQUES DÉTAIL ÉCOLE FRANCE
+           ============================================ */
+        .detail-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .detail-page {
+            background: var(--color-gray-900);
+        }
+
+        .detail-page .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-secondary);
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .detail-page .back-link:hover {
+            transform: translateX(-4px);
+        }
+
+        /* En-tête */
+        .ecole-header-detail {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 30px 40px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+        }
+
+        [data-theme="dark"] .ecole-header-detail {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecole-header-detail .ecole-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-header-detail .ecole-title {
+            color: var(--color-white);
+        }
+
+        .ecole-header-detail .ecole-subtitle {
+            font-size: 1rem;
+            color: var(--color-gray-500);
+            margin-bottom: 16px;
+        }
+
+        .ecole-header-detail .info-grid-detail {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .ecole-header-detail .info-grid-detail .info-item {
+            padding: 12px 16px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .ecole-header-detail .info-grid-detail .info-item {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .ecole-header-detail .info-grid-detail .info-item .label {
+            font-size: 0.7rem;
+            color: var(--color-gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ecole-header-detail .info-grid-detail .info-item .value {
+            font-weight: 700;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-header-detail .info-grid-detail .info-item .value {
+            color: var(--color-white);
+        }
+
+        .ecole-header-detail .info-grid-detail .info-item .value .banque-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .ecole-header-detail .info-grid-detail .info-item .value .banque-tag.xens { background: #EF4444; }
+        .ecole-header-detail .info-grid-detail .info-item .value .banque-tag.mines { background: #F59E0B; color: #0F172A; }
+        .ecole-header-detail .info-grid-detail .info-item .value .banque-tag.centrale { background: #3B82F6; }
+        .ecole-header-detail .info-grid-detail .info-item .value .banque-tag.ccinp { background: #10B981; }
+        .ecole-header-detail .info-grid-detail .info-item .value .banque-tag.e3a { background: #8B5CF6; }
+
+        .ecole-header-detail .info-grid-detail .info-item .value .cout-gratuit {
+            color: #10B981;
+        }
+
+        /* Onglets */
+        .detail-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-200);
+            padding: 4px 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .detail-tabs {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .detail-tabs .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-gray-500);
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius-sm);
+        }
+
+        .detail-tabs .tab-btn:hover {
+            color: var(--color-gray-900);
+            background: var(--color-gray-100);
+        }
+
+        [data-theme="dark"] .detail-tabs .tab-btn:hover {
+            color: var(--color-white);
+            background: var(--color-gray-700);
+        }
+
+        .detail-tabs .tab-btn.active {
+            color: var(--color-secondary);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        /* Contenu des onglets */
+        .tab-content-detail {
+            display: none;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 30px 40px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .tab-content-detail {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .tab-content-detail.active {
+            display: block;
+        }
+
+        .tab-content-detail h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 12px;
+        }
+
+        [data-theme="dark"] .tab-content-detail h3 {
+            color: var(--color-white);
+        }
+
+        .tab-content-detail p {
+            color: var(--color-gray-600);
+            line-height: 1.8;
+        }
+
+        [data-theme="dark"] .tab-content-detail p {
+            color: var(--color-gray-400);
+        }
+
+        .tab-content-detail ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tab-content-detail ul li {
+            padding: 6px 0;
+            color: var(--color-gray-600);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        [data-theme="dark"] .tab-content-detail ul li {
+            color: var(--color-gray-400);
+        }
+
+        .tab-content-detail ul li i {
+            color: var(--color-secondary);
+            width: 20px;
+        }
+
+        .tab-content-detail .filiere-tag-detail {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+            margin: 0 6px 6px 0;
+        }
+
+        .tab-content-detail .filiere-tag-detail.mp { background: #4F46E5; }
+        .tab-content-detail .filiere-tag-detail.psi { background: #06B6D4; }
+        .tab-content-detail .filiere-tag-detail.tsi { background: #F59E0B; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .ecole-header-detail {
+                padding: 20px;
+            }
+
+            .ecole-header-detail .ecole-title {
+                font-size: 1.6rem;
+            }
+
+            .ecole-header-detail .info-grid-detail {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .detail-tabs .tab-btn {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+
+            .tab-content-detail {
+                padding: 20px;
+            }
+
+            .detail-page .back-link {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ecole-header-detail .info-grid-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .ecole-header-detail .ecole-title {
+                font-size: 1.3rem;
+            }
+
+            .detail-tabs .tab-btn {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+
+            .tab-content-detail {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE DÉTAIL -->
+    <!-- ============================================================ -->
+    <section class="detail-page">
+        <div class="container">
+
+            <a href="grandes-ecoles-france.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Retour à la liste des écoles
+            </a>
+
+            <div id="ecoleDetail">
+                <!-- Généré par JavaScript -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+
+            loadEcoleDetail();
+        });
+
+        // ============================================================
+        // 2. DONNÉES DES ÉCOLES (copiées depuis grandes-ecoles-france.html)
+        // ============================================================
+        const ECOLES_FRANCE_DATA = [
+            // Top 10
+            { id: 0, rang: "1er", nom: "École polytechnique", ville: "Palaiseau", directeur: "Laura Chaubard (DG)", evolution: "=", banque: "X-ENS", cout: "Gratuit", site: "https://www.polytechnique.edu", description: "L'École polytechnique, surnommée 'X', est l'une des écoles d'ingénieurs les plus prestigieuses de France. Fondée en 1794, elle forme des ingénieurs scientifiques de haut niveau.", filieres: ["MP", "PSI", "TSI"], filieresDetail: [
+                { nom: "Ingénieur Polytechnicien", description: "Formation généraliste scientifique et militaire", programme: ["Mathématiques approfondies", "Physique théorique", "Informatique", "Sciences de l'ingénieur"] }
+            ], debouches: ["Ingénieur R&D", "Consultant", "Entrepreneur", "Chercheur"], etudes: "Cycle ingénieur de 3 ans après 2 ans de classes préparatoires." },
+            { id: 1, rang: "2e", nom: "Mines Paris", ville: "Paris", directeur: "Catherine Lagneau", evolution: "=", banque: "Mines", cout: "4 150 €", site: "https://www.minesparis.psl.eu", description: "Mines Paris est une grande école d'ingénieurs généraliste, membre de l'Université PSL.", filieres: ["MP", "PSI", "TSI"], filieresDetail: [
+                { nom: "Ingénieur Civil des Mines", description: "Formation généraliste avec spécialisation", programme: ["Mathématiques", "Physique", "Sciences de la Terre", "Économie"] }
+            ], debouches: ["Ingénieur Conseil", "Directeur Technique", "Chercheur"], etudes: "Formation d'ingénieur en 3 ans." },
+            { id: 2, rang: "3e", nom: "CentraleSupélec", ville: "Gif-sur-Yvette", directeur: "Romain Soubeyran", evolution: "=", banque: "Centrale", cout: "3 660 €", site: "https://www.centralesupelec.fr", description: "CentraleSupélec est le résultat de la fusion de l'École Centrale Paris et de Supélec.", filieres: ["MP", "PSI", "TSI"], filieresDetail: [
+                { nom: "Ingénieur Généraliste", description: "Formation scientifique et technologique", programme: ["Mathématiques", "Physique", "Informatique", "Sciences de l'ingénieur"] }
+            ], debouches: ["Ingénieur R&D", "Consultant", "Manager"], etudes: "Cycle ingénieur de 3 ans." },
+            { id: 3, rang: "4e", nom: "École des Ponts ParisTech", ville: "Champs-sur-Marne", directeur: "Anthony Briant", evolution: "↓1", banque: "Mines", cout: "3 800 €", site: "https://www.ecoledesponts.fr", description: "L'École des Ponts ParisTech est l'une des plus anciennes écoles d'ingénieurs.", filieres: ["MP", "PSI", "TSI"], filieresDetail: [
+                { nom: "Ingénieur des Ponts", description: "Formation en génie civil et environnement", programme: ["Génie civil", "Hydraulique", "Transport", "Environnement"] }
+            ], debouches: ["Ingénieur Civil", "Urbaniste", "Consultant"], etudes: "Formation d'ingénieur en 3 ans." },
+            { id: 4, rang: "5e", nom: "Télécom Paris", ville: "Palaiseau", directeur: "Patrick Olivier", evolution: "=", banque: "Mines", cout: "3 200 €", site: "https://www.telecom-paris.fr", description: "Télécom Paris est une grande école d'ingénieurs dans le domaine du numérique.", filieres: ["MP", "PSI", "TSI"], filieresDetail: [
+                { nom: "Ingénieur Télécoms", description: "Formation en numérique et télécommunications", programme: ["Réseaux", "Informatique", "Télécommunications", "Cybersécurité"] }
+            ], debouches: ["Ingénieur Réseaux", "Architecte Systèmes", "Data Scientist"], etudes: "Formation d'ingénieur en 3 ans." },
+            { id: 5, rang: "6e", nom: "Ensae", ville: "Palaiseau", directeur: "Pierre-Alain de Malleray", evolution: "↑2", banque: "Mines", cout: "2 650 €", site: "https://www.ensae.fr", description: "L'Ensae forme des ingénieurs statisticiens et économistes.", filieres: ["MP", "PSI"], filieresDetail: [
+                { nom: "Ingénieur Statisticien", description: "Formation en statistique et économie", programme: ["Statistiques", "Économétrie", "Data Science", "Finance"] }
+            ], debouches: ["Statisticien", "Data Scientist", "Économètre"], etudes: "Formation d'ingénieur en 3 ans." },
+            { id: 6, rang: "7e", nom: "ENSTA Paris", ville: "Palaiseau", directeur: "Laurence Borie-Bancel", evolution: "↓1", banque: "Mines", cout: "2 650 €", site: "https://www.ensta-paris.fr", description: "L'ENSTA Paris est une grande école d'ingénieurs généraliste.", filieres: ["MP", "PSI", "TSI"], filieresDetail: [
+                { nom: "Ingénieur Généraliste", description: "Formation scientifique et technologique", programme: ["Mathématiques", "Physique", "Mécanique", "Informatique"] }
+            ], debouches: ["Ingénieur R&D", "Directeur Technique", "Consultant"], etudes: "Formation d'ingénieur en 3 ans." },
+            { id: 7, rang: "7e", nom: "Isae-Supaéro", ville: "Toulouse", directeur: "Marie-Hélène Baroux", evolution: "↑2", banque: "Mines", cout: "2 926 €", site: "https://www.isae-supaero.fr", description: "L'ISAE-SUPAERO est l'une des meilleures écoles d'ingénieurs aéronautiques.", filieres: ["MP", "PSI", "TSI"], filieresDetail: [
+                { nom: "Ingénieur Aéronautique", description: "Formation en aéronautique et spatial", programme: ["Aérodynamique", "Propulsion", "Structure", "Systèmes embarqués"] }
+            ], debouches: ["Ingénieur Aéronautique", "Responsable Qualité", "Chercheur"], etudes: "Formation d'ingénieur en 3 ans." },
+            { id: 8, rang: "9e", nom: "ESPCI Paris", ville: "Paris", directeur: "Vincent Croquette", evolution: "=", banque: "X-ENS", cout: "863 €", site: "https://www.espci.fr", description: "L'ESPCI est une école d'ingénieurs spécialisée en physique et chimie.", filieres: ["MP", "PSI"], filieresDetail: [
+                { nom: "Ingénieur Physique-Chimie", description: "Formation en physique et chimie", programme: ["Physique", "Chimie", "Biologie", "Matériaux"] }
+            ], debouches: ["Ingénieur R&D", "Chercheur", "Consultant"], etudes: "Formation d'ingénieur en 3 ans." },
+            { id: 9, rang: "10e", nom: "Chimie ParisTech", ville: "Paris", directeur: "Christian Lerminiaux", evolution: "=", banque: "Mines", cout: "628 €", site: "https://www.chimieparistech.psl.eu", description: "Chimie ParisTech est une grande école de chimie.", filieres: ["MP", "PSI"], filieresDetail: [
+                { nom: "Ingénieur Chimiste", description: "Formation en chimie", programme: ["Chimie organique", "Chimie inorganique", "Chimie physique", "Matériaux"] }
+            ], debouches: ["Ingénieur Chimiste", "Responsable Laboratoire", "Chercheur"], etudes: "Formation d'ingénieur en 3 ans." }
+            // Ajoutez les autres écoles si nécessaire...
+        ];
+
+        // ============================================================
+        // 3. CHARGEMENT DU DÉTAIL
+        // ============================================================
+        function loadEcoleDetail() {
+            // Récupérer l'ID de l'école depuis l'URL
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get('id'));
+
+            if (isNaN(id) || id < 0 || id >= ECOLES_FRANCE_DATA.length) {
+                document.getElementById('ecoleDetail').innerHTML = `
+                    <div style="text-align:center;padding:60px 20px;color:var(--color-gray-500);">
+                        <i class="fas fa-exclamation-triangle" style="font-size:3rem;display:block;margin-bottom:16px;"></i>
+                        <h3>École non trouvée</h3>
+                        <p>L'école que vous recherchez n'existe pas.</p>
+                        <a href="grandes-ecoles-france.html" class="btn btn-primary" style="margin-top:16px;">Retour à la liste</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const ecole = ECOLES_FRANCE_DATA[id];
+            renderEcoleDetail(ecole);
+        }
+
+        // ============================================================
+        // 4. RENDU DU DÉTAIL
+        // ============================================================
+        function renderEcoleDetail(ecole) {
+            const container = document.getElementById('ecoleDetail');
+
+            // Banque class
+            let banqueClass = ecole.banque.toLowerCase().replace('-', '');
+            let coutClass = ecole.cout === 'Gratuit' ? 'cout-gratuit' : '';
+
+            // Filières tags
+            let filieresTags = '';
+            ecole.filieres.forEach(f => {
+                filieresTags += `<span class="filiere-tag-detail ${f.toLowerCase()}">${f}</span>`;
+            });
+
+            // Onglets
+            const tabs = [
+                { id: 'presentation', label: '📖 Présentation', icon: 'fa-info-circle' },
+                { id: 'filieres', label: '📐 Filières', icon: 'fa-graduation-cap' },
+                { id: 'etudes', label: '🎓 Études', icon: 'fa-book-open' },
+                { id: 'debouches', label: '💼 Débouchés', icon: 'fa-briefcase' },
+                { id: 'contact', label: '🔗 Contact & Accès', icon: 'fa-envelope' }
+            ];
+
+            let tabsHtml = '';
+            let contentsHtml = '';
+
+            // Présentation
+            contentsHtml += `
+                <div class="tab-content-detail active" id="tab-presentation">
+                    <h3>📖 Présentation</h3>
+                    <p>${ecole.description}</p>
+                    <p style="margin-top:12px;">
+                        <strong>Directeur :</strong> ${ecole.directeur}
+                    </p>
+                </div>
+            `;
+
+            // Filières
+            let filieresContent = '';
+            if (ecole.filieresDetail && ecole.filieresDetail.length > 0) {
+                ecole.filieresDetail.forEach(f => {
+                    let programmeHtml = '';
+                    if (f.programme && f.programme.length > 0) {
+                        programmeHtml = `
+                            <h5 style="margin-top:10px;font-weight:700;color:var(--color-gray-900);">Programme</h5>
+                            <ul>
+                                ${f.programme.map(p => `<li><i class="fas fa-check-circle"></i> ${p}</li>`).join('')}
+                            </ul>
+                        `;
+                    }
+                    filieresContent += `
+                        <div style="padding:12px 0;border-bottom:1px solid var(--color-gray-200);">
+                            <h4 style="font-weight:700;color:var(--color-gray-900);">${f.nom}</h4>
+                            <p style="color:var(--color-gray-500);font-size:0.95rem;">${f.description}</p>
+                            ${programmeHtml}
+                        </div>
+                    `;
+                });
+            } else {
+                filieresContent = `<p>Informations sur les filières à venir.</p>`;
+            }
+
+            contentsHtml += `
+                <div class="tab-content-detail" id="tab-filieres">
+                    <h3>📐 Filières accessibles</h3>
+                    <div style="margin-bottom:16px;">${filieresTags}</div>
+                    ${filieresContent}
+                </div>
+            `;
+
+            // Études
+            contentsHtml += `
+                <div class="tab-content-detail" id="tab-etudes">
+                    <h3>🎓 Études</h3>
+                    <p>${ecole.etudes || 'Informations sur les études à venir.'}</p>
+                </div>
+            `;
+
+            // Débouchés
+            let debouchesContent = '';
+            if (ecole.debouches && ecole.debouches.length > 0) {
+                debouchesContent = `
+                    <ul>
+                        ${ecole.debouches.map(d => `<li><i class="fas fa-briefcase"></i> ${d}</li>`).join('')}
+                    </ul>
+                `;
+            } else {
+                debouchesContent = `<p>Informations sur les débouchés à venir.</p>`;
+            }
+
+            contentsHtml += `
+                <div class="tab-content-detail" id="tab-debouches">
+                    <h3>💼 Débouchés</h3>
+                    ${debouchesContent}
+                </div>
+            `;
+
+            // Contact & Accès
+            contentsHtml += `
+                <div class="tab-content-detail" id="tab-contact">
+                    <h3>🔗 Contact & Accès</h3>
+                    <ul>
+                        <li><i class="fas fa-globe"></i> Site web : <a href="${ecole.site}" target="_blank" style="color:var(--color-secondary);">${ecole.site.replace('https://','')}</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Ville : ${ecole.ville}</li>
+                        <li><i class="fas fa-envelope"></i> Contact : contact@${ecole.nom.toLowerCase().replace(/ /g,'')}.fr</li>
+                    </ul>
+                </div>
+            `;
+
+            // Construction des onglets
+            tabs.forEach(tab => {
+                const isActive = tab.id === 'presentation' ? 'active' : '';
+                tabsHtml += `
+                    <button class="tab-btn ${isActive}" onclick="switchTab('${tab.id}')">
+                        ${tab.label}
+                    </button>
+                `;
+            });
+
+            // Rendu final
+            container.innerHTML = `
+                <!-- En-tête -->
+                <div class="ecole-header-detail">
+                    <h1 class="ecole-title">${ecole.nom}</h1>
+                    <div class="ecole-subtitle"><i class="fas fa-map-marker-alt"></i> ${ecole.ville}</div>
+                    <div class="info-grid-detail">
+                        <div class="info-item">
+                            <div class="label">Rang</div>
+                            <div class="value">${ecole.rang}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Banque</div>
+                            <div class="value"><span class="banque-tag ${banqueClass}">${ecole.banque}</span></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Coût 1A</div>
+                            <div class="value ${coutClass}">${ecole.cout}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Évolution</div>
+                            <div class="value">${ecole.evolution}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Directeur</div>
+                            <div class="value" style="font-size:0.85rem;">${ecole.directeur}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Site web</div>
+                            <div class="value">
+                                <a href="${ecole.site}" target="_blank" style="color:var(--color-secondary);">Visiter</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Onglets -->
+                <div class="detail-tabs">
+                    ${tabsHtml}
+                </div>
+
+                <!-- Contenu -->
+                ${contentsHtml}
+            `;
+        }
+
+        // ============================================================
+        // 5. CHANGEMENT D'ONGLET
+        // ============================================================
+        function switchTab(tabId) {
+            // Mettre à jour les boutons
+            document.querySelectorAll('.detail-tabs .tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const targetBtn = document.querySelector(`.detail-tabs .tab-btn[onclick="switchTab('${tabId}')"]`);
+            if (targetBtn) targetBtn.classList.add('active');
+
+            // Mettre à jour les contenus
+            document.querySelectorAll('.tab-content-detail').forEach(content => {
+                content.classList.remove('active');
+            });
+            const targetContent = document.getElementById(`tab-${tabId}`);
+            if (targetContent) targetContent.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

@@ -870,7 +870,7 @@
                             ${ecole.site && ecole.site !== '#' ? `<a href="${ecole.site}" target="_blank" class="btn-site"><i class="fas fa-globe"></i></a>` : '—'}
                         </td>
                         <td>
-                            <button class="btn-consulter" onclick="openDetail('${index}')">
+                            <button class="btn-consulter" onclick="window.location.href='ecole-france-detail.html?id=${index}'">
                                 <i class="fas fa-arrow-right"></i> Consulter
                             </button>
                         </td>
