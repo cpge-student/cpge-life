@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Grandes Écoles France - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        /* ============================================
+           STYLES SPÉCIFIQUES GRANDES ÉCOLES FRANCE
+           ============================================ */
+        .ecoles-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .ecoles-page {
+            background: var(--color-gray-900);
+        }
+
+        .ecoles-page .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ecoles-page .page-subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Barre de recherche et filtres */
+        .ecoles-search {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding: 16px 24px;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .ecoles-search {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecoles-search .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 18px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .ecoles-search .search-input {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .ecoles-search .search-input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .ecoles-search .search-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .ecoles-search .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .ecoles-search .filter-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-gray-600);
+        }
+
+        [data-theme="dark"] .ecoles-search .filter-label {
+            color: var(--color-gray-400);
+        }
+
+        .ecoles-search select {
+            padding: 10px 16px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .ecoles-search select {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .ecoles-search select:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+        }
+
+        /* Résultats */
+        .results-count {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .results-count strong {
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .results-count strong {
+            color: var(--color-white);
+        }
+
+        /* ===== TABLEAU ===== */
+        .tableau-wrapper {
+            overflow-x: auto;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .tableau-wrapper {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .tableau-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            min-width: 900px;
+        }
+
+        .tableau-wrapper table thead th {
+            padding: 14px 16px;
+            background: var(--color-gray-100);
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 2px solid var(--color-gray-300);
+            color: var(--color-gray-700);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        [data-theme="dark"] .tableau-wrapper table thead th {
+            background: var(--color-gray-700);
+            border-bottom-color: var(--color-gray-600);
+            color: var(--color-gray-300);
+        }
+
+        .tableau-wrapper table tbody tr {
+            transition: var(--transition);
+        }
+
+        .tableau-wrapper table tbody tr:hover {
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .tableau-wrapper table tbody tr:hover {
+            background: var(--color-gray-700);
+        }
+
+        .tableau-wrapper table tbody td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--color-gray-200);
+            color: var(--color-gray-700);
+            vertical-align: middle;
+        }
+
+        [data-theme="dark"] .tableau-wrapper table tbody td {
+            border-bottom-color: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .tableau-wrapper table tbody td .rank-badge {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .tableau-wrapper table tbody td .rank-badge.top1 { background: #F59E0B; color: #0F172A; }
+        .tableau-wrapper table tbody td .rank-badge.top2 { background: #94A3B8; color: #0F172A; }
+        .tableau-wrapper table tbody td .rank-badge.top3 { background: #CD7F32; color: #0F172A; }
+
+        .tableau-wrapper table tbody td .evolution {
+            font-weight: 700;
+        }
+
+        .tableau-wrapper table tbody td .evolution.up { color: #10B981; }
+        .tableau-wrapper table tbody td .evolution.down { color: #EF4444; }
+        .tableau-wrapper table tbody td .evolution.equal { color: #94A3B8; }
+
+        .tableau-wrapper table tbody td .banque-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .tableau-wrapper table tbody td .banque-tag.xens { background: #EF4444; }
+        .tableau-wrapper table tbody td .banque-tag.mines { background: #F59E0B; color: #0F172A; }
+        .tableau-wrapper table tbody td .banque-tag.centrale { background: #3B82F6; }
+        .tableau-wrapper table tbody td .banque-tag.ccinp { background: #10B981; }
+        .tableau-wrapper table tbody td .banque-tag.e3a { background: #8B5CF6; }
+
+        .tableau-wrapper table tbody td .cout {
+            font-weight: 600;
+        }
+
+        .tableau-wrapper table tbody td .cout.gratuit { color: #10B981; }
+
+        .tableau-wrapper table tbody td .btn-consulter {
+            padding: 6px 16px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tableau-wrapper table tbody td .btn-consulter:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+        }
+
+        .tableau-wrapper table tbody td .btn-site {
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .tableau-wrapper table tbody td .btn-site:hover {
+            color: var(--color-secondary-light);
+        }
+
+        /* ===== MODAL DÉTAIL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        [data-theme="dark"] .modal-content {
+            background: var(--color-gray-800);
+        }
+
+        .modal-content .modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            background: var(--color-gray-200);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--color-gray-700);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        [data-theme="dark"] .modal-content .modal-close {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .modal-content .modal-close:hover {
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .modal-content .modal-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-gray-900);
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .modal-content .modal-title {
+            color: var(--color-white);
+        }
+
+        .modal-content .modal-subtitle {
+            font-size: 1rem;
+            color: var(--color-gray-500);
+            margin-bottom: 16px;
+        }
+
+        .modal-content .modal-section {
+            margin-bottom: 20px;
+        }
+
+        .modal-content .modal-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 6px;
+        }
+
+        [data-theme="dark"] .modal-content .modal-section h3 {
+            color: var(--color-white);
+        }
+
+        .modal-content .modal-section p {
+            color: var(--color-gray-600);
+            line-height: 1.7;
+        }
+
+        [data-theme="dark"] .modal-content .modal-section p {
+            color: var(--color-gray-400);
+        }
+
+        .modal-content .modal-section .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .modal-content .modal-section .info-item {
+            padding: 10px 14px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .modal-content .modal-section .info-item {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .modal-content .modal-section .info-item .label {
+            font-size: 0.7rem;
+            color: var(--color-gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-content .modal-section .info-item .value {
+            font-weight: 700;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .modal-content .modal-section .info-item .value {
+            color: var(--color-white);
+        }
+
+        /* ===== Aucun résultat ===== */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--color-gray-500);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .ecoles-page .page-title {
+                font-size: 1.8rem;
+            }
+
+            .ecoles-search {
+                flex-direction: column;
+            }
+
+            .ecoles-search .search-input {
+                width: 100%;
+            }
+
+            .tableau-wrapper table {
+                font-size: 0.75rem;
+                min-width: 700px;
+            }
+
+            .tableau-wrapper table thead th,
+            .tableau-wrapper table tbody td {
+                padding: 8px 10px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+            .modal-content .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-content .modal-section .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ecoles-page .page-title {
+                font-size: 1.4rem;
+            }
+
+            .tableau-wrapper table {
+                font-size: 0.65rem;
+                min-width: 600px;
+            }
+
+            .tableau-wrapper table thead th,
+            .tableau-wrapper table tbody td {
+                padding: 4px 6px;
+            }
+
+            .modal-content {
+                padding: 16px;
+            }
+
+            .modal-content .modal-title {
+                font-size: 1.2rem;
+            }
+
+            .tableau-wrapper table tbody td .btn-consulter {
+                font-size: 0.6rem;
+                padding: 4px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html">Grandes Écoles France</a></li>
+                            <li><a href="#">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE GRANDES ÉCOLES FRANCE -->
+    <!-- ============================================================ -->
+    <section class="ecoles-page">
+        <div class="container">
+
+            <h1 class="page-title">🇫🇷 Grandes Écoles d'Ingénieurs - France</h1>
+            <p class="page-subtitle">Découvrez toutes les écoles françaises accessibles après les CPGE</p>
+
+            <!-- Recherche et filtres -->
+            <div class="ecoles-search">
+                <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une école..." oninput="filterEcoles()"/>
+                <button class="search-btn" onclick="filterEcoles()">
+                    <i class="fas fa-search"></i> Rechercher
+                </button>
+                <span class="filter-label">Filtrer par :</span>
+                <select id="banqueFilter" onchange="filterEcoles()">
+                    <option value="all">Toutes les banques</option>
+                    <option value="X-ENS">X-ENS</option>
+                    <option value="Mines">Mines</option>
+                    <option value="Centrale">Centrale</option>
+                    <option value="CCINP">CCINP</option>
+                    <option value="E3A">E3A</option>
+                </select>
+            </div>
+
+            <!-- Résultats -->
+            <div class="results-count">
+                Affichage de <strong id="countDisplay">0</strong> école(s)
+            </div>
+
+            <!-- Tableau -->
+            <div class="tableau-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>École</th>
+                            <th>Ville</th>
+                            <th>Directeur</th>
+                            <th>Évol.</th>
+                            <th>Banque</th>
+                            <th>Coût 1A</th>
+                            <th>Site</th>
+                            <th>Détails</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableauBody">
+                        <!-- Généré par JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Aucun résultat -->
+            <div class="no-results" id="noResults" style="display:none;">
+                <i class="fas fa-search"></i>
+                <p>Aucune école ne correspond à votre recherche.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- MODAL (Détail de l'école) -->
+    <!-- ============================================================ -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <div id="modalBody">
+                <!-- Généré par JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+
+            renderEcoles();
+        });
+
+        // ============================================================
+        // 2. DONNÉES DES ÉCOLES FRANÇAISES
+        // ============================================================
+        const ECOLES_FRANCE_DATA = [
+            // Top 10
+            { rang: "1er", nom: "École polytechnique", ville: "Palaiseau", directeur: "Laura Chaubard (DG)", evolution: "=", banque: "X-ENS", cout: "Gratuit", site: "https://www.polytechnique.edu", description: "L'École polytechnique, surnommée 'X', est l'une des écoles d'ingénieurs les plus prestigieuses de France." },
+            { rang: "2e", nom: "Mines Paris", ville: "Paris", directeur: "Catherine Lagneau", evolution: "=", banque: "Mines", cout: "4 150 €", site: "https://www.minesparis.psl.eu", description: "Mines Paris est une grande école d'ingénieurs généraliste, membre de l'Université PSL." },
+            { rang: "3e", nom: "CentraleSupélec", ville: "Gif-sur-Yvette", directeur: "Romain Soubeyran", evolution: "=", banque: "Centrale", cout: "3 660 €", site: "https://www.centralesupelec.fr", description: "CentraleSupélec est le résultat de la fusion de l'École Centrale Paris et de Supélec." },
+            { rang: "4e", nom: "École des Ponts ParisTech", ville: "Champs-sur-Marne", directeur: "Anthony Briant", evolution: "↓1", banque: "Mines", cout: "3 800 €", site: "https://www.ecoledesponts.fr", description: "L'École des Ponts ParisTech est l'une des plus anciennes écoles d'ingénieurs." },
+            { rang: "5e", nom: "Télécom Paris", ville: "Palaiseau", directeur: "Patrick Olivier", evolution: "=", banque: "Mines", cout: "3 200 €", site: "https://www.telecom-paris.fr", description: "Télécom Paris est une grande école d'ingénieurs dans le domaine du numérique." },
+            { rang: "6e", nom: "Ensae", ville: "Palaiseau", directeur: "Pierre-Alain de Malleray", evolution: "↑2", banque: "Mines", cout: "2 650 €", site: "https://www.ensae.fr", description: "L'Ensae forme des ingénieurs statisticiens et économistes." },
+            { rang: "7e", nom: "ENSTA Paris", ville: "Palaiseau", directeur: "Laurence Borie-Bancel", evolution: "↓1", banque: "Mines", cout: "2 650 €", site: "https://www.ensta-paris.fr", description: "L'ENSTA Paris est une grande école d'ingénieurs généraliste." },
+            { rang: "7e", nom: "Isae-Supaéro", ville: "Toulouse", directeur: "Marie-Hélène Baroux", evolution: "↑2", banque: "Mines", cout: "2 926 €", site: "https://www.isae-supaero.fr", description: "L'ISAE-SUPAERO est l'une des meilleures écoles d'ingénieurs aéronautiques." },
+            { rang: "9e", nom: "ESPCI Paris", ville: "Paris", directeur: "Vincent Croquette", evolution: "=", banque: "X-ENS", cout: "863 €", site: "https://www.espci.fr", description: "L'ESPCI est une école d'ingénieurs spécialisée en physique et chimie." },
+            { rang: "10e", nom: "Chimie ParisTech", ville: "Paris", directeur: "Christian Lerminiaux", evolution: "=", banque: "Mines", cout: "628 €", site: "https://www.chimieparistech.psl.eu", description: "Chimie ParisTech est une grande école de chimie." },
+            // Suite
+            { rang: "11e", nom: "École centrale de Lyon", ville: "Ecully", directeur: "Jean-Pierre Berthet (Admin.)", evolution: "=", banque: "Centrale", cout: "2 613 €", site: "https://www.ec-lyon.fr", description: "L'École centrale de Lyon est une grande école d'ingénieurs généraliste." },
+            { rang: "12e", nom: "AgroParisTech", ville: "Palaiseau", directeur: "Laurent Buisson", evolution: "↓1", banque: "Centrale", cout: "1 990 €", site: "https://www.agroparistech.fr", description: "AgroParisTech forme des ingénieurs dans les domaines de l'agronomie." },
+            { rang: "12e", nom: "Arts et Métiers", ville: "Talence, etc.", directeur: "Laurent Champaney", evolution: "↑3", banque: "Centrale", cout: "628 €", site: "https://www.artsetmetiers.fr", description: "Arts et Métiers est une grande école d'ingénieurs généraliste." },
+            { rang: "12e", nom: "Phelma (Grenoble INP)", ville: "Grenoble", directeur: "Anne Vilcot", evolution: "↑2", banque: "CCINP", cout: "628 €", site: "https://phelma.grenoble-inp.fr", description: "Phelma est une école d'ingénieurs en physique, électronique et matériaux." },
+            { rang: "12e", nom: "Télécom SudParis", ville: "Evry", directeur: "François Dellacherie", evolution: "↑2", banque: "Mines", cout: "3 200 €", site: "https://www.telecom-sudparis.eu", description: "Télécom SudParis est une grande école d'ingénieurs du numérique." },
+            { rang: "16e", nom: "ECPM", ville: "Strasbourg", directeur: "Hans-Peter Sick", evolution: "↑2", banque: "CCINP", cout: "628 €", site: "https://www.ecpm.unistra.fr", description: "L'ECPM forme des ingénieurs chimistes et en science des matériaux." },
+            { rang: "16e", nom: "Mines Nancy", ville: "Nancy", directeur: "François Rousseau", evolution: "↓2", banque: "Mines", cout: "2 613 €", site: "https://www.mines-nancy.univ-lorraine.fr", description: "Mines Nancy est une grande école d'ingénieurs." },
+            { rang: "18e", nom: "Centrale Nantes", ville: "Nantes", directeur: "Jean-Baptiste Avrillier", evolution: "↓2", banque: "Centrale", cout: "2 613 €", site: "https://www.ec-nantes.fr", description: "Centrale Nantes est une grande école d'ingénieurs généraliste." },
+            { rang: "18e", nom: "Institut d'Optique (SupOptique)", ville: "Palaiseau", directeur: "Jean-Louis Bougrenet de la Tocnaye", evolution: "=", banque: "Centrale", cout: "3 200 €", site: "https://www.institutoptique.fr", description: "SupOptique est spécialisée en optique et photonique." },
+            { rang: "20e", nom: "École centrale de Lille", ville: "Villeneuve-d'Ascq", directeur: "Thomas Maurin", evolution: "↓2", banque: "Centrale", cout: "2 613 €", site: "https://www.centralelille.fr", description: "L'École centrale de Lille est une grande école d'ingénieurs généraliste." },
+            { rang: "21e", nom: "IMT Atlantique", ville: "Brest, Nantes", directeur: "Christophe Lerouge", evolution: "↓2", banque: "Mines", cout: "3 200 €", site: "https://www.imt-atlantique.fr", description: "IMT Atlantique est une grande école d'ingénieurs." },
+            { rang: "22e", nom: "Grenoble INP - Ensimag", ville: "St-Martin-d'Hères", directeur: "Jean-Louis Roch", evolution: "↓2", banque: "CCINP", cout: "628 €", site: "https://ensimag.grenoble-inp.fr", description: "L'Ensimag est une école d'ingénieurs en informatique et mathématiques." },
+            { rang: "22e", nom: "Mines Saint-Etienne", ville: "Saint-Etienne", directeur: "Jacques Fayolle", evolution: "=", banque: "Mines", cout: "3 200 €", site: "https://www.mines-stetienne.fr", description: "Mines Saint-Etienne est une grande école d'ingénieurs." },
+            { rang: "24e", nom: "Ensma", ville: "Chasseneuil", directeur: "Majdi Khoudeir", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensma.fr", description: "L'Ensma est une école d'ingénieurs en mécanique et aéronautique." },
+            { rang: "24e", nom: "ESTP", ville: "Cachan", directeur: "Carlos Vinhas Pereira", evolution: "=", banque: "Centrale", cout: "9 700 €", site: "https://www.estp.fr", description: "L'ESTP est une grande école d'ingénieurs du bâtiment et des travaux publics." },
+            { rang: "26e", nom: "Enac", ville: "Toulouse", directeur: "Olivier Chansou", evolution: "=", banque: "CCINP", cout: "1 467 €", site: "https://www.enac.fr", description: "L'ENAC est l'école nationale de l'aviation civile." },
+            { rang: "26e", nom: "ENSC Montpellier", ville: "Montpellier", directeur: "Sylvain Caillol", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.enscm.fr", description: "L'ENSC Montpellier est une école de chimie." },
+            { rang: "26e", nom: "Enseeiht", ville: "Toulouse", directeur: "Jean-François Rouchon", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.enseeiht.fr", description: "L'Enseeiht est une école d'ingénieurs en électronique et informatique." },
+            { rang: "26e", nom: "ENTPE", ville: "Vaulx-en-Velin", directeur: "Cécile Delolme", evolution: "=", banque: "Mines", cout: "628 €", site: "https://www.entpe.fr", description: "L'ENTPE est une école d'ingénieurs des travaux publics." },
+            { rang: "26e", nom: "Télécom Nancy", ville: "Villers-lès-Nancy", directeur: "Pierre-Etienne Moreau", evolution: "↑2", banque: "Mines", cout: "628 €", site: "https://www.telecomnancy.univ-lorraine.fr", description: "Télécom Nancy est une école d'ingénieurs du numérique." },
+            { rang: "31e", nom: "Ensic", ville: "Nancy", directeur: "Cécile Nouvel", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensic.univ-lorraine.fr", description: "L'Ensic est une école d'ingénieurs en génie chimique." },
+            { rang: "32e", nom: "Centrale Méditerranée", ville: "Marseille", directeur: "Carole Deumié", evolution: "=", banque: "Centrale", cout: "2 613 €", site: "https://www.centrale-mediterranee.fr", description: "Centrale Méditerranée est une grande école d'ingénieurs généraliste." },
+            { rang: "32e", nom: "EIDD", ville: "Paris", directeur: "Giuseppe Leo", evolution: "=", banque: "CCINP", cout: "628 €", site: "#", description: "L'EIDD est une école d'ingénieurs en développement durable." },
+            { rang: "32e", nom: "Ense3 (Grenoble INP)", ville: "Grenoble", directeur: "Delphine Riu", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://ense3.grenoble-inp.fr", description: "Ense3 forme des ingénieurs en énergie et environnement." },
+            { rang: "35e", nom: "Enseirb-Matmea", ville: "Talence", directeur: "Eric Kerhervé", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.enseirb-matmea.fr", description: "Enseirb-Matmea est une école d'ingénieurs généraliste." },
+            { rang: "35e", nom: "Ensiact", ville: "Toulouse", directeur: "Jean-Marc Le Lann", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensiact.fr", description: "L'Ensiact est une école d'ingénieurs en agroalimentaire." },
+            { rang: "35e", nom: "Eost", ville: "Strasbourg", directeur: "Frédéric Masson", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://eost.unistra.fr", description: "L'Eost forme des ingénieurs en sciences de la Terre." },
+            { rang: "35e", nom: "Episen", ville: "Créteil", directeur: "Manuela Boyer", evolution: "=", banque: "E3A", cout: "628 €", site: "https://www.episen.fr", description: "Episen est une école d'ingénieurs en énergie et systèmes." },
+            { rang: "35e", nom: "Grenoble INP - Génie Ind.", ville: "Grenoble", directeur: "Lamia Berrah", evolution: "↓2", banque: "CCINP", cout: "628 €", site: "https://genie-industriel.grenoble-inp.fr", description: "Cette école forme des ingénieurs en génie industriel." },
+            { rang: "35e", nom: "IMT Mines Alès", ville: "Alès", directeur: "Assia Tria", evolution: "=", banque: "Mines", cout: "2 950 €", site: "https://www.mines-ales.fr", description: "IMT Mines Alès est une grande école d'ingénieurs." },
+            { rang: "35e", nom: "IMT Nord Europe", ville: "Douai", directeur: "Céline Fasulo", evolution: "=", banque: "Mines", cout: "2 650 €", site: "https://imt-nord-europe.fr", description: "IMT Nord Europe est une grande école d'ingénieurs." },
+            { rang: "35e", nom: "ISAE-Supméca", ville: "St-Ouen", directeur: "Nicolas Peyret", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.isae-supmeca.fr", description: "ISAE-Supméca est une école d'ingénieurs en mécanique." },
+            { rang: "35e", nom: "Sigma Clermont", ville: "Aubière", directeur: "Nicolas Gayton", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.sigma-clermont.fr", description: "Sigma Clermont est une école d'ingénieurs généraliste." },
+            { rang: "44e", nom: "ENSC Lille", ville: "Villeneuve-d'Ascq", directeur: "Rose-Noëlle Vannier", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensc-lille.fr", description: "L'ENSC Lille est une école de chimie." },
+            { rang: "44e", nom: "ENSG Nancy", ville: "Vandoeuvre", directeur: "Judith Sausse", evolution: "=", banque: "Mines", cout: "628 €", site: "https://www.ensg.univ-lorraine.fr", description: "L'ENSG Nancy est une école de géologie." },
+            { rang: "44e", nom: "ENSICAEN", ville: "Caen", directeur: "Gilles Ban", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensicaen.fr", description: "L'ENSICAEN est une école d'ingénieurs généraliste." },
+            { rang: "44e", nom: "Ensmac", ville: "Pessac", directeur: "Maritxu Guiresse", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensmac.fr", description: "L'Ensmac est une école d'ingénieurs en agroalimentaire." },
+            { rang: "44e", nom: "Enstib", ville: "Épinal", directeur: "Laurent Bléron", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.enstib.univ-lorraine.fr", description: "L'Enstib est une école d'ingénieurs en bois et matériaux." },
+            { rang: "44e", nom: "ESBS", ville: "Illkirch", directeur: "Dominique Bagnard", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://esbs.unistra.fr", description: "L'ESBS est une école de biotechnologie." },
+            { rang: "50e", nom: "Ensem", ville: "Vandoeuvre", directeur: "Abdelaziz Bensrhair", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://ensem.univ-lorraine.fr", description: "L'Ensem est une école d'ingénieurs en mécanique et électrique." },
+            { rang: "50e", nom: "Géodata (ENSG)", ville: "Champs-sur-Marne", directeur: "Nicolas Paparoditis", evolution: "=", banque: "Mines", cout: "628 €", site: "https://geodata.ign.fr", description: "L'ENSG Géodata est une école de géomatique." },
+            { rang: "50e", nom: "IMT Mines Albi", ville: "Albi", directeur: "Lionel Luquin", evolution: "=", banque: "Mines", cout: "2 650 €", site: "https://www.mines-albi.fr", description: "IMT Mines Albi est une grande école d'ingénieurs." },
+            { rang: "50e", nom: "SUPMICROTECH (ENSMM)", ville: "Besançon", directeur: "Pascal Vairac", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensmm.fr", description: "SUPMICROTECH est une école d'ingénieurs en microtechniques." },
+            { rang: "50e", nom: "Télécom Physique Strasbourg", ville: "Illkirch", directeur: "Fabien Prégaldiny", evolution: "=", banque: "Mines", cout: "628 €", site: "https://www.telecom-physique.fr", description: "Télécom Physique Strasbourg est une école d'ingénieurs en physique." },
+            { rang: "55e", nom: "ENSAI", ville: "Bruz", directeur: "Ronan Le Saout", evolution: "=", banque: "CCINP", cout: "2 650 €", site: "https://www.ensai.fr", description: "L'ENSAI est une école d'ingénieurs en statistique." },
+            { rang: "55e", nom: "ENSTBB", ville: "Bordeaux", directeur: "Isabelle Dias", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.enstbb.fr", description: "L'ENSTBB est une école de biotechnologie." },
+            { rang: "57e", nom: "Ensait", ville: "Roubaix", directeur: "Christine Campagne", evolution: "=", banque: "E3A", cout: "628 €", site: "https://www.ensait.fr", description: "L'Ensait est une école d'ingénieurs en textile." },
+            { rang: "57e", nom: "Ensea", ville: "Cergy-Pontoise", directeur: "Vincent Merval", evolution: "=", banque: "Centrale", cout: "628 €", site: "https://www.ensea.fr", description: "L'Ensea est une école d'ingénieurs en électronique." },
+            { rang: "57e", nom: "ENSGTI", ville: "Pau", directeur: "Jean-Michel Reneaume", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensgti.univ-pau.fr", description: "L'ENSGTI est une école d'ingénieurs en génie des procédés." },
+            { rang: "57e", nom: "Ensi Poitiers", ville: "Poitiers", directeur: "Richard Giot", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensi-poitiers.fr", description: "L'Ensi Poitiers est une école d'ingénieurs en informatique." },
+            { rang: "57e", nom: "ENSIIE", ville: "Evry", directeur: "Etienne Duris", evolution: "=", banque: "Mines", cout: "628 €", site: "https://www.ensiie.fr", description: "L'ENSIIE est une école d'ingénieurs en informatique." },
+            { rang: "57e", nom: "Enspima", ville: "Mérignac", directeur: "Loïc Lavigne", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.enspima.fr", description: "L'Enspima est une école d'ingénieurs en impression 3D." },
+            { rang: "57e", nom: "SeaTech", ville: "Toulon", directeur: "Frédéric Vernet", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://seatech.univ-tln.fr", description: "SeaTech est une école d'ingénieurs en génie maritime." },
+            { rang: "64e", nom: "Pagora", ville: "St-Martin-d'Hères", directeur: "Lionel Chagas", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://pagora.grenoble-inp.fr", description: "Pagora est une école d'ingénieurs en papier et matériaux." },
+            { rang: "65e", nom: "EIVP", ville: "Paris", directeur: "Franck Jung", evolution: "=", banque: "Mines", cout: "2 265 €", site: "https://www.eivp-paris.fr", description: "L'EIVP est une école d'ingénieurs de la ville de Paris." },
+            { rang: "65e", nom: "ENSC (Bordeaux)", ville: "Talence", directeur: "Benoit Le Blanc", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.enscbp.fr", description: "L'ENSC Bordeaux est une école de chimie." },
+            { rang: "65e", nom: "ENSC Mulhouse", ville: "Mulhouse", directeur: "Jocelyne Brendlé", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.enscmu.fr", description: "L'ENSC Mulhouse est une école de chimie." },
+            { rang: "65e", nom: "Enssat", ville: "Lannion", directeur: "Simon Peeters", evolution: "=", banque: "Mines", cout: "628 €", site: "https://www.enssat.fr", description: "L'Enssat est une école d'ingénieurs en électronique." },
+            { rang: "65e", nom: "ESTIA", ville: "Bidart", directeur: "Patxi Elissalde", evolution: "=", banque: "E3A", cout: "8 000 €", site: "https://www.estia.fr", description: "L'ESTIA est une école d'ingénieurs en technologies industrielles." },
+            { rang: "70e", nom: "Engees", ville: "Strasbourg", directeur: "Jean-Marc Willer", evolution: "=", banque: "CCINP", cout: "1 990 €", site: "https://engees.unistra.fr", description: "L'Engees est une école d'ingénieurs en eau et environnement." },
+            { rang: "70e", nom: "Ensaià", ville: "Vandoeuvre", directeur: "Guido Rychen", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://ensaiia.univ-lorraine.fr", description: "L'Ensaià est une école d'ingénieurs en agroalimentaire." },
+            { rang: "70e", nom: "ENSC Rennes", ville: "Rennes", directeur: "Audrey Soric", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.ensc-rennes.fr", description: "L'ENSC Rennes est une école de chimie." },
+            { rang: "70e", nom: "Institut Agro Montpellier", ville: "Montpellier", directeur: "Anne-Lucie Wack", evolution: "=", banque: "CCINP", cout: "1 990 €", site: "https://www.institut-agro-montpellier.fr", description: "L'Institut Agro forme des ingénieurs en agronomie." },
+            { rang: "74e", nom: "Itech Lyon", ville: "Écully", directeur: "Jérôme Marcilloux", evolution: "=", banque: "E3A", cout: "8 600 €", site: "https://www.itech.fr", description: "Itech Lyon est une école d'ingénieurs en textile." },
+            { rang: "74e", nom: "Paoli Tech", ville: "Corte", directeur: "Direction", evolution: "=", banque: "E3A", cout: "628 €", site: "#", description: "Paoli Tech est une école d'ingénieurs en technologie." },
+            { rang: "74e", nom: "Télécom Saint-Etienne", ville: "Saint-Étienne", directeur: "Florent Vals", evolution: "=", banque: "Mines", cout: "628 €", site: "https://www.telecom-st-etienne.fr", description: "Télécom Saint-Etienne est une école d'ingénieurs du numérique." },
+            { rang: "77e", nom: "ESB", ville: "Nantes", directeur: "Arnaud Godevin", evolution: "=", banque: "E3A", cout: "5 950 €", site: "https://www.esb.fr", description: "L'ESB est une école de biotechnologie." },
+            { rang: "77e", nom: "Esix Normandie", ville: "Caen", directeur: "Sébastien Saez", evolution: "=", banque: "E3A", cout: "628 €", site: "https://www.esix-normandie.fr", description: "Esix Normandie est une école d'ingénieurs." },
+            { rang: "77e", nom: "Isifc", ville: "Besançon", directeur: "Frédéric Thiebaut", evolution: "=", banque: "E3A", cout: "628 €", site: "https://www.isifc.fr", description: "L'Isifc est une école d'ingénieurs en formation continue." },
+            { rang: "80e", nom: "Ensat", ville: "Castanet-Tolosan", directeur: "Grégory Dechamp-Guillaume", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://ensat.fr", description: "L'Ensat est une école d'ingénieurs en agronomie." },
+            { rang: "81e", nom: "Oniris", ville: "Nantes", directeur: "Laurence Deflesselle", evolution: "=", banque: "CCINP", cout: "1 990 €", site: "https://www.oniris-nantes.fr", description: "Oniris est une école vétérinaire et agroalimentaire." },
+            { rang: "82e", nom: "VetAgro Sup", ville: "Lempdes", directeur: "Mireille Bossy", evolution: "=", banque: "CCINP", cout: "1 990 €", site: "https://www.vetagro-sup.fr", description: "VetAgro Sup est une école vétérinaire." },
+            { rang: "83e", nom: "CPBx (Bordeaux Sciences Agro)", ville: "Talence", directeur: "Sabine Brun-Rageul", evolution: "=", banque: "CCINP", cout: "1 990 €", site: "https://www.bordeaux-sciences-agro.fr", description: "Bordeaux Sciences Agro forme des ingénieurs en agronomie." },
+            { rang: "83e", nom: "Esiab", ville: "Plouzané", directeur: "Georges Barbier", evolution: "=", banque: "E3A", cout: "628 €", site: "https://www.esiab.fr", description: "L'Esiab est une école d'ingénieurs en biotechnologie." },
+            { rang: "85e", nom: "Isima", ville: "Aubière", directeur: "Farouk Toumani", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://www.isima.fr", description: "L'Isima est une école d'ingénieurs en informatique." },
+            { rang: "86e", nom: "Ensegid", ville: "Pessac", directeur: "Alain Dupuy", evolution: "=", banque: "CCINP", cout: "628 €", site: "https://ensegid.fr", description: "L'Ensegid est une école d'ingénieurs en géomatique." }
+        ];
+
+        // ============================================================
+        // 3. RENDU DU TABLEAU
+        // ============================================================
+        let currentEcoles = [...ECOLES_FRANCE_DATA];
+
+        function renderEcoles() {
+            const tbody = document.getElementById('tableauBody');
+            const countDisplay = document.getElementById('countDisplay');
+            const noResults = document.getElementById('noResults');
+
+            if (currentEcoles.length === 0) {
+                tbody.innerHTML = '';
+                noResults.style.display = 'block';
+                countDisplay.textContent = '0';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            countDisplay.textContent = currentEcoles.length;
+
+            let html = '';
+            currentEcoles.forEach((ecole, index) => {
+                // Classement
+                let rankClass = '';
+                if (ecole.rang === '1er') rankClass = 'top1';
+                else if (ecole.rang === '2e') rankClass = 'top2';
+                else if (ecole.rang === '3e') rankClass = 'top3';
+
+                // Évolution
+                let evoClass = 'equal';
+                let evoIcon = '➖';
+                if (ecole.evolution === '↑2' || ecole.evolution === '↑3') { evoClass = 'up'; evoIcon = '⬆'; }
+                else if (ecole.evolution === '↓1' || ecole.evolution === '↓2') { evoClass = 'down'; evoIcon = '⬇'; }
+
+                // Banque
+                let banqueClass = ecole.banque.toLowerCase().replace('-', '');
+
+                // Coût
+                let coutClass = '';
+                if (ecole.cout === 'Gratuit') coutClass = 'gratuit';
+
+                html += `
+                    <tr>
+                        <td><span class="rank-badge ${rankClass}">${ecole.rang}</span></td>
+                        <td><strong>${ecole.nom}</strong></td>
+                        <td>${ecole.ville}</td>
+                        <td style="font-size:0.8rem;">${ecole.directeur}</td>
+                        <td><span class="evolution ${evoClass}">${evoIcon} ${ecole.evolution}</span></td>
+                        <td><span class="banque-tag ${banqueClass}">${ecole.banque}</span></td>
+                        <td><span class="cout ${coutClass}">${ecole.cout}</span></td>
+                        <td>
+                            ${ecole.site && ecole.site !== '#' ? `<a href="${ecole.site}" target="_blank" class="btn-site"><i class="fas fa-globe"></i></a>` : '—'}
+                        </td>
+                        <td>
+                            <button class="btn-consulter" onclick="openDetail('${index}')">
+                                <i class="fas fa-arrow-right"></i> Consulter
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        // ============================================================
+        // 4. FILTRE ET RECHERCHE
+        // ============================================================
+        function filterEcoles() {
+            const search = document.getElementById('searchInput').value.toLowerCase().trim();
+            const banque = document.getElementById('banqueFilter').value;
+
+            currentEcoles = ECOLES_FRANCE_DATA.filter(ecole => {
+                let matchSearch = true;
+                if (search) {
+                    matchSearch = ecole.nom.toLowerCase().includes(search) ||
+                                  ecole.ville.toLowerCase().includes(search) ||
+                                  ecole.banque.toLowerCase().includes(search);
+                }
+
+                let matchBanque = true;
+                if (banque !== 'all') {
+                    matchBanque = ecole.banque === banque;
+                }
+
+                return matchSearch && matchBanque;
+            });
+
+            renderEcoles();
+        }
+
+        // ============================================================
+        // 5. OUVERTURE DU MODAL (Détail école)
+        // ============================================================
+        function openDetail(index) {
+            const ecole = ECOLES_FRANCE_DATA[index];
+            if (!ecole) return;
+
+            const modal = document.getElementById('modalOverlay');
+            const body = document.getElementById('modalBody');
+
+            body.innerHTML = `
+                <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                <div class="modal-title">${ecole.nom}</div>
+                <div class="modal-subtitle"><i class="fas fa-map-marker-alt"></i> ${ecole.ville}</div>
+
+                <div class="modal-section">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="label">Rang</div>
+                            <div class="value">${ecole.rang}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Banque</div>
+                            <div class="value">${ecole.banque}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Coût 1A</div>
+                            <div class="value">${ecole.cout}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Évolution</div>
+                            <div class="value">${ecole.evolution}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Directeur</div>
+                            <div class="value" style="font-size:0.85rem;">${ecole.directeur}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">Site web</div>
+                            <div class="value">
+                                ${ecole.site && ecole.site !== '#' ? `<a href="${ecole.site}" target="_blank" style="color:var(--color-secondary);">www.${ecole.nom.toLowerCase().replace(/ /g,'')}.fr</a>` : 'Non disponible'}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>📖 Présentation</h3>
+                    <p>${ecole.description || 'Description à venir.'}</p>
+                </div>
+
+                <div class="modal-section" style="text-align:center;margin-top:20px;">
+                    <button class="btn-consulter" onclick="alert('📄 Page dédiée à ${ecole.nom} à venir.')" style="padding:10px 32px;font-size:1rem;background:var(--color-secondary);color:white;border:none;border-radius:var(--radius-sm);cursor:pointer;">
+                        <i class="fas fa-arrow-right"></i> Voir toutes les informations
+                    </button>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ============================================================
+        // 6. FERMETURE DU MODAL
+        // ============================================================
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ============================================================
+        // 7. RECHERCHE AVEC ENTRÉE
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('searchInput');
+                if (document.activeElement === input) {
+                    filterEcoles();
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
