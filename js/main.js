@@ -99,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             card.innerHTML = `
-                <div class="badge-rank">${centre.classement}</div>
                 <div class="centre-name">${centre.nom}</div>
                 <div class="centre-sigle">${centre.sigle}</div>
                 <div class="centre-ville">📍 ${centre.ville}</div>
