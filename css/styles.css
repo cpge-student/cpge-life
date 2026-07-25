@@ -740,10 +740,12 @@ img {
 .countdown-circle {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centre les éléments horizontalement */
-    text-align: center;  /* Centre tout le texte */
+    align-items: center;
+    justify-content: center; /* Centre le tout verticalement */
+    text-align: center;
     background: var(--color-white);
-    padding: 24px 20px 20px;
+    padding: 10px; /* Réduit le padding pour faire remonter le contenu */
+    box-sizing: border-box; /* Empêche le contenu de sortir du cercle */
     border-radius: 50%;
     width: 130px;
     height: 130px;
@@ -757,10 +759,29 @@ img {
 }
 
 .countdown-circle .circle-icon {
-    font-size: 1.6rem;
-    margin-bottom: 4px;
+    font-size: 1.3rem;
+    margin-bottom: 2px;
+    line-height: 1;
     text-align: center;
     width: 100%;
+}
+
+.countdown-circle .circle-time {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-secondary);
+    line-height: 1.1;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.countdown-circle .circle-time .circle-days {
+    color: var(--color-gray-900);
+}
+
+[data-theme="dark"] .countdown-circle .circle-time .circle-days {
+    color: var(--color-white);
 }
 
 .countdown-circle .circle-name {
@@ -770,24 +791,8 @@ img {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    line-height: 1;
     width: 100%;
-}
-
-.countdown-circle .circle-time {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--color-secondary);
-    line-height: 1.2;
-    text-align: center;
-    width: 100%;
-}
-
-.countdown-circle .circle-time .circle-days {
-    color: var(--color-gray-900);
-}
-
-[data-theme="dark"] .countdown-circle .circle-time .circle-days {
-    color: var(--color-white);
 }
 
 /* Couleurs pour chaque cercle */
