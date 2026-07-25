@@ -1,0 +1,113 @@
+{
+  "site": {
+    "name": "CPGE Life",
+    "slogan": "Geleceğini mükemmellikle hazırla.",
+    "description": "Büyük Okullar için Hazırlık Sınıfları · Fas"
+  },
+  "nav": {
+    "ecoles": "Okullar",
+    "centres": "CPGE Merkezleri",
+    "grandes_ecoles_maroc": "Fas Büyük Okulları",
+    "grandes_ecoles_france": "Fransa Büyük Okulları",
+    "um6p": "UM6P",
+    "filieres": "Bölümler",
+    "mp": "MP - Matematik & Fizik",
+    "psi": "PSI - Fizik & Mühendislik",
+    "tsi": "TSI - Teknoloji & Mühendislik",
+    "documents": "Dokümanlar",
+    "cours": "Dersler",
+    "td_ds": "TD ve DS",
+    "extraits_concours": "Sınav özetleri",
+    "drive_complet": "Tam Drive",
+    "annales": "Geçmiş sınavlar",
+    "actualites": "Haberler",
+    "contact": "İletişim",
+    "espace": "Üye Alanı",
+    "rechercher": "Ara...",
+    "langues": "Diller"
+  },
+  "hero": {
+    "title": "Geleceğini mükemmellikle hazırla.",
+    "subtitle": "Fas'taki tüm CPGE'ler için referans platformu — 28 kurum, 3 bölüm, binlerce ders ve tutkulu öğrencilerden oluşan bir topluluk.",
+    "btn_centres": "Merkezleri keşfet",
+    "btn_cours": "Dersleri gör"
+  },
+  "stats": {
+    "etablissements": "Kurumlar",
+    "filieres": "Bölümler",
+    "etudiants": "Öğrenciler",
+    "ressources": "Kaynaklar"
+  },
+  "countdown": {
+    "title": "Yaklaşan etkinlikler",
+    "xens": "X-ENS",
+    "mines": "Mines",
+    "ccinp": "CCINP",
+    "centrale": "Centrale",
+    "cnc": "CNC"
+  },
+  "centres": {
+    "title": "Fas'ın en iyi CPGE'leri",
+    "subtitle": "Akademik mükemmellik, kabul oranı ve eğitim kalitesi için seçilen 28 kurum.",
+    "btn_all": "Tüm sıralamaları gör"
+  },
+  "filieres_section": {
+    "title": "CPGE bölümünü seç",
+    "subtitle": "Her biri kendine özgü özellikleri, yarışmaları ve kariyer olanakları olan 3 bölüm.",
+    "btn_voir": "Bölümü gör"
+  },
+  "temoignages": {
+    "title": "Bize güveniyorlar"
+  },
+  "footer": {
+    "quote": "Fas hazırlık sınıfı topluluğu için ❤️ ile inşa edildi",
+    "faq": "SSS",
+    "mentions": "Yasal uyarılar",
+    "copyright": "Tüm hakları saklıdır."
+  },
+  "search": {
+    "placeholder": "Bir ders, okul veya belge ara...",
+    "no_results": "Sonuç bulunamadı",
+    "results": "sonuç bulundu",
+    "categories": {
+      "cours": "Dersler",
+      "ecoles": "Okullar",
+      "centres": "CPGE Merkezleri",
+      "annales": "Geçmiş sınavlar",
+      "documents": "Dokümanlar"
+    }
+  },
+  "auth": {
+    "login": "Giriş yap",
+    "register": "Hesap oluştur",
+    "logout": "Çıkış yap",
+    "email": "E-posta",
+    "password": "Şifre",
+    "confirm_password": "Şifreyi onayla",
+    "remember": "Beni hatırla",
+    "forgot": "Şifreni mi unuttun?",
+    "no_account": "Hesabın yok mu?",
+    "has_account": "Zaten hesabın var mı?",
+    "name": "Soyisim",
+    "firstname": "Ad",
+    "filiere": "Bölüm",
+    "annee": "Yıl",
+    "etablissement": "Kurum",
+    "terms": "Hüküm ve koşulları kabul ediyorum",
+    "login_success": "Giriş başarılı!",
+    "login_error": "E-posta veya şifre hatalı",
+    "register_success": "Hesap başarıyla oluşturuldu!"
+  },
+  "membre": {
+    "title": "Üye Alanı",
+    "welcome": "Kişisel alanına hoş geldin",
+    "dashboard": "Kontrol paneli",
+    "historique": "Geçmiş",
+    "telechargements": "İndirilenler",
+    "favoris": "Favoriler",
+    "parametres": "Ayarlar",
+    "cours_consultes": "İncelenen dersler",
+    "derniers_cours": "Son incelenen dersler",
+    "revoir": "Tekrar et"
+  }
+}

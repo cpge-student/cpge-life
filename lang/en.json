@@ -1,0 +1,113 @@
+{
+  "site": {
+    "name": "CPGE Life",
+    "slogan": "Prepare your future with excellence.",
+    "description": "Preparatory Classes for Grandes Écoles · Morocco"
+  },
+  "nav": {
+    "ecoles": "Schools",
+    "centres": "CPGE Centers",
+    "grandes_ecoles_maroc": "Grandes Écoles Morocco",
+    "grandes_ecoles_france": "Grandes Écoles France",
+    "um6p": "UM6P",
+    "filieres": "Tracks",
+    "mp": "MP - Maths & Physics",
+    "psi": "PSI - Physics & SI",
+    "tsi": "TSI - Technology & SI",
+    "documents": "Documents",
+    "cours": "Courses",
+    "td_ds": "TD & DS",
+    "extraits_concours": "Exam excerpts",
+    "drive_complet": "Full Drive",
+    "annales": "Past exams",
+    "actualites": "News",
+    "contact": "Contact",
+    "espace": "Member Area",
+    "rechercher": "Search...",
+    "langues": "Languages"
+  },
+  "hero": {
+    "title": "Prepare your future with excellence.",
+    "subtitle": "The reference platform for all CPGE in Morocco — 28 establishments, 3 tracks, thousands of courses and a community of passionate students.",
+    "btn_centres": "Explore centers",
+    "btn_cours": "View courses"
+  },
+  "stats": {
+    "etablissements": "Establishments",
+    "filieres": "Tracks",
+    "etudiants": "Students",
+    "ressources": "Resources"
+  },
+  "countdown": {
+    "title": "Upcoming events",
+    "xens": "X-ENS",
+    "mines": "Mines",
+    "ccinp": "CCINP",
+    "centrale": "Centrale",
+    "cnc": "CNC"
+  },
+  "centres": {
+    "title": "The best CPGE in Morocco",
+    "subtitle": "28 establishments selected for their academic excellence, admission rate and quality of supervision.",
+    "btn_all": "View all rankings"
+  },
+  "filieres_section": {
+    "title": "Choose your CPGE track",
+    "subtitle": "3 tracks, each with its specificities, competitions and career opportunities.",
+    "btn_voir": "View track"
+  },
+  "temoignages": {
+    "title": "They trust us"
+  },
+  "footer": {
+    "quote": "Built with ❤️ for the Moroccan preparatory class community",
+    "faq": "FAQ",
+    "mentions": "Legal notices",
+    "copyright": "All rights reserved."
+  },
+  "search": {
+    "placeholder": "Search a course, a school, a document...",
+    "no_results": "No results found",
+    "results": "results found",
+    "categories": {
+      "cours": "Courses",
+      "ecoles": "Schools",
+      "centres": "CPGE Centers",
+      "annales": "Past exams",
+      "documents": "Documents"
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Create account",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "remember": "Remember me",
+    "forgot": "Forgot password?",
+    "no_account": "Don't have an account?",
+    "has_account": "Already have an account?",
+    "name": "Last name",
+    "firstname": "First name",
+    "filiere": "Track",
+    "annee": "Year",
+    "etablissement": "Establishment",
+    "terms": "I accept the terms and conditions",
+    "login_success": "Login successful!",
+    "login_error": "Incorrect email or password",
+    "register_success": "Account created successfully!"
+  },
+  "membre": {
+    "title": "Member Area",
+    "welcome": "Welcome to your personal space",
+    "dashboard": "Dashboard",
+    "historique": "History",
+    "telechargements": "Downloads",
+    "favoris": "Favorites",
+    "parametres": "Settings",
+    "cours_consultes": "Courses consulted",
+    "derniers_cours": "Last courses consulted",
+    "revoir": "Review"
+  }
+}

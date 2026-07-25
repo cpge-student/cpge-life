@@ -1,0 +1,113 @@
+{
+  "site": {
+    "name": "CPGE Life",
+    "slogan": "Prépare ton avenir avec excellence.",
+    "description": "Classes Préparatoires aux Grandes Écoles · Maroc"
+  },
+  "nav": {
+    "ecoles": "Écoles",
+    "centres": "Centres CPGE",
+    "grandes_ecoles_maroc": "Grandes Écoles Maroc",
+    "grandes_ecoles_france": "Grandes Écoles France",
+    "um6p": "UM6P",
+    "filieres": "Filières",
+    "mp": "MP - Maths & Physique",
+    "psi": "PSI - Physique & SI",
+    "tsi": "TSI - Technologie & SI",
+    "documents": "Documents",
+    "cours": "Cours",
+    "td_ds": "TD et DS",
+    "extraits_concours": "Extraits de concours",
+    "drive_complet": "Drive complet",
+    "annales": "Annales",
+    "actualites": "Actualités",
+    "contact": "Contact",
+    "espace": "Espace Membre",
+    "rechercher": "Rechercher...",
+    "langues": "Langues"
+  },
+  "hero": {
+    "title": "Prépare ton avenir avec excellence.",
+    "subtitle": "La plateforme de référence pour toutes les CPGE du Maroc — 28 établissements, 3 filières, des milliers de cours et une communauté d'étudiants passionnés.",
+    "btn_centres": "Explorer les centres",
+    "btn_cours": "Voir les cours"
+  },
+  "stats": {
+    "etablissements": "Établissements",
+    "filieres": "Filières",
+    "etudiants": "Étudiants",
+    "ressources": "Ressources"
+  },
+  "countdown": {
+    "title": "Prochains événements",
+    "xens": "X-ENS",
+    "mines": "Mines",
+    "ccinp": "CCINP",
+    "centrale": "Centrale",
+    "cnc": "CNC"
+  },
+  "centres": {
+    "title": "Les meilleures CPGE du Maroc",
+    "subtitle": "28 établissements sélectionnés pour leur excellence académique, leur taux d'admission et la qualité de l'encadrement.",
+    "btn_all": "Voir tous les classements"
+  },
+  "filieres_section": {
+    "title": "Choisir sa filière CPGE",
+    "subtitle": "3 filières, chacune avec ses spécificités, ses concours et ses débouchés.",
+    "btn_voir": "Voir la filière"
+  },
+  "temoignages": {
+    "title": "Ils nous font confiance"
+  },
+  "footer": {
+    "quote": "Construit avec ❤️ pour la communauté des préparationnaires marocains",
+    "faq": "FAQ",
+    "mentions": "Mentions légales",
+    "copyright": "Tous droits réservés."
+  },
+  "search": {
+    "placeholder": "Rechercher un cours, une école, un document...",
+    "no_results": "Aucun résultat trouvé",
+    "results": "résultats trouvés",
+    "categories": {
+      "cours": "Cours",
+      "ecoles": "Écoles",
+      "centres": "Centres CPGE",
+      "annales": "Annales",
+      "documents": "Documents"
+    }
+  },
+  "auth": {
+    "login": "Se connecter",
+    "register": "Créer un compte",
+    "logout": "Déconnexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirm_password": "Confirmer le mot de passe",
+    "remember": "Se souvenir de moi",
+    "forgot": "Mot de passe oublié ?",
+    "no_account": "Pas encore de compte ?",
+    "has_account": "Déjà un compte ?",
+    "name": "Nom",
+    "firstname": "Prénom",
+    "filiere": "Filière",
+    "annee": "Année",
+    "etablissement": "Établissement",
+    "terms": "J'accepte les conditions générales",
+    "login_success": "Connexion réussie !",
+    "login_error": "Email ou mot de passe incorrect",
+    "register_success": "Compte créé avec succès !"
+  },
+  "membre": {
+    "title": "Espace Membre",
+    "welcome": "Bienvenue dans votre espace personnel",
+    "dashboard": "Tableau de bord",
+    "historique": "Historique",
+    "telechargements": "Téléchargements",
+    "favoris": "Favoris",
+    "parametres": "Paramètres",
+    "cours_consultes": "Cours consultés",
+    "derniers_cours": "Derniers cours consultés",
+    "revoir": "Revoir"
+  }
+}

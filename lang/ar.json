@@ -1,0 +1,113 @@
+{
+  "site": {
+    "name": "CPGE Life",
+    "slogan": "حضّر مستقبلك بامتياز.",
+    "description": "الفصول التحضيرية للمدارس العليا · المغرب"
+  },
+  "nav": {
+    "ecoles": "المدارس",
+    "centres": "مراكز CPGE",
+    "grandes_ecoles_maroc": "المدارس العليا المغربية",
+    "grandes_ecoles_france": "المدارس العليا الفرنسية",
+    "um6p": "UM6P",
+    "filieres": "الشعب",
+    "mp": "MP - الرياضيات والفيزياء",
+    "psi": "PSI - الفيزياء وعلوم المهندس",
+    "tsi": "TSI - التكنولوجيا وعلوم المهندس",
+    "documents": "الوثائق",
+    "cours": "الدروس",
+    "td_ds": "تمارين موجهة وفروض",
+    "extraits_concours": "مقتطفات من المسابقات",
+    "drive_complet": "Drive كامل",
+    "annales": "امتحانات سابقة",
+    "actualites": "الأخبار",
+    "contact": "اتصال",
+    "espace": "الفضاء الشخصي",
+    "rechercher": "بحث...",
+    "langues": "اللغات"
+  },
+  "hero": {
+    "title": "حضّر مستقبلك بامتياز.",
+    "subtitle": "المنصة المرجعية لجميع CPGE في المغرب - 28 مؤسسة، 3 شعب، آلاف الدروس ومجتمع من الطلاب المتحمسين.",
+    "btn_centres": "استكشاف المراكز",
+    "btn_cours": "عرض الدروس"
+  },
+  "stats": {
+    "etablissements": "المؤسسات",
+    "filieres": "الشعب",
+    "etudiants": "الطلاب",
+    "ressources": "الموارد"
+  },
+  "countdown": {
+    "title": "الأحداث القادمة",
+    "xens": "X-ENS",
+    "mines": "Mines",
+    "ccinp": "CCINP",
+    "centrale": "Centrale",
+    "cnc": "CNC"
+  },
+  "centres": {
+    "title": "أفضل مراكز CPGE في المغرب",
+    "subtitle": "28 مؤسسة تم اختيارها لتميزها الأكاديمي، ومعدل القبول وجودة التأطير.",
+    "btn_all": "عرض جميع التصنيفات"
+  },
+  "filieres_section": {
+    "title": "اختر شعبتك في CPGE",
+    "subtitle": "3 شعب، لكل منها خصوصياتها ومسابقاتها وآفاقها المهنية.",
+    "btn_voir": "عرض الشعبة"
+  },
+  "temoignages": {
+    "title": "هم يثقون بنا"
+  },
+  "footer": {
+    "quote": "بُني بحب ❤️ لمجتمع الفصول التحضيرية المغربية",
+    "faq": "الأسئلة الشائعة",
+    "mentions": "إشعارات قانونية",
+    "copyright": "جميع الحقوق محفوظة."
+  },
+  "search": {
+    "placeholder": "ابحث عن درس، مدرسة، وثيقة...",
+    "no_results": "لم يتم العثور على نتائج",
+    "results": "نتائج تم العثور عليها",
+    "categories": {
+      "cours": "الدروس",
+      "ecoles": "المدارس",
+      "centres": "مراكز CPGE",
+      "annales": "امتحانات سابقة",
+      "documents": "الوثائق"
+    }
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirm_password": "تأكيد كلمة المرور",
+    "remember": "تذكرني",
+    "forgot": "نسيت كلمة المرور؟",
+    "no_account": "ليس لديك حساب؟",
+    "has_account": "لديك حساب بالفعل؟",
+    "name": "الاسم",
+    "firstname": "الاسم الأول",
+    "filiere": "الشعبة",
+    "annee": "السنة",
+    "etablissement": "المؤسسة",
+    "terms": "أوافق على الشروط والأحكام",
+    "login_success": "تم تسجيل الدخول بنجاح!",
+    "login_error": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "register_success": "تم إنشاء الحساب بنجاح!"
+  },
+  "membre": {
+    "title": "الفضاء الشخصي",
+    "welcome": "مرحباً بك في مساحتك الشخصية",
+    "dashboard": "لوحة التحكم",
+    "historique": "السجل",
+    "telechargements": "التنزيلات",
+    "favoris": "المفضلة",
+    "parametres": "الإعدادات",
+    "cours_consultes": "الدروس التي تمت مشاهدتها",
+    "derniers_cours": "آخر الدروس التي تمت مشاهدتها",
+    "revoir": "مراجعة"
+  }
+}
