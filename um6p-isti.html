@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>IST&I - UM6P</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        .ecole-detail-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .ecole-detail-page {
+            background: var(--color-gray-900);
+        }
+
+        .ecole-detail-page .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-secondary);
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .ecole-detail-page .back-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .ecole-header-detail {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 30px 40px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        [data-theme="dark"] .ecole-header-detail {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecole-header-detail .ecole-logo {
+            font-size: 4.5rem;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-gray-100);
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+        }
+
+        [data-theme="dark"] .ecole-header-detail .ecole-logo {
+            background: var(--color-gray-700);
+        }
+
+        .ecole-header-detail .ecole-info h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-header-detail .ecole-info h1 {
+            color: var(--color-white);
+        }
+
+        .ecole-header-detail .ecole-info .ecole-sub {
+            font-size: 1rem;
+            color: var(--color-gray-500);
+        }
+
+        .ecole-header-detail .ecole-info .ecole-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .ecole-header-detail .ecole-info .ecole-tags span {
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: var(--color-gray-200);
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .ecole-header-detail .ecole-info .ecole-tags span {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .ecole-section {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-bottom: 20px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .ecole-section {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecole-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 12px;
+        }
+
+        [data-theme="dark"] .ecole-section h2 {
+            color: var(--color-white);
+        }
+
+        .ecole-section h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin: 16px 0 8px;
+        }
+
+        [data-theme="dark"] .ecole-section h3 {
+            color: var(--color-white);
+        }
+
+        .ecole-section p {
+            color: var(--color-gray-600);
+            line-height: 1.8;
+        }
+
+        [data-theme="dark"] .ecole-section p {
+            color: var(--color-gray-400);
+        }
+
+        .ecole-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ecole-section ul li {
+            padding: 4px 0;
+            color: var(--color-gray-600);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        [data-theme="dark"] .ecole-section ul li {
+            color: var(--color-gray-400);
+        }
+
+        .ecole-section ul li i {
+            color: var(--color-secondary);
+            margin-top: 4px;
+            width: 18px;
+            flex-shrink: 0;
+        }
+
+        .semestre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .semestre-card {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .semestre-card {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .semestre-card h4 {
+            font-weight: 700;
+            color: var(--color-gray-900);
+            font-size: 0.95rem;
+        }
+
+        [data-theme="dark"] .semestre-card h4 {
+            color: var(--color-white);
+        }
+
+        .semestre-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .semestre-card ul li {
+            font-size: 0.85rem;
+            padding: 2px 0;
+            color: var(--color-gray-500);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .semestre-card ul li i {
+            font-size: 0.4rem;
+            color: var(--color-secondary);
+        }
+
+        .btn-site-ecole {
+            display: inline-block;
+            padding: 10px 28px;
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-site-ecole:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 768px) {
+            .ecole-header-detail {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .ecole-header-detail .ecole-logo {
+                font-size: 3rem;
+                width: 80px;
+                height: 80px;
+            }
+
+            .ecole-header-detail .ecole-info h1 {
+                font-size: 1.5rem;
+            }
+
+            .ecole-section {
+                padding: 20px;
+            }
+
+            .semestre-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ecole-header-detail {
+                padding: 16px;
+            }
+
+            .ecole-header-detail .ecole-info h1 {
+                font-size: 1.2rem;
+            }
+
+            .ecole-section {
+                padding: 16px;
+            }
+
+            .ecole-section h2 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html">Grandes Écoles France</a></li>
+                            <li><a href="um6p.html">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE IST&I -->
+    <!-- ============================================================ -->
+    <section class="ecole-detail-page">
+        <div class="container">
+
+            <a href="um6p.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Retour à l'UM6P
+            </a>
+
+            <!-- En-tête -->
+            <div class="ecole-header-detail">
+                <div class="ecole-logo">🔬</div>
+                <div class="ecole-info">
+                    <h1>IST&I</h1>
+                    <div class="ecole-sub">Institut des Sciences, Technologies et Innovation - UM6P Benguerir</div>
+                    <div class="ecole-tags">
+                        <span>📐 Cycle Ingénieur</span>
+                        <span>⏱️ 3 ans</span>
+                        <span>🌍 Français</span>
+                        <span>🎓 Bac+5</span>
+                    </div>
+                </div>
+                <div style="margin-left:auto;text-align:right;">
+                    <a href="https://um6p.ma" target="_blank" class="btn-site-ecole">
+                        <i class="fas fa-globe"></i> Site officiel
+                    </a>
+                </div>
+            </div>
+
+            <!-- Présentation -->
+            <div class="ecole-section">
+                <h2>📖 Présentation</h2>
+                <p>
+                    À la pointe de la découverte scientifique et du développement technologique,
+                    l'Institut des sciences, des technologies et de l'innovation de l'UM6P (ISTI)
+                    permet à une nouvelle génération de chercheurs, d'ingénieurs et d'innovateurs
+                    de s'épanouir grâce à un écosystème de recherche solide, à des programmes
+                    interdisciplinaires et à l'accès à une infrastructure de classe mondiale.
+                </p>
+                <p style="margin-top:10px;">
+                    Engagé en faveur d'une éducation transformatrice, d'une recherche interdisciplinaire
+                    et d'un impact concret sur le monde réel, l'ISTI donne les moyens à la prochaine
+                    génération de scientifiques, d'ingénieurs et d'innovateurs de façonner l'avenir.
+                </p>
+            </div>
+
+            <!-- Description du programme -->
+            <div class="ecole-section">
+                <h2>📚 Description du programme</h2>
+                <p>
+                    Le cycle d'ingénierie de trois ans en physique appliquée forme les futurs ingénieurs
+                    à exploiter les principes de la physique pour concevoir et innover des technologies
+                    de pointe dans divers secteurs industriels.
+                </p>
+                <p style="margin-top:8px;">
+                    Combinat des bases solides en mathématiques, en physique et en ingénierie, le programme
+                    développe une expertise dans des domaines tels que la science des matériaux,
+                    l'instrumentation, les systèmes énergétiques et les technologies émergentes.
+                </p>
+            </div>
+
+            <!-- Modules par semestre -->
+            <div class="ecole-section">
+                <h2>📋 Modules par semestre</h2>
+
+                <div style="margin-bottom:16px;">
+                    <p><strong>Exigence :</strong> Étudiants issus de filières scientifiques préparatoires MP, PSI ou TSI</p>
+                </div>
+
+                <div class="semestre-grid">
+
+                    <!-- Semestre 1 -->
+                    <div class="semestre-card">
+                        <h4>Semestre 1 (Bac+3)</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">Harmonisation & Bases de l'Ingénieur</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Phénomènes de transfert (Fluides & Chaleur)</li>
+                            <li><i class="fas fa-circle"></i> Thermodynamique des procédés appliqués</li>
+                            <li><i class="fas fa-circle"></i> Chimie organique & minérale industrielle</li>
+                            <li><i class="fas fa-circle"></i> Programmation numérique (Python / MATLAB)</li>
+                            <li><i class="fas fa-circle"></i> Réacteurs chimiques homogènes</li>
+                            <li><i class="fas fa-circle"></i> Équilibres de phases & Transfert de matière</li>
+                            <li><i class="fas fa-circle"></i> Analyse numérique & Statistiques appliquées</li>
+                            <li><i class="fas fa-circle"></i> Anglais professionnel & Management de projet</li>
+                        </ul>
+                    </div>
+
+                    <!-- Semestre 2 -->
+                    <div class="semestre-card">
+                        <h4>Semestre 2 (Bac+3)</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">Suite & Approfondissement</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Suite des modules du semestre 1</li>
+                            <li><i class="fas fa-circle"></i> Approfondissement en transfert de chaleur</li>
+                            <li><i class="fas fa-circle"></i> Chimie industrielle avancée</li>
+                            <li><i class="fas fa-circle"></i> Projets d'application</li>
+                        </ul>
+                    </div>
+
+                    <!-- Semestre 3 -->
+                    <div class="semestre-card">
+                        <h4>Semestre 3 (Bac+4)</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">Opérations Unitaires & Génie Minéral</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Opérations unitaires (Distillation, Extraction)</li>
+                            <li><i class="fas fa-circle"></i> Traitement des minerais & Valorisation des phosphates</li>
+                            <li><i class="fas fa-circle"></i> Sûreté, Risques et Sécurité des procédés industriels</li>
+                            <li><i class="fas fa-circle"></i> Automatisation & Régulation industrielle</li>
+                        </ul>
+                    </div>
+
+                    <!-- Semestre 4 -->
+                    <div class="semestre-card">
+                        <h4>Semestre 4 (Bac+4)</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">Biotechnologies & Conception Avancée</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Bioprocédés, Génie microbiologique & Bioréacteurs</li>
+                            <li><i class="fas fa-circle"></i> Biotechnologies environnementales (Eau & Déchets)</li>
+                            <li><i class="fas fa-circle"></i> Design & Dimensionnement des usines de procédés</li>
+                            <li><i class="fas fa-circle"></i> Transition énergétique & Éco-conception</li>
+                        </ul>
+                    </div>
+
+                    <!-- Semestre 5 -->
+                    <div class="semestre-card">
+                        <h4>Semestre 5 (Bac+5)</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">Approfondissement, Choix & Immersion</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Modélisation, Simulation avancée & Optimisation</li>
+                            <li><i class="fas fa-circle"></i> Économie circulaire, Gestion de la chaîne logistique</li>
+                            <li><i class="fas fa-circle"></i> Projet Intégrateur (Projet d'Immersion dans les Living Labs)</li>
+                            <li><i class="fas fa-circle"></i> Leadership, Management avancé & Soft Skills</li>
+                        </ul>
+                    </div>
+
+                    <!-- Semestre 6 -->
+                    <div class="semestre-card">
+                        <h4>Semestre 6 (Bac+5)</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">Insertion Professionnelle / Fin d'Études</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Projet de Fin d'Études (PFE)</li>
+                            <li><i class="fas fa-circle"></i> Stage de 6 mois à plein temps en entreprise industrielle ou centre de recherche international</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Admission -->
+            <div class="ecole-section">
+                <h2>📝 Admission</h2>
+                <p><strong>Exigence :</strong> 2 années de classes préparatoires scientifiques Options MP, PSI ou TSI</p>
+
+                <div style="margin-top:16px;">
+                    <a href="https://um6p.ma/apply" target="_blank" class="btn-site-ecole">
+                        <i class="fas fa-paper-plane"></i> Postuler en ligne
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon'></i>";
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

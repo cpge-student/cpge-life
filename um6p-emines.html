@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>EMINES - UM6P</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        .ecole-detail-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+        }
+
+        [data-theme="dark"] .ecole-detail-page {
+            background: var(--color-gray-900);
+        }
+
+        .ecole-detail-page .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-secondary);
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .ecole-detail-page .back-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .ecole-header-detail {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 30px 40px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        [data-theme="dark"] .ecole-header-detail {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecole-header-detail .ecole-logo {
+            font-size: 4.5rem;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-gray-100);
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+        }
+
+        [data-theme="dark"] .ecole-header-detail .ecole-logo {
+            background: var(--color-gray-700);
+        }
+
+        .ecole-header-detail .ecole-info h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .ecole-header-detail .ecole-info h1 {
+            color: var(--color-white);
+        }
+
+        .ecole-header-detail .ecole-info .ecole-sub {
+            font-size: 1rem;
+            color: var(--color-gray-500);
+        }
+
+        .ecole-header-detail .ecole-info .ecole-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .ecole-header-detail .ecole-info .ecole-tags span {
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: var(--color-gray-200);
+            color: var(--color-gray-700);
+        }
+
+        [data-theme="dark"] .ecole-header-detail .ecole-info .ecole-tags span {
+            background: var(--color-gray-700);
+            color: var(--color-gray-300);
+        }
+
+        .ecole-section {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin-bottom: 20px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        [data-theme="dark"] .ecole-section {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .ecole-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 12px;
+        }
+
+        [data-theme="dark"] .ecole-section h2 {
+            color: var(--color-white);
+        }
+
+        .ecole-section h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin: 16px 0 8px;
+        }
+
+        [data-theme="dark"] .ecole-section h3 {
+            color: var(--color-white);
+        }
+
+        .ecole-section p {
+            color: var(--color-gray-600);
+            line-height: 1.8;
+        }
+
+        [data-theme="dark"] .ecole-section p {
+            color: var(--color-gray-400);
+        }
+
+        .ecole-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ecole-section ul li {
+            padding: 4px 0;
+            color: var(--color-gray-600);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        [data-theme="dark"] .ecole-section ul li {
+            color: var(--color-gray-400);
+        }
+
+        .ecole-section ul li i {
+            color: var(--color-secondary);
+            margin-top: 4px;
+            width: 18px;
+            flex-shrink: 0;
+        }
+
+        .programme-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .programme-card {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .programme-card {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .programme-card h4 {
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        [data-theme="dark"] .programme-card h4 {
+            color: var(--color-white);
+        }
+
+        .programme-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .programme-card ul li {
+            font-size: 0.8rem;
+            padding: 2px 0;
+            color: var(--color-gray-500);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .programme-card ul li i {
+            font-size: 0.4rem;
+            color: var(--color-secondary);
+        }
+
+        .stages-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .stage-card {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .stage-card {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .stage-card h4 {
+            font-weight: 700;
+            color: var(--color-gray-900);
+            font-size: 0.95rem;
+        }
+
+        [data-theme="dark"] .stage-card h4 {
+            color: var(--color-white);
+        }
+
+        .stage-card p {
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+            margin: 4px 0;
+        }
+
+        .alumni-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .alumni-stat {
+            text-align: center;
+            padding: 16px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .alumni-stat {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .alumni-stat .number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+        }
+
+        .alumni-stat .label {
+            font-size: 0.8rem;
+            color: var(--color-gray-500);
+        }
+
+        .btn-site-ecole {
+            display: inline-block;
+            padding: 10px 28px;
+            background: var(--color-secondary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-site-ecole:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 992px) {
+            .programme-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .stages-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .alumni-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ecole-header-detail {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .ecole-header-detail .ecole-logo {
+                font-size: 3rem;
+                width: 80px;
+                height: 80px;
+            }
+
+            .ecole-header-detail .ecole-info h1 {
+                font-size: 1.5rem;
+            }
+
+            .ecole-section {
+                padding: 20px;
+            }
+
+            .programme-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .alumni-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ecole-header-detail {
+                padding: 16px;
+            }
+
+            .ecole-header-detail .ecole-info h1 {
+                font-size: 1.2rem;
+            }
+
+            .ecole-section {
+                padding: 16px;
+            }
+
+            .ecole-section h2 {
+                font-size: 1.1rem;
+            }
+
+            .alumni-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html">Grandes Écoles France</a></li>
+                            <li><a href="um6p.html">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE EMINES -->
+    <!-- ============================================================ -->
+    <section class="ecole-detail-page">
+        <div class="container">
+
+            <a href="um6p.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Retour à l'UM6P
+            </a>
+
+            <!-- En-tête -->
+            <div class="ecole-header-detail">
+                <div class="ecole-logo">🏭</div>
+                <div class="ecole-info">
+                    <h1>EMINES</h1>
+                    <div class="ecole-sub">École de Management Industriel - UM6P Benguerir</div>
+                    <div class="ecole-tags">
+                        <span>📐 Cycle Ingénieur</span>
+                        <span>⏱️ 3 ans</span>
+                        <span>🌍 Français</span>
+                        <span>🎓 Bac+5</span>
+                    </div>
+                </div>
+                <div style="margin-left:auto;text-align:right;">
+                    <a href="https://emines-ingenieur.org" target="_blank" class="btn-site-ecole">
+                        <i class="fas fa-globe"></i> Site officiel
+                    </a>
+                </div>
+            </div>
+
+            <!-- Présentation -->
+            <div class="ecole-section">
+                <h2>📖 Présentation</h2>
+                <p>
+                    Au cœur de l'innovation industrielle, l'École de Management Industriel de l'UM6P - EMINES
+                    forme les futurs leaders grâce à un apprentissage pratique, des programmes interdisciplinaires,
+                    une recherche de pointe et des liens étroits avec l'industrie, façonnant ainsi l'avenir de
+                    l'excellence industrielle durable au Maroc, en Afrique et au-delà.
+                </p>
+                <p style="margin-top:10px;">
+                    <strong>Objectifs :</strong>
+                </p>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Former des gestionnaires industriels maîtrisant les connaissances scientifiques et techniques</li>
+                    <li><i class="fas fa-check-circle"></i> Préparer les diplômés à devenir des entrepreneurs d'entreprises au Maroc et en Afrique</li>
+                    <li><i class="fas fa-check-circle"></i> Développer des programmes de recherche en gestion industrielle liés aux besoins des entreprises</li>
+                </ul>
+            </div>
+
+            <!-- Programme -->
+            <div class="ecole-section">
+                <h2>📚 Programme</h2>
+
+                <div style="margin-bottom:16px;">
+                    <p><strong>Exigence :</strong> Classes préparatoires à l'enseignement supérieur MP, PSI et TSI</p>
+                </div>
+
+                <div class="programme-grid">
+
+                    <!-- 1ère année -->
+                    <div class="programme-card">
+                        <h4>1ère année</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">SCIENTIFIQUE</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Calcul Différentiel</li>
+                            <li><i class="fas fa-circle"></i> Calcul Intégral</li>
+                            <li><i class="fas fa-circle"></i> Economie Générale</li>
+                            <li><i class="fas fa-circle"></i> Mécanique</li>
+                            <li><i class="fas fa-circle"></i> Chimie Industrielle</li>
+                            <li><i class="fas fa-circle"></i> Thermodynamique Industrielle</li>
+                        </ul>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;margin-top:8px;">MANAGER</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Stage d'observation en Géologie</li>
+                            <li><i class="fas fa-circle"></i> Recherche Opérationnelle</li>
+                            <li><i class="fas fa-circle"></i> Biomedical engineering</li>
+                            <li><i class="fas fa-circle"></i> Module d'Initiation au Management Industriel</li>
+                            <li><i class="fas fa-circle"></i> Description de Controverses</li>
+                        </ul>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;margin-top:8px;">DIGITAL</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Python, Java, SQL, HTML/PHP</li>
+                            <li><i class="fas fa-circle"></i> Analytic Edge</li>
+                            <li><i class="fas fa-circle"></i> Automatique</li>
+                            <li><i class="fas fa-circle"></i> Mécatronique</li>
+                            <li><i class="fas fa-circle"></i> Cryptographie*, Cyber sécurité*</li>
+                            <li><i class="fas fa-circle"></i> VBA</li>
+                        </ul>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;margin-top:8px;">SOFT SKILLS</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Acte d'Entreprendre I</li>
+                            <li><i class="fas fa-circle"></i> Entrepreneurship week</li>
+                            <li><i class="fas fa-circle"></i> Anglais</li>
+                            <li><i class="fas fa-circle"></i> LV2 (Mandarin / Espagnol)</li>
+                            <li><i class="fas fa-circle"></i> Sport</li>
+                            <li><i class="fas fa-circle"></i> Shadowing</li>
+                            <li><i class="fas fa-circle"></i> Stage d'exécution</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2ème année -->
+                    <div class="programme-card">
+                        <h4>2ème année</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">SCIENTIFIQUE</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Probabilités</li>
+                            <li><i class="fas fa-circle"></i> Statistiques</li>
+                            <li><i class="fas fa-circle"></i> Data Science*, Mécanique des fluides*</li>
+                            <li><i class="fas fa-circle"></i> Nanotechnologies*, Cosmologie*</li>
+                            <li><i class="fas fa-circle"></i> Energie renouvelable*</li>
+                            <li><i class="fas fa-circle"></i> Stage de recherche à l'international</li>
+                        </ul>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;margin-top:8px;">MANAGER</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Systèmes de Production et Logistique</li>
+                            <li><i class="fas fa-circle"></i> Evaluation des coûts</li>
+                            <li><i class="fas fa-circle"></i> Mécatronique</li>
+                            <li><i class="fas fa-circle"></i> Stratégie minière</li>
+                            <li><i class="fas fa-circle"></i> Management hospitalier</li>
+                        </ul>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;margin-top:8px;">DIGITAL</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Sureté de fonctionnement*</li>
+                            <li><i class="fas fa-circle"></i> ERP / SAP</li>
+                            <li><i class="fas fa-circle"></i> Option (Data Science, Mining, Supply Chain Management)</li>
+                        </ul>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;margin-top:8px;">SOFT SKILLS</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Gestion de projet</li>
+                            <li><i class="fas fa-circle"></i> Réseaux socio-muréniques</li>
+                            <li><i class="fas fa-circle"></i> Acte d'Entreprendre II*</li>
+                            <li><i class="fas fa-circle"></i> Année de césure</li>
+                            <li><i class="fas fa-circle"></i> Anglais</li>
+                            <li><i class="fas fa-circle"></i> LV2 (Mandarin / Espagnol)</li>
+                            <li><i class="fas fa-circle"></i> Sport</li>
+                            <li><i class="fas fa-circle"></i> Shadowing</li>
+                            <li><i class="fas fa-circle"></i> Stage de recherche à l'international</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3ème année -->
+                    <div class="programme-card">
+                        <h4>3ème année</h4>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;">SCIENTIFIQUE</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Développement Durable</li>
+                            <li><i class="fas fa-circle"></i> Option (Data Science, Mining, Supply Chain Management)</li>
+                            <li><i class="fas fa-circle"></i> Etude d'Option (PFE)</li>
+                        </ul>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;margin-top:8px;">DIGITAL</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Entreprenariat</li>
+                        </ul>
+                        <p style="font-size:0.75rem;color:var(--color-secondary);font-weight:600;margin-top:8px;">SOFT SKILLS</p>
+                        <ul>
+                            <li><i class="fas fa-circle"></i> Business Game</li>
+                            <li><i class="fas fa-circle"></i> Etude d'Option (PFE)</li>
+                            <li><i class="fas fa-circle"></i> Développement personnel par le théâtre</li>
+                            <li><i class="fas fa-circle"></i> Intelligence collective</li>
+                            <li><i class="fas fa-circle"></i> Préparation à la vie professionnelle</li>
+                            <li><i class="fas fa-circle"></i> Préparation au TOEIC</li>
+                            <li><i class="fas fa-circle"></i> Etude d'Option (PFE)</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Particularités de la formation -->
+            <div class="ecole-section">
+                <h2>🌟 Particularités de la formation</h2>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>42 semaines</strong> minimum en entreprise pour tous les élèves</li>
+                    <li><i class="fas fa-check-circle"></i> Un minimum de <strong>3 mois à l'étranger</strong> pour tous les élèves</li>
+                    <li><i class="fas fa-check-circle"></i> Possibilité d'<strong>année de césure</strong> entre la 2ème et 3ème année</li>
+                </ul>
+            </div>
+
+            <!-- Stages -->
+            <div class="ecole-section">
+                <h2>📋 Stages de terrain</h2>
+                <div class="stages-grid">
+                    <div class="stage-card">
+                        <h4>1ère année</h4>
+                        <p>Stage ouvrier (4 semaines)</p>
+                        <p>Visites industrielles (IMI - 1 semaine)</p>
+                        <p>Stage d'observation en géologie (1 semaine)</p>
+                    </div>
+                    <div class="stage-card">
+                        <h4>2ème année</h4>
+                        <p>Stage de shadowing (1 semaine)</p>
+                        <p>Stage d'initiation à la recherche (12 semaines à l'étranger)</p>
+                    </div>
+                    <div class="stage-card">
+                        <h4>3ème année</h4>
+                        <p>Visites industrielles d'option (1 à 3 semaines)</p>
+                        <p>Travail d'option (24 semaines en entreprise)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- International -->
+            <div class="ecole-section">
+                <h2>🌍 International</h2>
+                <h3>Langues</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> <strong>Anglais</strong> - Compétence professionnelle essentielle</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>2ème langue obligatoire :</strong> Chinois ou Espagnol</li>
+                </ul>
+                <h3>Expérience internationale obligatoire</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Stage de 2ème année dans les pays émergents : Brésil, Chili, Inde, Chine, Malaisie</li>
+                    <li><i class="fas fa-check-circle"></i> Voyages d'option : séjour de visites industrielles</li>
+                </ul>
+                <p style="font-size:0.9rem;color:var(--color-gray-500);margin-top:8px;">
+                    <i class="fas fa-quote-left"></i> "L'ingénieur-manager doit se confronter aux réalités interculturelles pour développer une vision globale des enjeux économiques contemporains."
+                </p>
+            </div>
+
+            <!-- Débouchés -->
+            <div class="ecole-section">
+                <h2>💼 Débouchés</h2>
+                <p><strong>142 entreprises et organismes</strong> emploient nos diplômés.</p>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+                    <div style="background:var(--color-gray-50);padding:12px 16px;border-radius:var(--radius-sm);border:1px solid var(--color-gray-200);">
+                        <h4 style="font-size:0.85rem;font-weight:700;">Production primaire</h4>
+                        <p style="font-size:0.8rem;color:var(--color-gray-500);">15 entreprises</p>
+                    </div>
+                    <div style="background:var(--color-gray-50);padding:12px 16px;border-radius:var(--radius-sm);border:1px solid var(--color-gray-200);">
+                        <h4 style="font-size:0.85rem;font-weight:700;">Transformation secondaire</h4>
+                        <p style="font-size:0.8rem;color:var(--color-gray-500);">26 entreprises</p>
+                    </div>
+                    <div style="background:var(--color-gray-50);padding:12px 16px;border-radius:var(--radius-sm);border:1px solid var(--color-gray-200);">
+                        <h4 style="font-size:0.85rem;font-weight:700;">Conseil en stratégie & Audit</h4>
+                        <p style="font-size:0.8rem;color:var(--color-gray-500);">13 entreprises</p>
+                    </div>
+                    <div style="background:var(--color-gray-50);padding:12px 16px;border-radius:var(--radius-sm);border:1px solid var(--color-gray-200);">
+                        <h4 style="font-size:0.85rem;font-weight:700;">Services techniques</h4>
+                        <p style="font-size:0.8rem;color:var(--color-gray-500);">40 entreprises</p>
+                    </div>
+                    <div style="background:var(--color-gray-50);padding:12px 16px;border-radius:var(--radius-sm);border:1px solid var(--color-gray-200);">
+                        <h4 style="font-size:0.85rem;font-weight:700;">Transport, Logistique, Distribution</h4>
+                        <p style="font-size:0.8rem;color:var(--color-gray-500);">23 entreprises</p>
+                    </div>
+                    <div style="background:var(--color-gray-50);padding:12px 16px;border-radius:var(--radius-sm);border:1px solid var(--color-gray-200);">
+                        <h4 style="font-size:0.85rem;font-weight:700;">Banque, Finance</h4>
+                        <p style="font-size:0.8rem;color:var(--color-gray-500);">14 entreprises</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top:16px;">1ers postes occupés</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                    <div>
+                        <h4 style="font-size:0.85rem;font-weight:700;">Ingénierie</h4>
+                        <ul style="font-size:0.8rem;">
+                            <li>Logistique / Supply Chain</li>
+                            <li>Planification analyst</li>
+                            <li>Etudes minières</li>
+                            <li>Qualité</li>
+                            <li>Project manager</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="font-size:0.85rem;font-weight:700;">Numérique & Digital</h4>
+                        <ul style="font-size:0.8rem;">
+                            <li>Data scientist</li>
+                            <li>Transformation Digitale</li>
+                            <li>Digital marketing</li>
+                            <li>Software Engineer</li>
+                            <li>Financial analyst</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="font-size:0.85rem;font-weight:700;">Business</h4>
+                        <ul style="font-size:0.8rem;">
+                            <li>Marketing</li>
+                            <li>Business development</li>
+                            <li>Technico-Commercial</li>
+                            <li>Contrôle de gestion</li>
+                            <li>Sales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alumni -->
+            <div class="ecole-section">
+                <h2>🎓 Alumni en chiffres</h2>
+                <div class="alumni-stats">
+                    <div class="alumni-stat">
+                        <div class="number">432</div>
+                        <div class="label">Diplômés (2017-2025)</div>
+                    </div>
+                    <div class="alumni-stat">
+                        <div class="number">110</div>
+                        <div class="label">Alumnis à l'étranger</div>
+                    </div>
+                    <div class="alumni-stat">
+                        <div class="number">12</div>
+                        <div class="label">Startups actives créées</div>
+                    </div>
+                    <div class="alumni-stat">
+                        <div class="number">84%</div>
+                        <div class="label">Placés après 3 mois</div>
+                    </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;">
+                    <div style="background:var(--color-gray-50);padding:16px;border-radius:var(--radius-md);text-align:center;border:1px solid var(--color-gray-200);">
+                        <div style="font-size:1.5rem;font-weight:800;color:var(--color-secondary);">17 100 DH</div>
+                        <div style="font-size:0.8rem;color:var(--color-gray-500);">Salaire net moyen à la sortie</div>
+                    </div>
+                    <div style="background:var(--color-gray-50);padding:16px;border-radius:var(--radius-md);text-align:center;border:1px solid var(--color-gray-200);">
+                        <div style="font-size:1.5rem;font-weight:800;color:var(--color-secondary);">30 200 DH</div>
+                        <div style="font-size:0.8rem;color:var(--color-gray-500);">Salaire moyen après 4 ans</div>
+                    </div>
+                    <div style="background:var(--color-gray-50);padding:16px;border-radius:var(--radius-md);text-align:center;border:1px solid var(--color-gray-200);">
+                        <div style="font-size:1.5rem;font-weight:800;color:var(--color-secondary);">45 600 DH</div>
+                        <div style="font-size:0.8rem;color:var(--color-gray-500);">Salaire moyen après 7 ans</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admission -->
+            <div class="ecole-section">
+                <h2>📝 Admission</h2>
+                <p><strong>Exigence :</strong> 2 années de classes préparatoires scientifiques Options MP, PSI ou TSI</p>
+
+                <div style="margin-top:16px;">
+                    <a href="https://emines-ingenieur.org/admission" target="_blank" class="btn-site-ecole">
+                        <i class="fas fa-paper-plane"></i> Postuler en ligne
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
