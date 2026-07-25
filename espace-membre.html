@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Espace Membre - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        .membre-page {
+            padding: 40px 0 60px;
+            background: var(--color-gray-50);
+            min-height: 70vh;
+        }
+
+        [data-theme="dark"] .membre-page {
+            background: var(--color-gray-900);
+        }
+
+        .membre-page .page-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .membre-page .page-subtitle {
+            text-align: center;
+            color: var(--color-gray-500);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        .membre-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .membre-sidebar {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            padding: 24px;
+            height: fit-content;
+        }
+
+        [data-theme="dark"] .membre-sidebar {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .membre-sidebar .profile {
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .membre-sidebar .profile {
+            border-bottom-color: var(--color-gray-700);
+        }
+
+        .membre-sidebar .profile .avatar {
+            font-size: 4rem;
+            margin-bottom: 4px;
+        }
+
+        .membre-sidebar .profile .name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .membre-sidebar .profile .name {
+            color: var(--color-white);
+        }
+
+        .membre-sidebar .profile .email {
+            font-size: 0.85rem;
+            color: var(--color-gray-500);
+        }
+
+        .membre-sidebar .profile .filiere-badge {
+            display: inline-block;
+            padding: 2px 14px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .membre-sidebar .profile .filiere-badge.mp { background: #4F46E5; color: white; }
+        .membre-sidebar .profile .filiere-badge.psi { background: #06B6D4; color: white; }
+        .membre-sidebar .profile .filiere-badge.tsi { background: #F59E0B; color: white; }
+
+        .membre-sidebar .nav-menu-sidebar {
+            margin-top: 16px;
+        }
+
+        .membre-sidebar .nav-menu-sidebar .nav-item-side {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            color: var(--color-gray-600);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        [data-theme="dark"] .membre-sidebar .nav-menu-sidebar .nav-item-side {
+            color: var(--color-gray-400);
+        }
+
+        .membre-sidebar .nav-menu-sidebar .nav-item-side:hover {
+            background: var(--color-gray-100);
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .membre-sidebar .nav-menu-sidebar .nav-item-side:hover {
+            background: var(--color-gray-700);
+            color: var(--color-white);
+        }
+
+        .membre-sidebar .nav-menu-sidebar .nav-item-side.active {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--color-secondary);
+        }
+
+        .membre-sidebar .nav-menu-sidebar .nav-item-side i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .membre-sidebar .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            color: #EF4444;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            background: transparent;
+            width: 100%;
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        .membre-sidebar .logout-btn:hover {
+            background: #FEE2E2;
+        }
+
+        [data-theme="dark"] .membre-sidebar .logout-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* ===== CONTENU ===== */
+        .membre-content {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            padding: 30px;
+        }
+
+        [data-theme="dark"] .membre-content {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .membre-content .content-section {
+            display: none;
+        }
+
+        .membre-content .content-section.active {
+            display: block;
+        }
+
+        .membre-content .content-section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 8px;
+        }
+
+        [data-theme="dark"] .membre-content .content-section h2 {
+            color: var(--color-white);
+        }
+
+        .membre-content .content-section .sub {
+            color: var(--color-gray-500);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* ===== HISTORIQUE ===== */
+        .historique-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .historique-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-gray-200);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        [data-theme="dark"] .historique-item {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .historique-item .doc-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .historique-item .doc-info .doc-icon {
+            font-size: 1.2rem;
+        }
+
+        .historique-item .doc-info .doc-name {
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .historique-item .doc-info .doc-name {
+            color: var(--color-white);
+        }
+
+        .historique-item .doc-info .doc-details {
+            font-size: 0.8rem;
+            color: var(--color-gray-500);
+        }
+
+        .historique-item .doc-date {
+            font-size: 0.8rem;
+            color: var(--color-gray-400);
+        }
+
+        .historique-item .btn-revoir {
+            padding: 4px 16px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .historique-item .btn-revoir:hover {
+            background: var(--color-secondary-light);
+        }
+
+        /* ===== TÉLÉCHARGEMENTS ===== */
+        .telechargements-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .telechargement-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        [data-theme="dark"] .telechargement-item {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+        }
+
+        .telechargement-item .doc-icon {
+            font-size: 1.5rem;
+        }
+
+        .telechargement-item .doc-info .doc-name {
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+
+        [data-theme="dark"] .telechargement-item .doc-info .doc-name {
+            color: var(--color-white);
+        }
+
+        .telechargement-item .doc-info .doc-details {
+            font-size: 0.8rem;
+            color: var(--color-gray-500);
+        }
+
+        /* ===== PARAMÈTRES ===== */
+        .param-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .param-form .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-gray-700);
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .param-form .form-group label {
+            color: var(--color-gray-300);
+        }
+
+        .param-form .form-group input,
+        .param-form .form-group select {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px 14px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .param-form .form-group input,
+        [data-theme="dark"] .param-form .form-group select {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .param-form .form-group input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .param-form .btn-save {
+            padding: 10px 28px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .param-form .btn-save:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .membre-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .telechargements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .membre-page .page-title {
+                font-size: 1.6rem;
+            }
+
+            .membre-content {
+                padding: 20px;
+            }
+
+            .historique-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .historique-item .doc-date {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .membre-page .page-title {
+                font-size: 1.3rem;
+            }
+
+            .membre-content {
+                padding: 16px;
+            }
+
+            .membre-sidebar {
+                padding: 16px;
+            }
+
+            .membre-sidebar .profile .avatar {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html">Grandes Écoles France</a></li>
+                            <li><a href="um6p.html">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE ESPACE MEMBRE -->
+    <!-- ============================================================ -->
+    <section class="membre-page">
+        <div class="container">
+
+            <h1 class="page-title">👤 Espace Membre</h1>
+            <p class="page-subtitle">Bienvenue dans votre espace personnel</p>
+
+            <div class="membre-grid">
+
+                <!-- ===== SIDEBAR ===== -->
+                <div class="membre-sidebar">
+
+                    <div class="profile">
+                        <div class="avatar">👨‍🎓</div>
+                        <div class="name">Hamza Margal</div>
+                        <div class="email">hamza@email.com</div>
+                        <span class="filiere-badge mp">MP</span>
+                    </div>
+
+                    <div class="nav-menu-sidebar">
+                        <div class="nav-item-side active" onclick="switchMembreSection('dashboard')">
+                            <i class="fas fa-th-large"></i> Tableau de bord
+                        </div>
+                        <div class="nav-item-side" onclick="switchMembreSection('historique')">
+                            <i class="fas fa-history"></i> Historique
+                        </div>
+                        <div class="nav-item-side" onclick="switchMembreSection('telechargements')">
+                            <i class="fas fa-download"></i> Téléchargements
+                        </div>
+                        <div class="nav-item-side" onclick="switchMembreSection('favoris')">
+                            <i class="fas fa-star"></i> Favoris
+                        </div>
+                        <div class="nav-item-side" onclick="switchMembreSection('parametres')">
+                            <i class="fas fa-cog"></i> Paramètres
+                        </div>
+                    </div>
+
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </button>
+
+                </div>
+
+                <!-- ===== CONTENU ===== -->
+                <div class="membre-content">
+
+                    <!-- Tableau de bord -->
+                    <div class="content-section active" id="section-dashboard">
+                        <h2>📊 Tableau de bord</h2>
+                        <div class="sub">Résumé de votre activité</div>
+
+                        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
+                            <div style="padding:16px;background:var(--color-gray-50);border-radius:var(--radius-md);border:1px solid var(--color-gray-200);text-align:center;">
+                                <div style="font-size:2rem;font-weight:800;color:var(--color-secondary);">12</div>
+                                <div style="font-size:0.8rem;color:var(--color-gray-500);">Cours consultés</div>
+                            </div>
+                            <div style="padding:16px;background:var(--color-gray-50);border-radius:var(--radius-md);border:1px solid var(--color-gray-200);text-align:center;">
+                                <div style="font-size:2rem;font-weight:800;color:var(--color-secondary);">5</div>
+                                <div style="font-size:0.8rem;color:var(--color-gray-500);">Téléchargements</div>
+                            </div>
+                            <div style="padding:16px;background:var(--color-gray-50);border-radius:var(--radius-md);border:1px solid var(--color-gray-200);text-align:center;">
+                                <div style="font-size:2rem;font-weight:800;color:var(--color-secondary);">3</div>
+                                <div style="font-size:0.8rem;color:var(--color-gray-500);">Favoris</div>
+                            </div>
+                        </div>
+
+                        <h3 style="font-size:1rem;font-weight:700;color:var(--color-gray-900);">📖 Derniers cours consultés</h3>
+                        <div class="historique-list">
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">📄</span>
+                                    <div>
+                                        <div class="doc-name">Analyse 1 - Cours</div>
+                                        <div class="doc-details">MP · SUP</div>
+                                    </div>
+                                </div>
+                                <span class="doc-date">Aujourd'hui, 14:30</span>
+                                <button class="btn-revoir">Revoir</button>
+                            </div>
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">📄</span>
+                                    <div>
+                                        <div class="doc-name">Mécanique - TD</div>
+                                        <div class="doc-details">PSI · SPE</div>
+                                    </div>
+                                </div>
+                                <span class="doc-date">Hier, 10:15</span>
+                                <button class="btn-revoir">Revoir</button>
+                            </div>
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">📄</span>
+                                    <div>
+                                        <div class="doc-name">Thermodynamique - Cours</div>
+                                        <div class="doc-details">MP · SPE</div>
+                                    </div>
+                                </div>
+                                <span class="doc-date">Il y a 2 jours</span>
+                                <button class="btn-revoir">Revoir</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Historique -->
+                    <div class="content-section" id="section-historique">
+                        <h2>📜 Historique de consultation</h2>
+                        <div class="sub">Les 10 derniers cours que vous avez consultés</div>
+
+                        <div class="historique-list">
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">📄</span>
+                                    <div>
+                                        <div class="doc-name">Analyse 1 - Cours</div>
+                                        <div class="doc-details">MP · SUP · Mathématiques</div>
+                                    </div>
+                                </div>
+                                <span class="doc-date">Aujourd'hui, 14:30</span>
+                                <button class="btn-revoir">Revoir</button>
+                            </div>
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">📄</span>
+                                    <div>
+                                        <div class="doc-name">Mécanique - TD</div>
+                                        <div class="doc-details">PSI · SPE · Physique</div>
+                                    </div>
+                                </div>
+                                <span class="doc-date">Hier, 10:15</span>
+                                <button class="btn-revoir">Revoir</button>
+                            </div>
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">📄</span>
+                                    <div>
+                                        <div class="doc-name">Thermodynamique - Cours</div>
+                                        <div class="doc-details">MP · SPE · Physique</div>
+                                    </div>
+                                </div>
+                                <span class="doc-date">Il y a 2 jours</span>
+                                <button class="btn-revoir">Revoir</button>
+                            </div>
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">📄</span>
+                                    <div>
+                                        <div class="doc-name">Algèbre linéaire - Cours</div>
+                                        <div class="doc-details">MP · SUP · Mathématiques</div>
+                                    </div>
+                                </div>
+                                <span class="doc-date">Il y a 3 jours</span>
+                                <button class="btn-revoir">Revoir</button>
+                            </div>
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">📄</span>
+                                    <div>
+                                        <div class="doc-name">Électromagnétisme - Cours</div>
+                                        <div class="doc-details">PSI · SUP · Physique</div>
+                                    </div>
+                                </div>
+                                <span class="doc-date">Il y a 5 jours</span>
+                                <button class="btn-revoir">Revoir</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Téléchargements -->
+                    <div class="content-section" id="section-telechargements">
+                        <h2>⬇️ Mes téléchargements</h2>
+                        <div class="sub">Les documents que vous avez téléchargés</div>
+
+                        <div class="telechargements-grid">
+                            <div class="telechargement-item">
+                                <span class="doc-icon">📄</span>
+                                <div class="doc-info">
+                                    <div class="doc-name">Analyse 1 - Cours</div>
+                                    <div class="doc-details">PDF · 2.4 Mo</div>
+                                </div>
+                            </div>
+                            <div class="telechargement-item">
+                                <span class="doc-icon">📄</span>
+                                <div class="doc-info">
+                                    <div class="doc-name">Mécanique - TD</div>
+                                    <div class="doc-details">PDF · 1.8 Mo</div>
+                                </div>
+                            </div>
+                            <div class="telechargement-item">
+                                <span class="doc-icon">📄</span>
+                                <div class="doc-info">
+                                    <div class="doc-name">Thermodynamique - Cours</div>
+                                    <div class="doc-details">PDF · 3.2 Mo</div>
+                                </div>
+                            </div>
+                            <div class="telechargement-item">
+                                <span class="doc-icon">📄</span>
+                                <div class="doc-info">
+                                    <div class="doc-name">CNC 2024 - Maths</div>
+                                    <div class="doc-details">PDF · 1.5 Mo</div>
+                                </div>
+                            </div>
+                            <div class="telechargement-item">
+                                <span class="doc-icon">📄</span>
+                                <div class="doc-info">
+                                    <div class="doc-name">Algèbre linéaire - Cours</div>
+                                    <div class="doc-details">PDF · 2.1 Mo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favoris -->
+                    <div class="content-section" id="section-favoris">
+                        <h2>⭐ Mes favoris</h2>
+                        <div class="sub">Vos documents préférés</div>
+
+                        <div class="historique-list">
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">⭐</span>
+                                    <div>
+                                        <div class="doc-name">Analyse 1 - Cours</div>
+                                        <div class="doc-details">MP · SUP · Mathématiques</div>
+                                    </div>
+                                </div>
+                                <button class="btn-revoir" style="background:#EF4444;">Retirer</button>
+                            </div>
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">⭐</span>
+                                    <div>
+                                        <div class="doc-name">Thermodynamique - Cours</div>
+                                        <div class="doc-details">MP · SPE · Physique</div>
+                                    </div>
+                                </div>
+                                <button class="btn-revoir" style="background:#EF4444;">Retirer</button>
+                            </div>
+                            <div class="historique-item">
+                                <div class="doc-info">
+                                    <span class="doc-icon">⭐</span>
+                                    <div>
+                                        <div class="doc-name">CNC 2024 - Maths</div>
+                                        <div class="doc-details">MP · Annales</div>
+                                    </div>
+                                </div>
+                                <button class="btn-revoir" style="background:#EF4444;">Retirer</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paramètres -->
+                    <div class="content-section" id="section-parametres">
+                        <h2>⚙️ Paramètres</h2>
+                        <div class="sub">Gérez vos informations personnelles</div>
+
+                        <form class="param-form" onsubmit="saveSettings(event)">
+
+                            <div class="form-group">
+                                <label for="paramNom">Nom</label>
+                                <input type="text" id="paramNom" value="Hamza" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paramPrenom">Prénom</label>
+                                <input type="text" id="paramPrenom" value="Margal" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paramEmail">Email</label>
+                                <input type="email" id="paramEmail" value="hamza@email.com" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paramFiliere">Filière</label>
+                                <select id="paramFiliere">
+                                    <option value="MP" selected>MP</option>
+                                    <option value="PSI">PSI</option>
+                                    <option value="TSI">TSI</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paramTheme">Thème</label>
+                                <select id="paramTheme">
+                                    <option value="light">Clair</option>
+                                    <option value="dark">Sombre</option>
+                                    <option value="system">Système</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn-save">
+                                <i class="fas fa-save"></i> Enregistrer les modifications
+                            </button>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+
+        // ============================================================
+        // 2. CHANGEMENT DE SECTION
+        // ============================================================
+        function switchMembreSection(sectionId) {
+            // Mettre à jour les liens du sidebar
+            document.querySelectorAll('.membre-sidebar .nav-item-side').forEach(el => {
+                el.classList.remove('active');
+            });
+            const targetLink = document.querySelector(`.membre-sidebar .nav-item-side[onclick="switchMembreSection('${sectionId}')"]`);
+            if (targetLink) targetLink.classList.add('active');
+
+            // Mettre à jour les contenus
+            document.querySelectorAll('.membre-content .content-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            const targetContent = document.getElementById(`section-${sectionId}`);
+            if (targetContent) targetContent.classList.add('active');
+        }
+
+        // ============================================================
+        // 3. DÉCONNEXION
+        // ============================================================
+        function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                window.location.href = 'connexion.html';
+            }
+        }
+
+        // ============================================================
+        // 4. SAUVEGARDE DES PARAMÈTRES
+        // ============================================================
+        function saveSettings(event) {
+            event.preventDefault();
+            alert('✅ Vos paramètres ont été enregistrés avec succès !');
+        }
+
+        // ============================================================
+        // 5. BOUTONS REVOIR
+        // ============================================================
+        document.querySelectorAll('.btn-revoir').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                alert('📄 Redirection vers le document...');
+            });
+        });
+    </script>
+
+</body>
+</html>

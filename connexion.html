@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Connexion - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        .auth-page {
+            padding: 60px 0 80px;
+            background: var(--color-gray-50);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        [data-theme="dark"] .auth-page {
+            background: var(--color-gray-900);
+        }
+
+        .auth-container {
+            max-width: 440px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .auth-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-md);
+        }
+
+        [data-theme="dark"] .auth-card {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .auth-card .auth-logo {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .auth-card .auth-logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .auth-card .auth-logo p {
+            color: var(--color-gray-500);
+            font-size: 0.95rem;
+        }
+
+        .auth-card .auth-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .auth-card .auth-title {
+            color: var(--color-white);
+        }
+
+        .auth-card .auth-subtitle {
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .auth-card .form-group {
+            margin-bottom: 18px;
+        }
+
+        .auth-card .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-gray-700);
+            margin-bottom: 6px;
+        }
+
+        [data-theme="dark"] .auth-card .form-group label {
+            color: var(--color-gray-300);
+        }
+
+        .auth-card .form-group label .required {
+            color: #EF4444;
+        }
+
+        .auth-card .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .auth-card .form-group input {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .auth-card .form-group input:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .auth-card .form-group .input-with-icon {
+            position: relative;
+        }
+
+        .auth-card .form-group .input-with-icon input {
+            padding-left: 44px;
+        }
+
+        .auth-card .form-group .input-with-icon .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gray-400);
+            font-size: 1rem;
+        }
+
+        .auth-card .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .auth-card .form-options label {
+            font-size: 0.85rem;
+            color: var(--color-gray-600);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        [data-theme="dark"] .auth-card .form-options label {
+            color: var(--color-gray-400);
+        }
+
+        .auth-card .form-options a {
+            font-size: 0.85rem;
+            color: var(--color-secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-card .form-options a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-card .btn-submit {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .auth-card .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .auth-card .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-card .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-gray-200);
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+        }
+
+        [data-theme="dark"] .auth-card .auth-footer {
+            border-top-color: var(--color-gray-700);
+        }
+
+        .auth-card .auth-footer a {
+            color: var(--color-secondary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .auth-card .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-card .auth-error {
+            display: none;
+            padding: 12px 16px;
+            background: #FEE2E2;
+            border-radius: var(--radius-sm);
+            color: #991B1B;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .auth-card .auth-success {
+            display: none;
+            padding: 12px 16px;
+            background: #D1FAE5;
+            border-radius: var(--radius-sm);
+            color: #065F46;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 24px 20px;
+            }
+
+            .auth-card .auth-logo h1 {
+                font-size: 1.4rem;
+            }
+
+            .auth-card .auth-title {
+                font-size: 1.1rem;
+            }
+
+            .auth-card .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html">Grandes Écoles France</a></li>
+                            <li><a href="um6p.html">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE CONNEXION -->
+    <!-- ============================================================ -->
+    <section class="auth-page">
+        <div class="auth-container">
+
+            <div class="auth-card">
+
+                <div class="auth-logo">
+                    <h1>📚 CPGE Life</h1>
+                    <p>Connectez-vous à votre espace</p>
+                </div>
+
+                <div class="auth-error" id="authError">
+                    ❌ Email ou mot de passe incorrect.
+                </div>
+
+                <div class="auth-success" id="authSuccess">
+                    ✅ Connexion réussie ! Redirection en cours...
+                </div>
+
+                <form id="loginForm" onsubmit="loginUser(event)">
+
+                    <div class="form-group">
+                        <label for="loginEmail">Email <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                            <input type="email" id="loginEmail" placeholder="votre@email.com" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Mot de passe <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon"><i class="fas fa-lock"></i></span>
+                            <input type="password" id="loginPassword" placeholder="••••••••" required />
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label>
+                            <input type="checkbox" id="rememberMe" /> Se souvenir de moi
+                        </label>
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="loginBtn">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    </button>
+
+                </form>
+
+                <div class="auth-footer">
+                    Pas encore de compte ? <a href="inscription.html">Créer un compte</a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+
+        // ============================================================
+        // 2. LOGIN
+        // ============================================================
+        function loginUser(event) {
+            event.preventDefault();
+
+            const btn = document.getElementById('loginBtn');
+            const error = document.getElementById('authError');
+            const success = document.getElementById('authSuccess');
+
+            // Cacher les messages
+            error.style.display = 'none';
+            success.style.display = 'none';
+
+            // Désactiver le bouton
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion en cours...';
+
+            // Simuler une vérification
+            setTimeout(function() {
+                const email = document.getElementById('loginEmail').value.trim();
+                const password = document.getElementById('loginPassword').value.trim();
+
+                // Vérification simple (à remplacer par une vraie authentification)
+                if (email && password.length >= 4) {
+                    success.style.display = 'block';
+                    btn.innerHTML = '<i class="fas fa-check"></i> Connecté';
+
+                    // Rediriger vers l'espace membre après 1.5s
+                    setTimeout(function() {
+                        window.location.href = 'espace-membre.html';
+                    }, 1500);
+                } else {
+                    error.style.display = 'block';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Se connecter';
+                }
+            }, 1200);
+        }
+    </script>
+
+</body>
+</html>

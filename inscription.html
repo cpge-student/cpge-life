@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Inscription - CPGE Life</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <style>
+        .auth-page {
+            padding: 60px 0 80px;
+            background: var(--color-gray-50);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        [data-theme="dark"] .auth-page {
+            background: var(--color-gray-900);
+        }
+
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .auth-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-md);
+        }
+
+        [data-theme="dark"] .auth-card {
+            background: var(--color-gray-800);
+            border-color: var(--color-gray-700);
+        }
+
+        .auth-card .auth-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .auth-card .auth-logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .auth-card .auth-logo p {
+            color: var(--color-gray-500);
+            font-size: 0.95rem;
+        }
+
+        .auth-card .auth-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: 4px;
+        }
+
+        [data-theme="dark"] .auth-card .auth-title {
+            color: var(--color-white);
+        }
+
+        .auth-card .auth-subtitle {
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .auth-card .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .auth-card .form-group {
+            margin-bottom: 16px;
+        }
+
+        .auth-card .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-gray-700);
+            margin-bottom: 6px;
+        }
+
+        [data-theme="dark"] .auth-card .form-group label {
+            color: var(--color-gray-300);
+        }
+
+        .auth-card .form-group label .required {
+            color: #EF4444;
+        }
+
+        .auth-card .form-group input,
+        .auth-card .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-gray-50);
+            color: var(--color-gray-900);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        [data-theme="dark"] .auth-card .form-group input,
+        [data-theme="dark"] .auth-card .form-group select {
+            background: var(--color-gray-700);
+            border-color: var(--color-gray-600);
+            color: var(--color-white);
+        }
+
+        .auth-card .form-group input:focus,
+        .auth-card .form-group select:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .auth-card .form-group .input-with-icon {
+            position: relative;
+        }
+
+        .auth-card .form-group .input-with-icon input {
+            padding-left: 44px;
+        }
+
+        .auth-card .form-group .input-with-icon .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gray-400);
+            font-size: 1rem;
+        }
+
+        .auth-card .form-group .password-hint {
+            font-size: 0.75rem;
+            color: var(--color-gray-400);
+            margin-top: 4px;
+        }
+
+        .auth-card .btn-submit {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .auth-card .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .auth-card .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .auth-card .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-gray-200);
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+        }
+
+        [data-theme="dark"] .auth-card .auth-footer {
+            border-top-color: var(--color-gray-700);
+        }
+
+        .auth-card .auth-footer a {
+            color: var(--color-secondary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .auth-card .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-card .auth-error {
+            display: none;
+            padding: 12px 16px;
+            background: #FEE2E2;
+            border-radius: var(--radius-sm);
+            color: #991B1B;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .auth-card .auth-success {
+            display: none;
+            padding: 12px 16px;
+            background: #D1FAE5;
+            border-radius: var(--radius-sm);
+            color: #065F46;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .auth-card .terms {
+            font-size: 0.8rem;
+            color: var(--color-gray-500);
+            margin: 12px 0 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .auth-card .terms input {
+            margin-top: 2px;
+        }
+
+        .auth-card .terms a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        .auth-card .terms a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .auth-card .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 24px 20px;
+            }
+
+            .auth-card .auth-logo h1 {
+                font-size: 1.4rem;
+            }
+
+            .auth-card .auth-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo" onclick="window.location.href='/'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">CPGE Life</span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="centres.html">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="centres.html">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html">Grandes Écoles France</a></li>
+                            <li><a href="um6p.html">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="filieres.html">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="filiere-mp.html">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="documents.html">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="#">SUP</a></li>
+                            <li><a href="#">SPE</a></li>
+                            <li><a href="#">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="annales.html">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="#">X-ENS</a></li>
+                            <li><a href="#">CCS</a></li>
+                            <li><a href="#">CCMP</a></li>
+                            <li><a href="#">CCINP</a></li>
+                            <li><a href="#">E3A</a></li>
+                            <li><a href="#">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="actualites.html">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher..." />
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">Français</a></li>
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="ar">العربية</a></li>
+                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE INSCRIPTION -->
+    <!-- ============================================================ -->
+    <section class="auth-page">
+        <div class="auth-container">
+
+            <div class="auth-card">
+
+                <div class="auth-logo">
+                    <h1>📚 CPGE Life</h1>
+                    <p>Créez votre compte gratuitement</p>
+                </div>
+
+                <div class="auth-error" id="authError">
+                    ❌ Une erreur est survenue. Veuillez réessayer.
+                </div>
+
+                <div class="auth-success" id="authSuccess">
+                    ✅ Compte créé avec succès ! Redirection en cours...
+                </div>
+
+                <form id="registerForm" onsubmit="registerUser(event)">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regNom">Nom <span class="required">*</span></label>
+                            <input type="text" id="regNom" placeholder="Votre nom" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="regPrenom">Prénom <span class="required">*</span></label>
+                            <input type="text" id="regPrenom" placeholder="Votre prénom" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regEmail">Email <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                            <input type="email" id="regEmail" placeholder="votre@email.com" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regFiliere">Filière <span class="required">*</span></label>
+                            <select id="regFiliere" required>
+                                <option value="">Sélectionnez</option>
+                                <option value="MP">MP</option>
+                                <option value="PSI">PSI</option>
+                                <option value="TSI">TSI</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="regAnnee">Année <span class="required">*</span></label>
+                            <select id="regAnnee" required>
+                                <option value="">Sélectionnez</option>
+                                <option value="SUP">SUP (1ère année)</option>
+                                <option value="SPE">SPE (2ème année)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regEtablissement">Établissement <span class="required">*</span></label>
+                        <input type="text" id="regEtablissement" placeholder="Nom de votre CPGE" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regPassword">Mot de passe <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon"><i class="fas fa-lock"></i></span>
+                            <input type="password" id="regPassword" placeholder="Min. 8 caractères" required minlength="8" />
+                        </div>
+                        <div class="password-hint">Au moins 8 caractères</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regConfirm">Confirmer le mot de passe <span class="required">*</span></label>
+                        <div class="input-with-icon">
+                            <span class="input-icon"><i class="fas fa-lock"></i></span>
+                            <input type="password" id="regConfirm" placeholder="Confirmez votre mot de passe" required />
+                        </div>
+                    </div>
+
+                    <div class="terms">
+                        <input type="checkbox" id="regTerms" required />
+                        <label for="regTerms">
+                            J'accepte les <a href="mentions-legales.html">conditions générales</a> et la <a href="#">politique de confidentialité</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="registerBtn">
+                        <i class="fas fa-user-plus"></i> Créer mon compte
+                    </button>
+
+                </form>
+
+                <div class="auth-footer">
+                    Déjà un compte ? <a href="connexion.html">Se connecter</a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text">CPGE Life</span>
+                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="centres.html">Écoles</a>
+                <a href="filieres.html">Filières</a>
+                <a href="documents.html">Documents</a>
+                <a href="annales.html">Annales</a>
+                <a href="actualites.html">Actualités</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html">FAQ</a>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // 1. MODE SOMBRE
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+                themeToggle.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme');
+                    if (current === 'dark') {
+                        document.documentElement.removeAttribute('data-theme');
+                        localStorage.setItem('theme', 'light');
+                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+        });
+
+        // ============================================================
+        // 2. INSCRIPTION
+        // ============================================================
+        function registerUser(event) {
+            event.preventDefault();
+
+            const btn = document.getElementById('registerBtn');
+            const error = document.getElementById('authError');
+            const success = document.getElementById('authSuccess');
+
+            error.style.display = 'none';
+            success.style.display = 'none';
+
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+
+            if (password !== confirm) {
+                error.textContent = '❌ Les mots de passe ne correspondent pas.';
+                error.style.display = 'block';
+                return;
+            }
+
+            if (password.length < 8) {
+                error.textContent = '❌ Le mot de passe doit contenir au moins 8 caractères.';
+                error.style.display = 'block';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Création en cours...';
+
+            setTimeout(function() {
+                success.style.display = 'block';
+                btn.innerHTML = '<i class="fas fa-check"></i> Compte créé';
+
+                setTimeout(function() {
+                    window.location.href = 'connexion.html';
+                }, 1500);
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
