@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title data-i18n="site.name">CPGE Life</title>
+    <title>CPGE scientifique</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -19,36 +19,28 @@
         .rtl .header-inner {
             flex-direction: row-reverse;
         }
-
         .rtl .logo {
             flex-direction: row-reverse;
         }
-
         .rtl .nav-list {
             flex-direction: row-reverse;
         }
-
         .rtl .header-actions {
             flex-direction: row-reverse;
         }
-
         .rtl .hero-content {
             text-align: right;
         }
-
         .rtl .hero-buttons {
             justify-content: flex-end;
         }
-
         .rtl .dropdown {
             left: auto;
             right: 0;
         }
-
         .rtl .footer-top {
             flex-direction: row-reverse;
         }
-
         @media (max-width: 768px) {
             .rtl .header-inner {
                 flex-direction: column;
@@ -60,6 +52,102 @@
                 flex-direction: column;
             }
         }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: var(--radius-lg);
+        }
+        @media (max-width: 768px) {
+            .hero-image {
+                display: none;
+            }
+        }
+
+        /* ===== CORRECTION DROPDOWN LANGUE ===== */
+        .lang-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-selector .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: auto;
+            min-width: 160px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-xl);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            z-index: 9999;
+            margin-top: 4px;
+        }
+
+        .lang-selector:hover .lang-dropdown,
+        .lang-selector .lang-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-selector .lang-dropdown li {
+            list-style: none;
+        }
+
+        .lang-selector .lang-dropdown li a {
+            display: block;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .lang-selector .lang-dropdown li a:hover {
+            background: var(--bg-input);
+            color: var(--color-secondary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .lang-selector .lang-dropdown {
+                right: 0;
+                left: auto;
+                min-width: 140px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lang-selector .lang-dropdown {
+                right: 0;
+                left: auto;
+                min-width: 130px;
+            }
+            .lang-selector .lang-dropdown li a {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== SUPPRESSION DES TÉMOIGNAGES ===== */
+        .temoignages-section {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -70,85 +158,60 @@
     <header class="header">
         <div class="container header-inner">
 
-            <!-- Logo (cliquable vers l'accueil) -->
             <div class="logo" onclick="window.location.href='index.html'">
                 <span class="logo-icon">📚</span>
-                <span class="logo-text" data-i18n="site.name">CPGE Life</span>
+                <span class="logo-text" id="siteName">CPGE scientifique</span>
             </div>
 
-            <!-- Menu principal -->
             <nav class="nav-menu">
                 <ul class="nav-list">
-
-                    <!-- Écoles -->
                     <li class="nav-item">
-                        <a href="#" data-i18n="nav.ecoles">Écoles</a>
+                        <a href="#" id="navEcoles">Écoles</a>
                         <ul class="dropdown">
-                            <li><a href="centres.html" data-i18n="nav.centres">Centres CPGE</a></li>
-                            <li><a href="grandes-ecoles-maroc.html" data-i18n="nav.grandes_ecoles_maroc">Grandes Écoles Maroc</a></li>
-                            <li><a href="grandes-ecoles-france.html" data-i18n="nav.grandes_ecoles_france">Grandes Écoles France</a></li>
-                            <li><a href="um6p.html" data-i18n="nav.um6p">UM6P</a></li>
+                            <li><a href="centres.html" id="navCentres">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html" id="navGrandesEcolesMaroc">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html" id="navGrandesEcolesFrance">Grandes Écoles France</a></li>
+                            <li><a href="um6p.html" id="navUm6p">UM6P</a></li>
                         </ul>
                     </li>
-
-                    <!-- Filières -->
                     <li class="nav-item">
-                        <a href="filieres.html" data-i18n="nav.filieres">Filières</a>
+                        <a href="filieres.html" id="navFilieres">Filières</a>
                         <ul class="dropdown">
-                            <li><a href="filiere-mp.html" data-i18n="nav.mp">MP - Maths & Physique</a></li>
-                            <li><a href="filiere-psi.html" data-i18n="nav.psi">PSI - Physique & SI</a></li>
-                            <li><a href="filiere-tsi.html" data-i18n="nav.tsi">TSI - Technologie & SI</a></li>
+                            <li><a href="filiere-mp.html" id="navMp">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html" id="navPsi">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html" id="navTsi">TSI - Technologie & SI</a></li>
                         </ul>
                     </li>
-
-                    <!-- Documents -->
                     <li class="nav-item">
-                        <a href="documents.html" data-i18n="nav.documents">Documents</a>
+                        <a href="documents.html" id="navDocuments">Documents</a>
                         <ul class="dropdown">
-                            <li><a href="documents.html#cours" data-i18n="nav.cours">Cours</a></li>
-                            <li><a href="documents.html#td" data-i18n="nav.td_ds">TD et DS</a></li>
-                            <li><a href="documents.html#extraits" data-i18n="nav.extraits_concours">Extraits de concours</a></li>
-                            <li><a href="documents.html#drive" data-i18n="nav.drive_complet">Drive complet</a></li>
+                            <li><a href="documents.html#sup" id="navSup">SUP</a></li>
+                            <li><a href="documents.html#spe" id="navSpe">SPE</a></li>
+                            <li><a href="documents.html#drives" id="navDrive">Drives</a></li>
                         </ul>
                     </li>
-
-                    <!-- Annales -->
                     <li class="nav-item">
-                        <a href="annales.html" data-i18n="nav.annales">Annales</a>
+                        <a href="annales.html" id="navAnnales">Annales</a>
                         <ul class="dropdown">
-                            <li><a href="annales.html#x-ens">X-ENS</a></li>
-                            <li><a href="annales.html#ccs">CCS</a></li>
-                            <li><a href="annales.html#ccmp">CCMP</a></li>
-                            <li><a href="annales.html#ccinp">CCINP</a></li>
-                            <li><a href="annales.html#cnc">CNC</a></li>
+                            <li><a href="annales.html#x-ens" id="navXens">X-ENS</a></li>
+                            <li><a href="annales.html#ccs" id="navCcs">CCS</a></li>
+                            <li><a href="annales.html#ccmp" id="navCcmp">CCMP</a></li>
+                            <li><a href="annales.html#ccinp" id="navCcinp">CCINP</a></li>
+                            <li><a href="annales.html#cnc" id="navCnc">CNC</a></li>
                         </ul>
                     </li>
-
-                    <!-- Actualités -->
-                    <li class="nav-item">
-                        <a href="actualites.html" data-i18n="nav.actualites">Actualités</a>
-                    </li>
-
-                    <!-- Contact -->
-                    <li class="nav-item">
-                        <a href="contact.html" data-i18n="nav.contact">Contact</a>
-                    </li>
-
+                    <li class="nav-item"><a href="actualites.html" id="navActualites">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html" id="navContact">Contact</a></li>
                 </ul>
             </nav>
 
-            <!-- Actions (recherche, langue, thème, espace) -->
             <div class="header-actions">
-
-                <!-- Barre de recherche -->
                 <div class="search-bar">
-                    <input type="text" id="globalSearchInput" placeholder="Rechercher..." data-i18n-placeholder="search.placeholder" />
+                    <input type="text" id="globalSearchInput" placeholder="Rechercher..." />
                     <button onclick="triggerSearch()"><i class="fas fa-search"></i></button>
                 </div>
-
-                <!-- Sélecteur de langue -->
                 <div class="lang-selector">
-                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <button class="lang-btn" id="langBtn"><i class="fas fa-globe"></i> FR</button>
                     <ul class="lang-dropdown">
                         <li><a href="#" data-lang="fr">🇫🇷 Français</a></li>
                         <li><a href="#" data-lang="en">🇬🇧 English</a></li>
@@ -156,17 +219,8 @@
                         <li><a href="#" data-lang="tr">🇹🇷 Türkçe</a></li>
                     </ul>
                 </div>
-
-                <!-- Mode sombre -->
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-
-                <!-- Espace Membre -->
-                <a href="connexion.html" class="btn-membre" data-i18n="nav.espace">
-                    <i class="fas fa-user"></i> Espace
-                </a>
-
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="connexion.html" class="btn-membre" id="navEspace"><i class="fas fa-user"></i> Espace</a>
             </div>
 
         </div>
@@ -178,24 +232,15 @@
     <section class="hero">
         <div class="container hero-inner">
             <div class="hero-content">
-                <h1 class="hero-title">
-                    <span data-i18n="hero.title">Prépare ton avenir avec excellence.</span>
-                </h1>
-                <p class="hero-subtitle" data-i18n="hero.subtitle">
-                    La plateforme de référence pour toutes les CPGE du Maroc — 28 établissements,
-                    3 filières et des milliers de cours.
-                </p>
+                <h1 class="hero-title" id="heroTitle">Prépare ton avenir avec excellence.</h1>
+                <p class="hero-subtitle" id="heroSubtitle">La plateforme de référence pour toutes les CPGE du Maroc — 28 établissements, 3 filières et des milliers de documents.</p>
                 <div class="hero-buttons">
-                    <a href="centres.html" class="btn btn-primary" data-i18n="hero.btn_centres">
-                        <i class="fas fa-school"></i> Explorer les centres
-                    </a>
-                    <a href="documents.html" class="btn btn-secondary" data-i18n="hero.btn_cours">
-                        <i class="fas fa-book-open"></i> Voir les cours
-                    </a>
+                    <a href="centres.html" class="btn btn-primary" id="heroBtnCentres"><i class="fas fa-school"></i> Explorer les centres</a>
+                    <a href="documents.html" class="btn btn-secondary" id="heroBtnCours"><i class="fas fa-book-open"></i> Voir les cours</a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="assets\images\cpge-studying.png" alt="Étudiants qui étudient"/>
+                <img src="assets/images/cpge-studying.png" alt="Étudiants qui étudient" id="heroImage"/>
             </div>
         </div>
     </section>
@@ -207,19 +252,19 @@
         <div class="container stats-grid">
             <div class="stat-item">
                 <span class="stat-number" data-count="28">0</span>
-                <span class="stat-label" data-i18n="stats.etablissements">Établissements</span>
+                <span class="stat-label" id="statEtablissements">Établissements</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number" data-count="3">0</span>
-                <span class="stat-label" data-i18n="stats.filieres">Filières</span>
+                <span class="stat-label" id="statFilieres">Filières</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number" data-count="10000">0</span>
-                <span class="stat-label" data-i18n="stats.etudiants">Étudiants</span>
+                <span class="stat-number" data-count="5000">0</span>
+                <span class="stat-label" id="statEtudiants">Étudiants</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number" data-count="2000">0</span>
-                <span class="stat-label" data-i18n="stats.ressources">Ressources</span>
+                <span class="stat-label" id="statRessources">Ressources</span>
             </div>
         </div>
     </section>
@@ -229,12 +274,8 @@
     <!-- ============================================================ -->
     <section class="countdown-section">
         <div class="container">
-            <h2 class="section-title" data-i18n="countdown.title">
-                <i class="fas fa-clock"></i> Prochains événements
-            </h2>
-            <div class="countdown-circles" id="countdownContainer">
-                <!-- Généré par JavaScript -->
-            </div>
+            <h2 class="section-title" id="countdownTitle"><i class="fas fa-clock"></i> Prochains événements</h2>
+            <div class="countdown-circles" id="countdownContainer"></div>
         </div>
     </section>
 
@@ -243,16 +284,11 @@
     <!-- ============================================================ -->
     <section class="centres-section">
         <div class="container">
-            <h2 class="section-title" data-i18n="centres.title">Les CPGE du Maroc</h2>
-            <p class="section-subtitle" data-i18n="centres.subtitle">
-                28 établissements. 
-                On ne voit que les informations qui concernent les filières scientifiques.
-            </p>
-            <div class="centres-grid" id="centresGrid">
-                <!-- Généré par JavaScript -->
-            </div>
+            <h2 class="section-title" id="centresTitle">Les CPGE du Maroc</h2>
+            <p class="section-subtitle" id="centresSubtitle">28 établissements</p>
+            <div class="centres-grid" id="centresGrid"></div>
             <div class="text-center">
-                <a href="centres.html" class="btn btn-primary" data-i18n="centres.btn_all">Voir tous les centres</a>
+                <a href="centres.html" class="btn btn-primary" id="centresBtnAll">Voir tous les centres</a>
             </div>
         </div>
     </section>
@@ -262,25 +298,19 @@
     <!-- ============================================================ -->
     <section class="filieres-section">
         <div class="container">
-            <h2 class="section-title" data-i18n="filieres_section.title">Choisir sa filière CPGE</h2>
-            <p class="section-subtitle" data-i18n="filieres_section.subtitle">
-                3 filières, chacune avec ses spécificités, ses concours et ses débouchés.
-            </p>
-            <div class="filieres-grid" id="filieresGrid">
-                <!-- Généré par JavaScript -->
-            </div>
+            <h2 class="section-title" id="filieresTitle">Choisir sa filière CPGE</h2>
+            <p class="section-subtitle" id="filieresSubtitle">3 filières, chacune avec ses spécificités, ses concours et ses débouchés.</p>
+            <div class="filieres-grid" id="filieresGrid"></div>
         </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- TÉMOIGNAGES -->
+    <!-- SECTION TÉMOIGNAGES (CACHÉE) -->
     <!-- ============================================================ -->
     <section class="temoignages-section">
         <div class="container">
-            <h2 class="section-title" data-i18n="temoignages.title">Ils nous font confiance</h2>
-            <div class="temoignages-grid" id="temoignagesGrid">
-                <!-- Généré par JavaScript -->
-            </div>
+            <h2 class="section-title" id="temoignagesTitle">Ils nous font confiance</h2>
+            <div class="temoignages-grid" id="temoignagesGrid"></div>
         </div>
     </section>
 
@@ -292,28 +322,27 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <span class="logo-icon">📚</span>
-                    <span class="logo-text" data-i18n="site.name">CPGE Life</span>
-                    <p class="footer-quote" data-i18n="footer.quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                    <span class="logo-text" id="footerSiteName">CPGE scientifique</span>
+                    <p class="footer-quote" id="footerQuote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
                 </div>
                 <div class="footer-social">
                     <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="tel:+212 631-909130"><i class="fas fa-phone"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
             <div class="footer-links">
-                <a href="grandes-ecoles-maroc.html" data-i18n="nav.grandes_ecoles_maroc">Grandes Écoles Maroc</a>
-                <a href="grandes-ecoles-france.html" data-i18n="nav.grandes_ecoles_france">Grandes Écoles France</a>
-                <a href="um6p.html" data-i18n="nav.um6p">UM6P</a>
-                <a href="filieres.html" data-i18n="nav.filieres">Filières</a>
-                <a href="documents.html" data-i18n="nav.documents">Documents</a>
-                <a href="annales.html" data-i18n="nav.annales">Annales</a>
-                <a href="contact.html" data-i18n="nav.contact">Contact</a>
-                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+                <a href="centres.html" id="footerCentres">Centres CPGE</a>
+                <a href="grandes-ecoles-maroc.html" id="footerGrandesEcolesMaroc">Grandes Écoles Maroc</a>
+                <a href="grandes-ecoles-france.html" id="footerGrandesEcolesFrance">Grandes Écoles France</a>
+                <a href="um6p.html" id="footerUm6p">UM6P</a>
+                <a href="filieres.html" id="footerFilieres">Filières</a>
+                <a href="documents.html" id="footerDocuments">Documents</a>
+                <a href="annales.html" id="footerAnnales">Annales</a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 CPGE Life. <span data-i18n="footer.copyright">Tous droits réservés.</span></p>
+                <p>&copy; 2026 CPGE scientifique. <span id="footerCopyright">Tous droits réservés.</span></p>
             </div>
         </div>
     </footer>
@@ -321,46 +350,556 @@
     <!-- ============================================================ -->
     <!-- SCRIPTS -->
     <!-- ============================================================ -->
-    <script src="js/data.js"></script>
-    <script src="js/lang.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/countdown.js"></script>
-    <script src="js/search.js"></script>
-
     <script>
-        // ============================================================
-        // FONCTION POUR LA RECHERCHE (déclenchée par le bouton)
-        // ============================================================
-        function triggerSearch() {
-            const input = document.getElementById('globalSearchInput');
-            if (input) {
-                const query = input.value.trim();
-                if (query.length >= 2) {
-                    if (window.performSearch) {
-                        window.performSearch(query);
-                    } else {
-                        alert('🔍 Recherche de : "' + query + '"');
+    // ============================================================
+    // 1. DONNÉES DU SITE
+    // ============================================================
+    const SITE_DATA = {
+        stats: { etablissements: 28, filieres: 3, etudiants: "5K+", ressources: "2K+" },
+        evenements: [
+            { id: "x-ens", nom: "X-ENS", date: "2027-04-12T07:00:00", icone: "🎓", couleur: "#EF4444" },
+            { id: "mines", nom: "Mines", date: "2027-04-19T07:00:00", icone: "⛏️", couleur: "#F59E0B" },
+            { id: "ccinp", nom: "CCINP", date: "2027-04-26T07:00:00", icone: "📝", couleur: "#10B981" },
+            { id: "centrale", nom: "Centrale", date: "2027-05-03T07:00:00", icone: "⚡", couleur: "#3B82F6" },
+            { id: "cnc", nom: "CNC", date: "2027-05-21T08:00:00", icone: "🏆", couleur: "#8B5CF6" }
+        ],
+        centresVedette: [
+            { id: "lmy-ra", nom: "Lycée Moulay Youssef", sigle: "LMY-Ra", ville: "Rabat", filieres: ["MP", "MP*", "PSI"], eleves: 291, taux: "93.5% (MP), 84.1% (PSI)" },
+            { id: "lmv-ca", nom: "Lycée Mohammed V", sigle: "LMV-Ca", ville: "Casablanca", filieres: ["MP", "MP*", "PSI"], eleves: 262, taux: "91.0% (MP), 88.2% (PSI)" },
+            // ✅ CORRECTION : virgule ajoutée entre "PSI" et "PSI*"
+            { id: "lit-ma", nom: "Lycée Ibn Timiya", sigle: "LIT-Ma", ville: "Marrakech", filieres: ["MP", "MP*", "PSI", "PSI*"], eleves: 281, taux: "94.7% (MP), 91.1% (PSI)" },
+            { id: "ltm-mo", nom: "Lycée Technique", sigle: "LTM-Mo", ville: "Mohammedia", filieres: ["MP", "TSI"], eleves: 119, taux: "82.1% (MP), 81.3% (TSI)" },
+            { id: "lrs-ag", nom: "Lycée Reda Slaoui", sigle: "LRS-Ag", ville: "Agadir", filieres: ["MP", "PSI", "TSI"], eleves: 203, taux: "88.0% (MP), 92.9% (PSI), 90.8% (TSI)" },
+            { id: "lmi-fe", nom: "Lycée Moulay Idriss", sigle: "LMI-Fe", ville: "Fès", filieres: ["MP", "MP*", "PSI"], eleves: 198, taux: "91.9% (MP), 85.7% (PSI)" }
+        ],
+        filieres: [
+            { id: "mp", nom: "MP", titre: "Maths & Physique", icone: "📐", banques: ["X-ENS", "CCS", "Mines", "CCINP", "CNC", "UM6P"], couleur: "#4F46E5", tauxReussite: 79.2 },
+            { id: "psi", nom: "PSI", titre: "Physique & Sciences de l'Ingénieur", icone: "🔧", banques: ["X-ENS", "CCS", "Mines", "CCINP", "CNC", "UM6P"], couleur: "#06B6D4", tauxReussite: 88.4 },
+            { id: "tsi", nom: "TSI", titre: "Technologies & Sciences Industrielles", icone: "⚙️", banques: ["CCS", "CCINP", "CNC", "UM6P"], couleur: "#F59E0B", tauxReussite: 86.2 }
+        ]
+    };
+
+    // ============================================================
+    // 2. TRADUCTIONS
+    // ============================================================
+    const TRANSLATIONS = {
+        fr: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Écoles", centres: "Centres CPGE", grandes_ecoles_maroc: "Grandes Écoles Maroc",
+                grandes_ecoles_france: "Grandes Écoles France", um6p: "UM6P",
+                filieres: "Filières", mp: "MP - Maths & Physique", psi: "PSI - Physique & SI",
+                tsi: "TSI - Technologie & SI", documents: "Documents", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Annales",
+                actualites: "Actualités", contact: "Contact", espace: "Espace"
+            },
+            hero: {
+                title: "Prépare ton avenir avec excellence.",
+                subtitle: "La plateforme de référence pour toutes les CPGE du Maroc — 28 établissements, 3 filières et des milliers de documents.",
+                btn_centres: "Explorer les centres", btn_cours: "Voir les cours"
+            },
+            stats: {
+                etablissements: "Établissements", filieres: "Filières",
+                etudiants: "Étudiants", ressources: "Ressources"
+            },
+            countdown: { title: "Prochains événements" },
+            centres: {
+                title: "Les CPGE du Maroc",
+                subtitle: "28 établissements.",
+                btn_all: "Voir tous les centres"
+            },
+            filieres_section: {
+                title: "Choisir sa filière CPGE",
+                subtitle: "3 filières, chacune avec ses spécificités, ses concours et ses débouchés."
+            },
+            temoignages: { title: "Ils nous font confiance" },
+            footer: {
+                quote: '"Construit avec ❤️ pour la communauté des préparationnaires marocains"',
+                faq: "FAQ", mentions: "Mentions légales", copyright: "Tous droits réservés."
+            },
+            search: { placeholder: "Rechercher..." }
+        },
+        en: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Schools", centres: "CPGE Centers", grandes_ecoles_maroc: "Grandes Écoles Morocco",
+                grandes_ecoles_france: "Grandes Écoles France", um6p: "UM6P",
+                filieres: "Tracks", mp: "MP - Maths & Physics", psi: "PSI - Physics & SI",
+                tsi: "TSI - Technology & SI", documents: "Documents", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Past exams",
+                actualites: "News", contact: "Contact", espace: "Member Area"
+            },
+            hero: {
+                title: "Prepare your future with excellence.",
+                subtitle: "The reference platform for all CPGE in Morocco — 28 establishments, 3 tracks and thousands of courses.",
+                btn_centres: "Explore centers", btn_cours: "View courses"
+            },
+            stats: {
+                etablissements: "Establishments", filieres: "Tracks",
+                etudiants: "Students", ressources: "Resources"
+            },
+            countdown: { title: "Upcoming events" },
+            centres: {
+                title: "The CPGE in Morocco",
+                subtitle: "28 establishments selected for their academic excellence, admission rate and quality of supervision.",
+                btn_all: "View all centers"
+            },
+            filieres_section: {
+                title: "Choose your CPGE track",
+                subtitle: "3 tracks, each with its specificities, competitions and career opportunities."
+            },
+            temoignages: { title: "They trust us" },
+            footer: {
+                quote: '"Built with ❤️ for the Moroccan preparatory class community"',
+                faq: "FAQ", mentions: "Legal notices", copyright: "All rights reserved."
+            },
+            search: { placeholder: "Search..." }
+        },
+        ar: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "المدارس", centres: "مراكز CPGE", grandes_ecoles_maroc: "المدارس العليا المغربية",
+                grandes_ecoles_france: "المدارس العليا الفرنسية", um6p: "UM6P",
+                filieres: "الشعب", mp: "MP - الرياضيات والفيزياء", psi: "PSI - الفيزياء وعلوم المهندس",
+                tsi: "TSI - التكنولوجيا وعلوم المهندس", documents: "الوثائق", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "امتحانات سابقة",
+                actualites: "الأخبار", contact: "اتصال", espace: "الفضاء الشخصي"
+            },
+            hero: {
+                title: "حضّر مستقبلك بامتياز.",
+                subtitle: "المنصة المرجعية لجميع CPGE في المغرب - 28 مؤسسة، 3 شعب، آلاف الدروس.",
+                btn_centres: "استكشاف المراكز", btn_cours: "عرض الدروس"
+            },
+            stats: {
+                etablissements: "المؤسسات", filieres: "الشعب",
+                etudiants: "الطلاب", ressources: "الموارد"
+            },
+            countdown: { title: "الأحداث القادمة" },
+            centres: {
+                title: "أفضل مراكز CPGE في المغرب",
+                subtitle: "28 مؤسسة تم اختيارها لتميزها الأكاديمي، ومعدل القبول وجودة التأطير.",
+                btn_all: "عرض جميع التصنيفات"
+            },
+            filieres_section: {
+                title: "اختر شعبتك في CPGE",
+                subtitle: "3 شعب، لكل منها خصوصياتها ومسابقاتها وآفاقها المهنية."
+            },
+            temoignages: { title: "هم يثقون بنا" },
+            footer: {
+                quote: '"بُني بحب ❤️ لمجتمع الفصول التحضيرية المغربية"',
+                faq: "الأسئلة الشائعة", mentions: "إشعارات قانونية", copyright: "جميع الحقوق محفوظة."
+            },
+            search: { placeholder: "بحث..." }
+        },
+        tr: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Okullar", centres: "CPGE Merkezleri", grandes_ecoles_maroc: "Fas Büyük Okulları",
+                grandes_ecoles_france: "Fransa Büyük Okulları", um6p: "UM6P",
+                filieres: "Bölümler", mp: "MP - Matematik & Fizik", psi: "PSI - Fizik & Mühendislik",
+                tsi: "TSI - Teknoloji & Mühendislik", documents: "Dokümanlar", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Geçmiş sınavlar",
+                actualites: "Haberler", contact: "İletişim", espace: "Üye Alanı"
+            },
+            hero: {
+                title: "Geleceğini mükemmellikle hazırla.",
+                subtitle: "Fas'taki tüm CPGE'ler için referans platformu — 28 kurum, 3 bölüm, binlerce ders.",
+                btn_centres: "Merkezleri keşfet", btn_cours: "Dersleri gör"
+            },
+            stats: {
+                etablissements: "Kurumlar", filieres: "Bölümler",
+                etudiants: "Öğrenciler", ressources: "Kaynaklar"
+            },
+            countdown: { title: "Yaklaşan etkinlikler" },
+            centres: {
+                title: "Fas'ın en iyi CPGE'leri",
+                subtitle: "Akademik mükemmellik, kabul oranı ve eğitim kalitesi için seçilen 28 kurum.",
+                btn_all: "Tüm sıralamaları gör"
+            },
+            filieres_section: {
+                title: "CPGE bölümünü seç",
+                subtitle: "Her biri kendine özgü özellikleri, yarışmaları ve kariyer olanakları olan 3 bölüm."
+            },
+            temoignages: { title: "Bize güveniyorlar" },
+            footer: {
+                quote: '"Fas hazırlık sınıfı topluluğu için ❤️ ile inşa edildi"',
+                faq: "SSS", mentions: "Yasal uyarılar", copyright: "Tüm hakları saklıdır."
+            },
+            search: { placeholder: "Ara..." }
+        }
+    };
+
+    // ============================================================
+    // 3. GESTION DES LANGUES
+    // ============================================================
+    let currentLang = localStorage.getItem('lang') || 'fr';
+
+    function getTranslation(key) {
+        const keys = key.split('.');
+        let value = TRANSLATIONS[currentLang];
+        for (const k of keys) {
+            if (value && value[k] !== undefined) {
+                value = value[k];
+            } else {
+                return undefined;
+            }
+        }
+        return value;
+    }
+
+    function applyTranslations() {
+        const elements = {
+            'site.name': ['siteName', 'footerSiteName'],
+            'nav.ecoles': ['navEcoles'],
+            'nav.centres': ['navCentres', 'footerCentres'],
+            'nav.grandes_ecoles_maroc': ['navGrandesEcolesMaroc', 'footerGrandesEcolesMaroc'],
+            'nav.grandes_ecoles_france': ['navGrandesEcolesFrance', 'footerGrandesEcolesFrance'],
+            'nav.um6p': ['navUm6p', 'footerUm6p'],
+            'nav.filieres': ['navFilieres', 'footerFilieres'],
+            'nav.mp': ['navMp'],
+            'nav.psi': ['navPsi'],
+            'nav.tsi': ['navTsi'],
+            'nav.documents': ['navDocuments', 'footerDocuments'],
+            'nav.sup': ['navSup'],
+            'nav.spe': ['navSpe'],
+            'nav.drive_complet': ['navDrive'],
+            'nav.annales': ['navAnnales', 'footerAnnales'],
+            'nav.xens': ['navXens'],
+            'nav.ccs': ['navCcs'],
+            'nav.ccmp': ['navCcmp'],
+            'nav.ccinp': ['navCcinp'],
+            'nav.cnc': ['navCnc'],
+            'nav.actualites': ['navActualites'],
+            'nav.contact': ['navContact', 'footerContact'],
+            'nav.espace': ['navEspace'],
+            'hero.title': ['heroTitle'],
+            'hero.subtitle': ['heroSubtitle'],
+            'hero.btn_centres': ['heroBtnCentres'],
+            'hero.btn_cours': ['heroBtnCours'],
+            'stats.etablissements': ['statEtablissements'],
+            'stats.filieres': ['statFilieres'],
+            'stats.etudiants': ['statEtudiants'],
+            'stats.ressources': ['statRessources'],
+            'countdown.title': ['countdownTitle'],
+            'centres.title': ['centresTitle'],
+            'centres.subtitle': ['centresSubtitle'],
+            'centres.btn_all': ['centresBtnAll'],
+            'filieres_section.title': ['filieresTitle'],
+            'filieres_section.subtitle': ['filieresSubtitle'],
+            'footer.quote': ['footerQuote'],
+            'footer.faq': ['footerFaq'],
+            'footer.mentions': ['footerMentions'],
+            'footer.copyright': ['footerCopyright'],
+            'search.placeholder': ['globalSearchInput']
+        };
+
+        for (const [key, ids] of Object.entries(elements)) {
+            const value = getTranslation(key);
+            if (value !== undefined) {
+                for (const id of ids) {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        if (el.tagName === 'INPUT') {
+                            el.placeholder = value;
+                        } else {
+                            el.textContent = value;
+                        }
                     }
-                } else {
-                    alert('Veuillez entrer au moins 2 caractères.');
                 }
             }
         }
 
-        // ============================================================
-        // RECHERCHE AVEC LA TOUCHE ENTREE (dans le champ)
-        // ============================================================
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('globalSearchInput');
-            if (searchInput) {
-                searchInput.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        triggerSearch();
+        // Bouton de langue
+        const langBtn = document.getElementById('langBtn');
+        if (langBtn) {
+            const names = { fr: 'Français', en: 'English', ar: 'العربية', tr: 'Türkçe' };
+            const flags = { fr: '🇫🇷', en: '🇬🇧', ar: '🇲🇦', tr: '🇹🇷' };
+            langBtn.innerHTML = `<i class="fas fa-globe"></i> ${flags[currentLang]} ${names[currentLang]}`;
+        }
+
+        // Direction RTL
+        const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.dir = dir;
+        document.documentElement.lang = currentLang;
+        if (dir === 'rtl') {
+            document.body.classList.add('rtl');
+        } else {
+            document.body.classList.remove('rtl');
+        }
+    }
+
+    function changeLanguage(lang) {
+        if (lang === currentLang) return;
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        applyTranslations();
+        renderCentres();
+        renderFilieres();
+        renderCountdown();
+    }
+
+    // ============================================================
+    // 4. GESTION DU THÈME
+    // ============================================================
+    function initTheme() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (!themeToggle) return;
+
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        themeToggle.onclick = function() {
+            const current = document.documentElement.getAttribute('data-theme');
+            if (current === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        };
+    }
+
+    // ============================================================
+    // 5. RENDU DES CENTRES
+    // ============================================================
+    function renderCentres() {
+        const container = document.getElementById('centresGrid');
+        if (!container) return;
+
+        container.innerHTML = '';
+        SITE_DATA.centresVedette.forEach(function(centre) {
+            const card = document.createElement('div');
+            card.className = 'centre-card';
+
+            let filieresHtml = '';
+            centre.filieres.forEach(function(f) {
+                const cls = f.toLowerCase().replace('*', '');
+                filieresHtml += `<span class="${cls}">${f}</span>`;
+            });
+
+            card.innerHTML = `
+                <div class="centre-name">${centre.nom}</div>
+                <div class="centre-sigle">${centre.sigle}</div>
+                <div class="centre-ville">📍 ${centre.ville}</div>
+                <div class="centre-filieres">${filieresHtml}</div>
+                <div class="centre-stats">
+                    <span>👨‍🎓 <strong>${centre.eleves}</strong> étudiants</span>
+                    <span>📊 <strong>${centre.taux}</strong></span>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+    }
+
+    // ============================================================
+    // 6. RENDU DES FILIÈRES
+    // ============================================================
+    function renderFilieres() {
+        const container = document.getElementById('filieresGrid');
+        if (!container) return;
+
+        container.innerHTML = '';
+        SITE_DATA.filieres.forEach(function(filiere) {
+            const card = document.createElement('div');
+            card.className = `filiere-card ${filiere.id}`;
+
+            let banquesHtml = filiere.banques.map(function(b) {
+                return `<span>${b}</span>`;
+            }).join(' • ');
+
+            card.innerHTML = `
+                <div class="filiere-icon">${filiere.icone}</div>
+                <div class="filiere-title">${filiere.nom} - ${filiere.titre}</div>
+                <div class="filiere-banques">
+                    <strong>Banques autorisées :</strong> ${banquesHtml}
+                </div>
+                <a href="filiere-${filiere.id}.html" class="btn btn-primary">Voir la filière →</a>
+            `;
+
+            container.appendChild(card);
+        });
+    }
+
+    // ============================================================
+    // 7. COMPTE À REBOURS
+    // ============================================================
+    function renderCountdown() {
+	const container = document.getElementById('countdownContainer');
+	if (!container) return;
+
+	container.innerHTML = '';
+    
+	const now = new Date();
+	const totalDays = 300; // Nombre total de jours pour un cercle complet
+
+	SITE_DATA.evenements.forEach(function(event) {
+	const targetDate = new Date(event.date);
+	const diff = targetDate - now;
+
+	let jours = 0, heures = 0;
+	let progress = 1; // 1 = cercle complet (PLEIN)
+
+	if (diff > 0) {
+	    const totalSeconds = diff / 1000;
+	    jours = Math.floor(totalSeconds / (3600 * 24));
+	    heures = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+	            
+	    const daysPassed = totalDays - jours;
+	    progress = Math.max(0, Math.min(1, daysPassed / totalDays));
+        } else {
+	    jours = 0;
+	    heures = 0;
+	    progress = 0; // Cercle VIDE quand la date est passée
+	}
+	
+	const radius = 56;
+	const circumference = 2 * Math.PI * radius;
+        
+	const offset = circumference * progress;
+
+	const circle = document.createElement('div');
+	circle.className = 'countdown-circle';
+	circle.dataset.event = event.id;
+
+	circle.innerHTML = `
+	    <svg viewBox="0 0 130 130">
+	        <circle class="circle-bg" cx="65" cy="65" r="${radius}" />
+	        <circle class="circle-progress" cx="65" cy="65" r="${radius}"
+	            stroke-dasharray="${circumference}"
+	            stroke-dashoffset="${offset}" />
+	    </svg>
+	    <div class="circle-content">
+	        <div class="circle-icon">${event.icone}</div>
+	        <div class="circle-time">
+	            <span class="circle-days">${String(jours).padStart(2, '0')}</span>j 
+	            <span>${String(heures).padStart(2, '0')}</span>h
+	        </div>
+	        <div class="circle-name">${event.nom}</div>
+            </div>
+	`;
+
+	container.appendChild(circle);
+    });
+}
+
+    // ============================================================
+    // 8. ANIMATION DES STATISTIQUES
+    // ============================================================
+    function animateCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(function(counter) {
+            const target = parseInt(counter.getAttribute('data-count'));
+            if (!target) return;
+
+            const duration = 2000;
+            const step = Math.max(1, Math.floor(target / 60));
+            let current = 0;
+
+            const interval = setInterval(function() {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(interval);
+                }
+                if (target >= 1000) {
+                    counter.textContent = (current / 1000).toFixed(1) + 'K+';
+                } else {
+                    counter.textContent = current;
+                }
+            }, duration / 60);
+        });
+    }
+
+    // ============================================================
+    // 9. RECHERCHE
+    // ============================================================
+    function triggerSearch() {
+        const input = document.getElementById('globalSearchInput');
+        if (input) {
+            const query = input.value.trim();
+            if (query.length >= 2) {
+                const centres = SITE_DATA.centresVedette || [];
+                const results = centres.filter(function(c) {
+                    return c.nom.toLowerCase().includes(query.toLowerCase()) ||
+                           c.ville.toLowerCase().includes(query.toLowerCase()) ||
+                           c.sigle.toLowerCase().includes(query.toLowerCase());
+                });
+
+                if (results.length > 0) {
+                    alert('🔍 Résultats trouvés : ' + results.length + ' centre(s)\n\n' +
+                          results.map(function(r) { return '- ' + r.nom + ' (' + r.ville + ')'; }).join('\n'));
+                } else {
+                    alert('🔍 Aucun résultat trouvé pour "' + query + '"');
+                }
+            } else {
+                alert('Veuillez entrer au moins 2 caractères.');
+            }
+        }
+    }
+
+    // ============================================================
+    // 10. INITIALISATION
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        // Appliquer les traductions
+        applyTranslations();
+
+        // Initialiser le thème
+        initTheme();
+
+        // Rendre les composants
+        renderCentres();
+        renderFilieres();
+        renderCountdown();
+
+        // Animer les statistiques
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.disconnect();
                     }
                 });
-            }
+            }, { threshold: 0.3 });
+            observer.observe(statsSection);
+        }
+
+        // Gestionnaires de langue
+        document.querySelectorAll('.lang-dropdown a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                if (lang) {
+                    changeLanguage(lang);
+                }
+            });
         });
+
+        // Recherche avec Entrée
+        const searchInput = document.getElementById('globalSearchInput');
+        if (searchInput) {
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    triggerSearch();
+                }
+            });
+        }
+    });
     </script>
 
 </body>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Centres CPGE - CPGE Life</title>
+    <title data-i18n="site.name">CPGE scientifique</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -15,16 +15,108 @@
     <link rel="stylesheet" href="css/styles.css"/>
 
     <style>
-        /* ============================================
-           STYLES SPÉCIFIQUES CENTRES
-           ============================================ */
+        /* ===== AJOUT POUR RTL ===== */
+        .rtl .header-inner { flex-direction: row-reverse; }
+        .rtl .logo { flex-direction: row-reverse; }
+        .rtl .nav-list { flex-direction: row-reverse; }
+        .rtl .header-actions { flex-direction: row-reverse; }
+        .rtl .hero-content { text-align: right; }
+        .rtl .hero-buttons { justify-content: flex-end; }
+        .rtl .dropdown { left: auto; right: 0; }
+        .rtl .footer-top { flex-direction: row-reverse; }
+        @media (max-width: 768px) {
+            .rtl .header-inner { flex-direction: column; }
+            .rtl .hero-buttons { justify-content: center; }
+            .rtl .footer-top { flex-direction: column; }
+        }
+
+        /* ===== CORRECTION DROPDOWN LANGUE ===== */
+        .lang-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-selector .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: auto;
+            min-width: 160px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-xl);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            z-index: 9999;
+            margin-top: 4px;
+        }
+
+        .lang-selector:hover .lang-dropdown,
+        .lang-selector .lang-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-selector .lang-dropdown li {
+            list-style: none;
+        }
+
+        .lang-selector .lang-dropdown li a {
+            display: block;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .lang-selector .lang-dropdown li a:hover {
+            background: var(--bg-input);
+            color: var(--color-secondary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .lang-selector .lang-dropdown {
+                right: 0;
+                left: auto;
+                min-width: 140px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lang-selector .lang-dropdown {
+                right: 0;
+                left: auto;
+                min-width: 130px;
+            }
+            .lang-selector .lang-dropdown li a {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== STYLES SPÉCIFIQUES CENTRES ===== */
         .centres-page {
             padding: 40px 0 60px;
-            background: var(--color-gray-50);
+            background: var(--bg-body);
         }
 
         [data-theme="dark"] .centres-page {
-            background: var(--color-gray-900);
+            background: var(--bg-body);
         }
 
         .centres-page .page-title {
@@ -40,29 +132,28 @@
 
         .centres-page .page-subtitle {
             text-align: center;
-            color: var(--color-gray-500);
+            color: var(--text-secondary);
             font-size: 1.1rem;
             margin-bottom: 30px;
         }
 
-        /* Filtres */
         .filters-wrapper {
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
             align-items: center;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             padding: 20px;
-            background: var(--color-white);
+            background: var(--bg-card);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-sm);
-            border: 1px solid var(--color-gray-200);
+            border: 1px solid var(--border-color);
         }
 
         [data-theme="dark"] .filters-wrapper {
-            background: var(--color-gray-800);
-            border-color: var(--color-gray-700);
+            background: var(--bg-card);
+            border-color: var(--border-color);
         }
 
         .filters-wrapper .filter-group {
@@ -74,25 +165,25 @@
         .filters-wrapper .filter-group label {
             font-weight: 600;
             font-size: 0.85rem;
-            color: var(--color-gray-600);
+            color: var(--text-secondary);
         }
 
         .filters-wrapper .filter-group select,
         .filters-wrapper .filter-group input {
             padding: 8px 14px;
-            border: 1px solid var(--color-gray-300);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
-            background: var(--color-gray-50);
-            color: var(--color-gray-900);
+            background: var(--bg-input);
+            color: var(--text-primary);
             font-size: 0.85rem;
             transition: var(--transition);
         }
 
         [data-theme="dark"] .filters-wrapper .filter-group select,
         [data-theme="dark"] .filters-wrapper .filter-group input {
-            background: var(--color-gray-700);
-            border-color: var(--color-gray-600);
-            color: var(--color-white);
+            background: var(--bg-input);
+            border-color: var(--border-color);
+            color: var(--text-primary);
         }
 
         .filters-wrapper .filter-group select:focus,
@@ -107,26 +198,20 @@
 
         .filters-wrapper .btn-reset {
             padding: 8px 20px;
-            background: var(--color-gray-200);
+            background: var(--bg-input);
             border: none;
             border-radius: var(--radius-sm);
             font-weight: 600;
             font-size: 0.85rem;
             cursor: pointer;
             transition: var(--transition);
-            color: var(--color-gray-700);
-        }
-
-        [data-theme="dark"] .filters-wrapper .btn-reset {
-            background: var(--color-gray-700);
-            color: var(--color-gray-300);
+            color: var(--text-primary);
         }
 
         .filters-wrapper .btn-reset:hover {
-            background: var(--color-gray-300);
+            background: var(--border-color);
         }
 
-        /* Filtres boutons (régions) */
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -137,19 +222,14 @@
 
         .filter-buttons .filter-btn {
             padding: 6px 16px;
-            border: 1px solid var(--color-gray-300);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             background: transparent;
             font-size: 0.8rem;
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
-            color: var(--color-gray-600);
-        }
-
-        [data-theme="dark"] .filter-buttons .filter-btn {
-            border-color: var(--color-gray-600);
-            color: var(--color-gray-400);
+            color: var(--text-secondary);
         }
 
         .filter-buttons .filter-btn:hover {
@@ -159,74 +239,39 @@
 
         .filter-buttons .filter-btn.active {
             background: var(--color-secondary);
-            color: white;
+            color: var(--color-white-static);
             border-color: var(--color-secondary);
         }
 
-        /* Résultats */
         .results-count {
             text-align: center;
-            color: var(--color-gray-500);
+            color: var(--text-secondary);
             font-size: 0.95rem;
             margin-bottom: 24px;
         }
 
         .results-count strong {
-            color: var(--color-gray-900);
+            color: var(--text-primary);
         }
 
-        [data-theme="dark"] .results-count strong {
-            color: var(--color-white);
-        }
-
-        /* Region header */
-        .region-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 20px;
-            background: var(--color-gray-200);
-            border-radius: var(--radius-md);
-            margin: 30px 0 16px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--color-gray-800);
-        }
-
-        [data-theme="dark"] .region-header {
-            background: var(--color-gray-800);
-            color: var(--color-white);
-        }
-
-        .region-header .region-icon {
-            font-size: 1.4rem;
-        }
-
-        .region-header .region-count {
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: var(--color-gray-500);
-            margin-left: auto;
-        }
-
-        /* Centre card */
         .centre-card-full {
-            background: var(--color-white);
+            background: var(--bg-card);
             border-radius: var(--radius-lg);
             padding: 20px 24px;
             margin-bottom: 14px;
-            border: 1px solid var(--color-gray-200);
+            border: 1px solid var(--border-color);
             transition: var(--transition);
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
+            box-shadow: var(--shadow-sm);
         }
 
         [data-theme="dark"] .centre-card-full {
-            background: var(--color-gray-800);
-            border-color: var(--color-gray-700);
+            background: var(--bg-card);
+            border-color: var(--border-color);
         }
 
         .centre-card-full:hover {
@@ -243,22 +288,13 @@
         .centre-card-full .centre-info .centre-name {
             font-weight: 700;
             font-size: 1.1rem;
-            color: var(--color-gray-900);
-        }
-
-        [data-theme="dark"] .centre-card-full .centre-info .centre-name {
-            color: var(--color-white);
+            color: var(--text-primary);
         }
 
         .centre-card-full .centre-info .centre-sigle {
             font-weight: 600;
-            color: var(--color-gray-500);
+            color: var(--text-secondary);
             font-size: 0.85rem;
-        }
-
-        .centre-card-full .centre-info .centre-ville {
-            font-size: 0.85rem;
-            color: var(--color-gray-500);
         }
 
         .centre-card-full .centre-info .centre-type {
@@ -321,45 +357,12 @@
             margin-left: 2px;
         }
 
-        .centre-card-full .centre-stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            font-size: 0.8rem;
-            color: var(--color-gray-500);
-            min-width: 120px;
-        }
-
-        .centre-card-full .centre-stats .stat-item {
-            text-align: center;
-        }
-
-        .centre-card-full .centre-stats .stat-item .stat-value {
-            font-weight: 700;
-            color: var(--color-gray-900);
-            display: block;
-        }
-
-        [data-theme="dark"] .centre-card-full .centre-stats .stat-item .stat-value {
-            color: var(--color-white);
-        }
-
-        .centre-card-full .centre-stats .stat-item .stat-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: var(--color-gray-400);
-        }
-
         .centre-card-full .centre-taux {
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--color-gray-700);
+            color: var(--text-secondary);
             min-width: 80px;
             text-align: right;
-        }
-
-        [data-theme="dark"] .centre-card-full .centre-taux {
-            color: var(--color-gray-300);
         }
 
         .centre-card-full .centre-taux .taux-value {
@@ -370,7 +373,7 @@
         .centre-card-full .btn-detail {
             padding: 8px 16px;
             background: var(--color-secondary);
-            color: white;
+            color: var(--color-white-static);
             border: none;
             border-radius: var(--radius-sm);
             font-weight: 600;
@@ -378,6 +381,8 @@
             cursor: pointer;
             transition: var(--transition);
             white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .centre-card-full .btn-detail:hover {
@@ -385,11 +390,10 @@
             transform: translateY(-2px);
         }
 
-        /* Aucun résultat */
         .no-results {
             text-align: center;
             padding: 60px 20px;
-            color: var(--color-gray-500);
+            color: var(--text-secondary);
             font-size: 1.1rem;
         }
 
@@ -399,64 +403,45 @@
             opacity: 0.5;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .centre-card-full {
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 16px;
             }
-
-            .centre-card-full .centre-stats {
-                width: 100%;
-                justify-content: space-between;
-            }
-
             .centre-card-full .centre-taux {
                 text-align: left;
                 width: 100%;
             }
-
             .centre-card-full .btn-detail {
                 width: 100%;
                 text-align: center;
             }
-
             .filters-wrapper {
                 flex-direction: column;
                 align-items: stretch;
             }
-
             .filters-wrapper .filter-group {
                 flex-wrap: wrap;
             }
-
             .filters-wrapper .filter-group input {
                 width: 100%;
             }
-
             .filter-buttons {
                 gap: 4px;
             }
-
             .filter-buttons .filter-btn {
                 font-size: 0.7rem;
                 padding: 4px 12px;
             }
-
             .centres-page .page-title {
                 font-size: 1.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            .centre-card-full .centre-filieres {
-                min-width: 100%;
-            }
-
-            .region-header {
-                font-size: 1rem;
-                padding: 10px 14px;
+            .centres-page .page-title {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -464,72 +449,76 @@
 <body>
 
     <!-- ============================================================ -->
-    <!-- HEADER (copié depuis index.html) -->
+    <!-- HEADER / NAVBAR -->
     <!-- ============================================================ -->
     <header class="header">
         <div class="container header-inner">
-            <div class="logo" onclick="window.location.href='/'">
+
+            <div class="logo" onclick="window.location.href='index.html'">
                 <span class="logo-icon">📚</span>
-                <span class="logo-text">CPGE Life</span>
+                <span class="logo-text" id="siteName">CPGE scientifique</span>
             </div>
+
             <nav class="nav-menu">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="centres.html">Écoles</a>
+                        <a href="#" id="navEcoles">Écoles</a>
                         <ul class="dropdown">
-                            <li><a href="centres.html">Centres CPGE</a></li>
-                            <li><a href="#">Grandes Écoles Maroc</a></li>
-                            <li><a href="#">Grandes Écoles France</a></li>
-                            <li><a href="#">UM6P</a></li>
+                            <li><a href="centres.html" id="navCentres">Centres CPGE</a></li>
+                            <li><a href="grandes-ecoles-maroc.html" id="navGrandesEcolesMaroc">Grandes Écoles Maroc</a></li>
+                            <li><a href="grandes-ecoles-france.html" id="navGrandesEcolesFrance">Grandes Écoles France</a></li>
+                            <li><a href="um6p.html" id="navUm6p">UM6P</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Filières</a>
+                        <a href="filieres.html" id="navFilieres">Filières</a>
                         <ul class="dropdown">
-                            <li><a href="#">MP - Maths & Physique</a></li>
-                            <li><a href="#">PSI - Physique & SI</a></li>
-                            <li><a href="#">TSI - Technologie & SI</a></li>
+                            <li><a href="filiere-mp.html" id="navMp">MP - Maths & Physique</a></li>
+                            <li><a href="filiere-psi.html" id="navPsi">PSI - Physique & SI</a></li>
+                            <li><a href="filiere-tsi.html" id="navTsi">TSI - Technologie & SI</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Documents</a>
+                        <a href="documents.html" id="navDocuments">Documents</a>
                         <ul class="dropdown">
-                            <li><a href="#">Cours</a></li>
-                            <li><a href="#">TD et DS</a></li>
-                            <li><a href="#">Extraits de concours</a></li>
-                            <li><a href="#">Drive complet</a></li>
+                            <li><a href="documents.html#sup" id="navSup">SUP</a></li>
+                            <li><a href="documents.html#spe" id="navSpe">SPE</a></li>
+                            <li><a href="documents.html#drives" id="navDrive">Drives</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Annales</a>
+                        <a href="annales.html" id="navAnnales">Annales</a>
                         <ul class="dropdown">
-                            <li><a href="#">CNC</a></li>
-                            <li><a href="#">Banque CCINP</a></li>
-                            <li><a href="#">Banque Mines</a></li>
-                            <li><a href="#">Banque X-ENS</a></li>
+                            <li><a href="annales.html#x-ens" id="navXens">X-ENS</a></li>
+                            <li><a href="annales.html#ccs" id="navCcs">CCS</a></li>
+                            <li><a href="annales.html#ccmp" id="navCcmp">CCMP</a></li>
+                            <li><a href="annales.html#ccinp" id="navCcinp">CCINP</a></li>
+                            <li><a href="annales.html#cnc" id="navCnc">CNC</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="#">Actualités</a></li>
-                    <li class="nav-item"><a href="#">Contact</a></li>
+                    <li class="nav-item"><a href="actualites.html" id="navActualites">Actualités</a></li>
+                    <li class="nav-item"><a href="contact.html" id="navContact">Contact</a></li>
                 </ul>
             </nav>
+
             <div class="header-actions">
                 <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Rechercher un centre..." />
-                    <button onclick="applyFilters()"><i class="fas fa-search"></i></button>
+                    <input type="text" id="globalSearchInput" data-i18n-placeholder="search.placeholder" placeholder="Rechercher..." />
+                    <button onclick="triggerSearch()"><i class="fas fa-search"></i></button>
                 </div>
                 <div class="lang-selector">
-                    <button class="lang-btn"><i class="fas fa-globe"></i> FR</button>
+                    <button class="lang-btn" id="langBtn"><i class="fas fa-globe"></i> FR</button>
                     <ul class="lang-dropdown">
-                        <li><a href="#" data-lang="fr">Français</a></li>
-                        <li><a href="#" data-lang="en">English</a></li>
-                        <li><a href="#" data-lang="ar">العربية</a></li>
-                        <li><a href="#" data-lang="tr">Türkçe</a></li>
+                        <li><a href="#" data-lang="fr">🇫🇷 Français</a></li>
+                        <li><a href="#" data-lang="en">🇬🇧 English</a></li>
+                        <li><a href="#" data-lang="ar">🇲🇦 العربية</a></li>
+                        <li><a href="#" data-lang="tr">🇹🇷 Türkçe</a></li>
                     </ul>
                 </div>
                 <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
-                <a href="#" class="btn-membre"><i class="fas fa-user"></i> Espace</a>
+                <a href="connexion.html" class="btn-membre" id="navEspace"><i class="fas fa-user"></i> Espace</a>
             </div>
+
         </div>
     </header>
 
@@ -539,48 +528,46 @@
     <section class="centres-page">
         <div class="container">
 
-            <h1 class="page-title">🏫 Les Centres CPGE du Maroc</h1>
-            <p class="page-subtitle">28 établissements publics et partenariat public-privé</p>
+            <h1 class="page-title" id="centresPageTitle">🏫 Les Centres CPGE du Maroc</h1>
+            <p class="page-subtitle" id="centresPageSubtitle">28 établissements publics et partenariat public-privé</p>
 
             <!-- Filtres -->
             <div class="filters-wrapper">
                 <div class="filter-group">
-                    <label for="regionFilter">📍 Région</label>
-                    <select id="regionFilter" onchange="applyFilters()">
-                        <option value="all">Toutes</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="filiereFilter">📐 Filière</label>
+                    <label for="filiereFilter" id="filterFiliereLabel">📐 Filière</label>
                     <select id="filiereFilter" onchange="applyFilters()">
-                        <option value="all">Toutes</option>
+                        <option value="all" id="filterAll">Toutes</option>
                         <option value="MP">MP</option>
                         <option value="PSI">PSI</option>
                         <option value="TSI">TSI</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="typeFilter">🏷️ Type</label>
+                    <label for="typeFilter" id="filterTypeLabel">🏷️ Type</label>
                     <select id="typeFilter" onchange="applyFilters()">
-                        <option value="all">Tous</option>
-                        <option value="public">Public</option>
-                        <option value="PPP">PPP</option>
+                        <option value="all" id="filterAllType">Tous</option>
+                        <option value="public" id="filterPublic">Public</option>
+                        <option value="PPP" id="filterPPP">PPP</option>
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label for="sortFilter">📊 Trier par</label>
+                    <label for="sortFilter" id="filterSortLabel">📊 Trier par</label>
                     <select id="sortFilter" onchange="applyFilters()">
-                        <option value="taux">Taux de réussite</option>
-                        <option value="nom">Nom (A-Z)</option>
-                        <option value="ville">Ville (A-Z)</option>
+                        <option value="taux" id="sortTaux">Taux de réussite</option>
+                        <option value="nom" id="sortNom">Nom (A-Z)</option>
+                        <option value="ville" id="sortVille">Ville (A-Z)</option>
                     </select>
                 </div>
-                <button class="btn-reset" onclick="resetFilters()">🔄 Réinitialiser</button>
+                <div class="filter-group">
+                    <label for="searchInput" id="filterSearchLabel">🔍 Recherche</label>
+                    <input type="text" id="searchInput" placeholder="Nom, ville..." />
+                </div>
+                <button class="btn-reset" onclick="resetFilters()" id="filterReset">🔄 Réinitialiser</button>
             </div>
 
-            <!-- Filtres boutons (régions rapides) -->
+            <!-- Filtres boutons (Régions) -->
             <div class="filter-buttons" id="regionButtons">
-                <button class="filter-btn active" data-region="all" onclick="filterByRegion('all')">🌍 Toutes</button>
+                <button class="filter-btn active" data-region="all" onclick="filterByRegion('all')" id="regionAll">🌍 Toutes les régions</button>
             </div>
 
             <!-- Résultats -->
@@ -604,8 +591,8 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <span class="logo-icon">📚</span>
-                    <span class="logo-text">CPGE Life</span>
-                    <p class="footer-quote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                    <span class="logo-text" id="footerSiteName">CPGE scientifique</span>
+                    <p class="footer-quote" id="footerQuote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
                 </div>
                 <div class="footer-social">
                     <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -615,18 +602,16 @@
                 </div>
             </div>
             <div class="footer-links">
-                <a href="centres.html">Écoles</a>
-                <a href="#">Filières</a>
-                <a href="#">Documents</a>
-                <a href="#">Annales</a>
-                <a href="#">Actualités</a>
-                <a href="#">Contact</a>
-                <a href="#">FAQ</a>
-                <a href="#">Mentions légales</a>
-                <a href="admin.html" style="opacity:0.3;font-size:0.7rem;">Admin</a>
+                <a href="centres.html" id="footerCentres">Centres CPGE</a>
+                <a href="grandes-ecoles-maroc.html" id="footerGrandesEcolesMaroc">Grandes Écoles Maroc</a>
+                <a href="grandes-ecoles-france.html" id="footerGrandesEcolesFrance">Grandes Écoles France</a>
+                <a href="um6p.html" id="footerUm6p">UM6P</a>
+                <a href="filieres.html" id="footerFilieres">Filières</a>
+                <a href="documents.html" id="footerDocuments">Documents</a>
+                <a href="annales.html" id="footerAnnales">Annales</a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 CPGE Life. Tous droits réservés.</p>
+                <p>&copy; 2026 CPGE scientifique. <span id="footerCopyright">Tous droits réservés.</span></p>
             </div>
         </div>
     </footer>
@@ -634,308 +619,578 @@
     <!-- ============================================================ -->
     <!-- SCRIPTS -->
     <!-- ============================================================ -->
-    <script src="js/data.js"></script>
     <script>
-        // ============================================================
-        // DONNÉES DES CENTRES (28 centres)
-        // ============================================================
-        const centresData = [
-            // Région 1: Tanger-Tétouan-Al Hoceima
-            { id: "lmh-ta", nom: "Lycée Moulay Al Hassan", sigle: "LMH-Ta", ville: "Tanger", region: "Tanger-Tétouan-Al Hoceima", type: "public", filieres: [{ nom: "MP", sup: 71, spe: 52, taux: 84.4 }, { nom: "PSI", sup: 68, spe: 59, taux: 93.4 }, { nom: "TSI", sup: 36, spe: 32, taux: null }], telephone: "05 39 93 50 98", options: [] },
-            { id: "ccp-te", nom: "Centre CPGE", sigle: "CCP-Te", ville: "Tétouan", region: "Tanger-Tétouan-Al Hoceima", type: "public", filieres: [{ nom: "MP", sup: 71, spe: 66, taux: null }, { nom: "PSI", sup: 36, spe: 36, taux: null }, { nom: "TSI", sup: null, spe: null, taux: 95.1 }], telephone: "05 39 71 82 28", options: [] },
-            { id: "lymed", nom: "Lycée Méditerranéen", sigle: "LYMED", ville: "Martil", region: "Tanger-Tétouan-Al Hoceima", type: "PPP", filieres: [{ nom: "MP", sup: 48, spe: 49, taux: null }, { nom: "PSI", sup: 48, spe: 49, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 39 97 83 07", options: [] },
+    // ============================================================
+    // 1. DONNÉES DES CENTRES
+    // ============================================================
+    const centresData = [
 
-            // Région 2: Oriental
-            { id: "loa-ou", nom: "Lycée Omar Ibn Abdelaziz", sigle: "LOA-Ou", ville: "Oujda", region: "Oriental", type: "public", filieres: [{ nom: "MP", sup: 96, spe: 86, taux: 83.3 }, { nom: "PSI", sup: 64, spe: 61, taux: null }, { nom: "TSI", sup: 25, spe: 29, taux: 75.0 }], telephone: "05 36 68 31 89", options: [] },
+	// Tanger
+        { id: "lmh-ta", nom: "Lycée Moulay Al Hassan", sigle: "LMH-Ta", ville: "Tanger", region: "Tanger-Tétouan-Al Hoceima", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 71, spe: 52, taux: 77.5 }, { nom: "PSI", sup: 68, spe: 59, taux: 93.4 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 39 93 50 98", options: [] },
+        { id: "cgp-te", nom: "Centre CPGE", sigle: "CGP-Te", ville: "Tétouan", region: "Tanger-Tétouan-Al Hoceima", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 71, spe: 66, taux: 86.7 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 36, spe: 36, taux: 89.8 }], telephone: "05 39 71 82 28", options: [] },
+        { id: "lymed", nom: "Lycée Méditerranéen", sigle: "LYMED", ville: "Martil", region: "Tanger-Tétouan-Al Hoceima", type: "PPP", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 48, spe: 49, taux: 85.4 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 39 97 83 07", options: ["MP*"] },
 
-            // Région 3: Fès-Meknès
-            { id: "lmi-fe", nom: "Lycée Moulay Idriss", sigle: "LMI-Fe", ville: "Fès", region: "Fès-Meknès", type: "public", filieres: [{ nom: "MP", sup: 142, spe: 138, taux: 91.9 }, { nom: "PSI", sup: 63, spe: 56, taux: 85.7 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 35 63 31 60", options: ["MP*"] },
-            { id: "lok-me", nom: "Lycée Omar Ibn Al-Khattabi", sigle: "LOK-Me", ville: "Meknès", region: "Fès-Meknès", type: "public", filieres: [{ nom: "MP", sup: 126, spe: 122, taux: null }, { nom: "PSI", sup: 64, spe: 58, taux: 94.4 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 35 53 67 90", options: [] },
-            { id: "lci-tz", nom: "Lycée Acharif Al Idrissi", sigle: "LCI-Tz", ville: "Taza", region: "Fès-Meknès", type: "public", filieres: [{ nom: "MP", sup: 66, spe: 42, taux: null }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 35 27 09 10", options: [] },
+	//Ori
+        { id: "loa-ou", nom: "Lycée Omar Ibn Abdelaziz", sigle: "LOA-Ou", ville: "Oujda", region: "Oriental", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 96, spe: 86, taux: 84.7 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 64, spe: 61, taux: 81.3 }], telephone: "05 36 68 31 89", options: [] },
 
-            // Région 4: Rabat-Salé-Kénitra
-            { id: "lmy-ra", nom: "Lycée Moulay Youssef", sigle: "LMY-Ra", ville: "Rabat", region: "Rabat-Salé-Kénitra", type: "public", filieres: [{ nom: "MP", sup: 139, spe: 152, taux: 93.5 }, { nom: "PSI", sup: 69, spe: 62, taux: 84.1 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 37 70 02 90", options: ["MP*"] },
-            { id: "lsf-si", nom: "Lycée Salmane Al Farissi", sigle: "LSF-SI", ville: "Salé", region: "Rabat-Salé-Kénitra", type: "public", filieres: [{ nom: "MP", sup: 106, spe: 93, taux: 87.5 }, { nom: "PSI", sup: 71, spe: 68, taux: null }, { nom: "TSI", sup: null, spe: null, taux: 81.0 }], telephone: "05 37 80 28 17", options: [] },
-            { id: "lmg-ke", nom: "Lycée Mohammed VI", sigle: "LMG-Ke", ville: "Kénitra", region: "Rabat-Salé-Kénitra", type: "public", filieres: [{ nom: "MP", sup: 107, spe: 93, taux: 86.6 }, { nom: "PSI", sup: 37, spe: 28, taux: 87.1 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 37 37 99 16", options: [] },
-            { id: "laz-ra", nom: "Lycée Al-Zahrawi", sigle: "LAZ-Ra", ville: "Rabat", region: "Rabat-Salé-Kénitra", type: "PPP", filieres: [{ nom: "MP", sup: 18, spe: 25, taux: null }, { nom: "PSI", sup: 18, spe: 25, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 37 13 11 50", options: [] },
+	//Fes
+        { id: "lmi-fe", nom: "Lycée Moulay Idriss", sigle: "LMI-Fe", ville: "Fès", region: "Fès-Meknès", type: "public", tauxGlobal: 86.86, filieres: [{ nom: "MP", sup: 142, spe: 138, taux: 87.2 }, { nom: "PSI", sup: 63, spe: 56, taux: 85.7 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 35 63 31 60", options: ["MP*"] },
+        { id: "lok-me", nom: "Lycée Omar Ibn Al-Khattab", sigle: "LOK-Me", ville: "Meknès", region: "Fès-Meknès", type: "public", tauxGlobal: 90.34, filieres: [{ nom: "MP", sup: 126, spe: 122, taux: 88.1 }, { nom: "PSI", sup: 64, spe: 58, taux: 94.4 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 35 53 67 90", options: [] },
+        { id: "lci-tz", nom: "Lycée Acharif Al Idrissi", sigle: "LCI-Tz", ville: "Taza", region: "Fès-Meknès", type: "public", tauxGlobal: 79.6, filieres: [{ nom: "MP", sup: 66, spe: 42, taux: 79.6 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 35 27 09 10", options: [] },
 
-            // Région 5: Béni-Mellal-Khénifra
-            { id: "lmv-be", nom: "Lycée Mohammed V", sigle: "LMV-Be", ville: "Béni-Mellal", region: "Béni-Mellal-Khénifra", type: "public", filieres: [{ nom: "MP", sup: 65, spe: 60, taux: 87.3 }, { nom: "PSI", sup: 66, spe: 64, taux: null }, { nom: "TSI", sup: null, spe: null, taux: 83.1 }], telephone: "05 23 48 32 43", options: [] },
-            { id: "lia-kh", nom: "Lycée Ibn Abdoun", sigle: "LIA-Kh", ville: "Khouribga", region: "Béni-Mellal-Khénifra", type: "public", filieres: [{ nom: "MP", sup: 72, spe: 59, taux: null }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 23 49 74 58", options: [] },
+	// Rabat
+        { id: "lmy-ra", nom: "Lycée Moulay Youssef", sigle: "LMY-Ra", ville: "Rabat", region: "Rabat-Salé-Kénitra", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 139, spe: 152, taux: 91.3 }, { nom: "PSI", sup: 69, spe: 62, taux: 84.1 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 37 70 02 90", options: ["MP*"] },
+        { id: "lsf-si", nom: "Lycée Salmane Al Farissi", sigle: "LSF-SI", ville: "Salé", region: "Rabat-Salé-Kénitra", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 106, spe: 93, taux: 68.5 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 36, spe: 34, taux: 95.1 }], telephone: "05 37 80 28 17", options: [] },
+        { id: "lmg-ke", nom: "Lycée Mohammed VI", sigle: "LMG-Ke", ville: "Kénitra", region: "Rabat-Salé-Kénitra", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 107, spe: 93, taux: 69.4 }, { nom: "PSI", sup: 37, spe: 28, taux: 87.1 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 37 37 99 16", options: [] },
+        { id: "laz-ra", nom: "Lycée Al-Zahrawi", sigle: "LAZ-Ra", ville: "Rabat", region: "Rabat-Salé-Kénitra", type: "PPP", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 18, spe: 25, taux: 95.7 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 37 13 11 50", options: ["MP*"] },
 
-            // Région 6: Casablanca-Settat
-            { id: "lak-ca", nom: "Lycée Al Khansaa", sigle: "LAK-Ca", ville: "Casablanca", region: "Casablanca-Settat", type: "public", filieres: [{ nom: "MP", sup: 106, spe: 106, taux: null }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 22 22 33 07", options: [] },
-            { id: "lmv-ca", nom: "Lycée Mohammed V", sigle: "LMV-Ca", ville: "Casablanca", region: "Casablanca-Settat", type: "public", filieres: [{ nom: "MP", sup: 179, spe: 197, taux: 91.0 }, { nom: "PSI", sup: 68, spe: 65, taux: 88.2 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 22 28 60 01", options: ["MP*"] },
-            { id: "ltm-mo", nom: "Lycée Technique", sigle: "LTM-Mo", ville: "Mohammedia", region: "Casablanca-Settat", type: "public", filieres: [{ nom: "MP", sup: 66, spe: 53, taux: 82.1 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: 81.3 }], telephone: "05 23 32 29 52", options: [] },
-            { id: "ler-el", nom: "Lycée Errazi", sigle: "LER-El", ville: "El Jadida", region: "Casablanca-Settat", type: "public", filieres: [{ nom: "MP", sup: 74, spe: 62, taux: 84.6 }, { nom: "PSI", sup: 68, spe: 50, taux: 85.1 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 23 38 87 31", options: [] },
-            { id: "lts-se", nom: "Lycée Technique", sigle: "LTS-Se", ville: "Settat", region: "Casablanca-Settat", type: "public", filieres: [{ nom: "MP", sup: null, spe: null, taux: null }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 114, spe: null, taux: 86.0 }], telephone: "05 23 72 09 71", options: [] },
-            { id: "lme-ca", nom: "Lycée Mohammed VI d'Excellence", sigle: "LME-Ca", ville: "Casablanca", region: "Casablanca-Settat", type: "PPP", filieres: [{ nom: "MP", sup: 51, spe: 65, taux: null }, { nom: "PSI", sup: 20, spe: 7, taux: null }, { nom: "TSI", sup: 16, spe: 5, taux: null }], telephone: "06 00 06 96 76", options: [] },
+	// beni
+        { id: "lmv-be", nom: "Lycée Mohammed V", sigle: "LMV-Be", ville: "Béni-Mellal", region: "Béni-Mellal-Khénifra", type: "public", tauxGlobal: 88.65, filieres: [{ nom: "MP", sup: 65, spe: 60, taux: 95.3 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 66, spe: 64, taux: 86.0 }], telephone: "05 23 48 32 43", options: [] },
+        { id: "lia-kh", nom: "Lycée Ibn Abdoun", sigle: "LIA-Kh", ville: "Khouribga", region: "Béni-Mellal-Khénifra", type: "public", tauxGlobal: 84.60, filieres: [{ nom: "MP", sup: 72, spe: 59, taux: 84.6 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 23 49 74 58", options: [] },
 
-            // Région 7: Marrakech-Safi
-            { id: "lit-ma", nom: "Lycée Ibn Timiya", sigle: "LIT-Ma", ville: "Marrakech", region: "Marrakech-Safi", type: "public", filieres: [{ nom: "MP", sup: 175, spe: 159, taux: 94.7 }, { nom: "PSI", sup: 103, spe: 106, taux: 91.1 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 24 34 15 49", options: ["MP*", "PSI*"] },
-            { id: "lma-sa", nom: "Lycée Moulay Abdellah", sigle: "LMA-Sa", ville: "Safi", region: "Marrakech-Safi", type: "public", filieres: [{ nom: "MP", sup: 66, spe: 57, taux: 83.9 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: 89.8 }], telephone: "05 24 66 94 45", options: [] },
+	// Casa
+        { id: "lak-ca", nom: "Lycée Al Khansaa", sigle: "LAK-Ca", ville: "Casablanca", region: "Casablanca-Settat", type: "public", tauxGlobal: 56.50, filieres: [{ nom: "MP", sup: 106, spe: 106, taux: 56.5 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 22 22 33 07", options: [] },
+        { id: "lmv-ca", nom: "Lycée Mohammed V", sigle: "LMV-Ca", ville: "Casablanca", region: "Casablanca-Settat", type: "public", tauxGlobal: 90.11, filieres: [{ nom: "MP", sup: 179, spe: 197, taux: 90.9 }, { nom: "PSI", sup: 68, spe: 65, taux: 88.2 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 22 28 60 01", options: ["MP*"] },
+        { id: "ltm-mo", nom: "Lycée Technique", sigle: "LTM-Mo", ville: "Mohammedia", region: "Casablanca-Settat", type: "public", tauxGlobal: 85.80, filieres: [{ nom: "MP", sup: 66, spe: 53, taux: 75.0 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 99, spe: 93, taux: 81.0 }], telephone: "05 23 32 29 52", options: [] },
+        { id: "ler-el", nom: "Lycée Errazi", sigle: "LER-El", ville: "El Jadida", region: "Casablanca-Settat", type: "public", tauxGlobal: 80.67, filieres: [{ nom: "MP", sup: 74, spe: 62, taux: 77.1 }, { nom: "PSI", sup: 68, spe: 50, taux: 85.1 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 23 38 87 31", options: [] },
+        { id: "lts-se", nom: "Lycée Technique", sigle: "LTS-Se", ville: "Settat", region: "Casablanca-Settat", type: "public", tauxGlobal: 85.96, filieres: [{ nom: "MP", sup: null, spe: null, taux: null }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 96, spe: 97, taux: 90.8 }], telephone: "05 23 72 09 71", options: [] },
+        { id: "lme-ca", nom: "Lycée Mohammed VI d'Excellence", sigle: "LME-Ca", ville: "Casablanca", region: "Casablanca-Settat", type: "PPP", tauxGlobal: 95.38, filieres: [{ nom: "MP", sup: 51, spe: 65, taux: 97.2 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 16, spe: 5, taux: null }], telephone: "06 00 06 96 76", options: ["MP*"] },
 
-            // Région 8: Drâa-Tafilalet
-            { id: "lih-er", nom: "Lycée Moulay Ali Chérif", sigle: "LIH-Er", ville: "Errachidia", region: "Drâa-Tafilalet", type: "public", filieres: [{ nom: "MP", sup: 98, spe: 88, taux: null }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 35 57 31 06", options: [] },
-            { id: "cgp-oa", nom: "Centre CPGE", sigle: "CGP-Oa", ville: "Ouarzazate", region: "Drâa-Tafilalet", type: "public", filieres: [{ nom: "MP", sup: null, spe: null, taux: null }, { nom: "PSI", sup: 55, spe: null, taux: 94.5 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 24 88 51 01", options: [] },
+	// Marrak
+        { id: "lit-ma", nom: "Lycée Ibn Timiya", sigle: "LIT-Ma", ville: "Marrakech", region: "Marrakech-Safi", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 175, spe: 159, taux: 88.2 }, { nom: "PSI", sup: 103, spe: 106, taux: 91.1 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 24 34 15 49", options: ["MP*", "PSI*"] },
+        { id: "lma-sa", nom: "Lycée Moulay Abdellah", sigle: "LMA-Sa", ville: "Safi", region: "Marrakech-Safi", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 66, spe: 57, taux: 62.0 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 96, spe: 96, taux: 83.1 }], telephone: "05 24 66 94 45", options: [] },
+        { id: "lme-bn", nom: "Lycée Mohammed VI d'Excellence", sigle: "LME-Bn", ville: "Benguerir", region: "Marrakech-Safi", type: "PPP", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 136, spe: 138, taux: 96.1 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: 101, spe: 77, taux: 100 }], telephone: "05 24 32 11 00", options: ["MP*"] },
 
-            // Région 9: Souss-Massa
-            { id: "lrs-ag", nom: "Lycée Reda Slaoui", sigle: "LRS-Ag", ville: "Agadir", region: "Souss-Massa", type: "public", filieres: [{ nom: "MP", sup: 145, spe: 127, taux: 88.0 }, { nom: "PSI", sup: 69, spe: 58, taux: 92.9 }, { nom: "TSI", sup: 70, spe: 71, taux: 90.8 }], telephone: "05 28 22 35 55", options: [] },
+	// Daraa
+        { id: "lih-er", nom: "Lycée Moulay Ali Chérif", sigle: "LIH-Er", ville: "Errachidia", region: "Drâa-Tafilalet", type: "public", tauxGlobal: 90.8, filieres: [{ nom: "MP", sup: 98, spe: 88, taux: null }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 35 57 31 06", options: [] },
+        { id: "lm6-oa", nom: "Centre CPGE", sigle: "LM6-OA", ville: "Ouarzazate", region: "Drâa-Tafilalet", type: "public", tauxGlobal: 94.5, filieres: [{ nom: "MP", sup: null, spe: null, taux: null }, { nom: "PSI", sup: 72, spe: 68, taux: 94.5 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 24 88 51 01", options: [] },
 
-            // Région 10: Guelmim-Oued Noun
-            { id: "lbs-gu", nom: "Lycée Bab Essahra", sigle: "LBS-Gu", ville: "Guelmim", region: "Guelmim-Oued Noun", type: "public", filieres: [{ nom: "MP", sup: 35, spe: 30, taux: 87.1 }, { nom: "PSI", sup: 60, spe: 51, taux: 87.5 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 28 87 21 09", options: [] },
+	// Souss massa
+        { id: "lrs-ag", nom: "Lycée Reda Slaoui", sigle: "LRS-Ag", ville: "Agadir", region: "Souss-Massa", type: "public", tauxGlobal: 82.5, filieres: [{ nom: "MP", sup: 145, spe: 127, taux: 88.0 }, { nom: "PSI", sup: 69, spe: 58, taux: 92.9 }, { nom: "TSI", sup: 70, spe: 71, taux: 100 }], telephone: "05 28 22 35 55", options: [] },
 
-            // Région 11: Laâyoune-Sakia El Hamra
-            { id: "lle-la", nom: "Lycée Lissane Eddine Ibn Al-Khatib", sigle: "LLE-La", ville: "Laâyoune", region: "Laâyoune-Sakia El Hamra", type: "public", filieres: [{ nom: "MP", sup: 72, spe: 64, taux: null }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 28 89 23 38", options: [] },
+	// Guelmim
+        { id: "lbs-gu", nom: "Lycée Bab Essahra", sigle: "LBS-Gu", ville: "Guelmim", region: "Guelmim-Oued Noun", type: "public", tauxGlobal: 87.06, filieres: [{ nom: "MP", sup: 35, spe: 30, taux: 86.2 }, { nom: "PSI", sup: 60, spe: 51, taux: 87.5 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 28 87 21 09", options: [] },
 
-            // Région 12: Dakhla-Oued Ed-Dahab
-            { id: "lon-da", nom: "Centre Okba Ibn Nafaa", sigle: "LON-Da", ville: "Dakhla", region: "Dakhla-Oued Ed-Dahab", type: "public", filieres: [{ nom: "MP", sup: 36, spe: 31, taux: null }, { nom: "PSI", sup: null, spe: null, taux: 83.8 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 28 93 16 34", options: [] },
+	// Laayoun
+        { id: "lle-la", nom: "Lycée Lissane Eddine Ibn Al-Khatib", sigle: "LLE-La", ville: "Laayoune", region: "Laâyoune-Sakia El Hamra", type: "public", tauxGlobal: 75.0, filieres: [{ nom: "MP", sup: 72, spe: 64, taux: 75.0 }, { nom: "PSI", sup: null, spe: null, taux: null }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 28 89 23 38", options: [] },
 
-            // PPP
-            { id: "lme-bn", nom: "Lycée Mohammed VI d'Excellence", sigle: "LME-Bn", ville: "Benguerir", region: "PPP", type: "PPP", filieres: [{ nom: "MP", sup: 136, spe: 138, taux: null }, { nom: "PSI", sup: 101, spe: 77, taux: null }, { nom: "TSI", sup: 23, spe: 75, taux: 100 }], telephone: "05 24 32 11 00", options: [] }
+	// Dakhla
+        { id: "lon-da", nom: "Centre Okba Ibn Nafea", sigle: "LON-Da", ville: "Dakhla", region: "Dakhla-Oued Ed-Dahab", type: "public", tauxGlobal: 83.80, filieres: [{ nom: "MP", sup: null, spe: null, taux: null }, { nom: "PSI", sup: 36, spe: 31, taux: 83.8 }, { nom: "TSI", sup: null, spe: null, taux: null }], telephone: "05 28 93 16 34", options: [] }
         ];
 
-        // ============================================================
-        // 1. INITIALISATION
-        // ============================================================
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mode sombre
-            const themeToggle = document.getElementById('themeToggle');
-            if (themeToggle) {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                }
-                themeToggle.addEventListener('click', function() {
-                    const current = document.documentElement.getAttribute('data-theme');
-                    if (current === 'dark') {
-                        document.documentElement.removeAttribute('data-theme');
-                        localStorage.setItem('theme', 'light');
-                        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    } else {
-                        document.documentElement.setAttribute('data-theme', 'dark');
-                        localStorage.setItem('theme', 'dark');
-                        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    }
-                });
+    let selectedRegion = 'all';
+
+    // ============================================================
+    // 2. TRADUCTIONS (intégrées)
+    // ============================================================
+    const TRANSLATIONS = {
+        fr: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Écoles", centres: "Centres CPGE", grandes_ecoles_maroc: "Grandes Écoles Maroc",
+                grandes_ecoles_france: "Grandes Écoles France", um6p: "UM6P",
+                filieres: "Filières", mp: "MP - Maths & Physique", psi: "PSI - Physique & SI",
+                tsi: "TSI - Technologie & SI", documents: "Documents", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Annales",
+                actualites: "Actualités", contact: "Contact", espace: "Espace"
+            },
+            centres: {
+                page_title: "🏫 Les Centres CPGE du Maroc",
+                page_subtitle: "28 établissements publics et partenariat public-privé",
+                filter_filiere: "Filière",
+                filter_type: "Type",
+                filter_sort: "Trier par",
+                filter_search: "Recherche",
+                filter_reset: "Réinitialiser",
+                all: "Toutes",
+                all_type: "Tous",
+                public: "Public",
+                ppp: "PPP",
+                sort_taux: "Taux de réussite",
+                sort_nom: "Nom (A-Z)",
+                sort_ville: "Ville (A-Z)",
+                region_all: "Toutes les régions",
+                results: "Affichage de",
+                no_results: "Aucun centre ne correspond à vos critères",
+                voir: "Voir",
+                taux_moyen: "Taux moyen",
+                type_public: "Public",
+                type_ppp: "PPP",
+                sup: "SUP",
+                spe: "SPE"
+            },
+            footer: {
+                quote: '"Construit avec ❤️ pour la communauté des préparationnaires marocains"',
+                copyright: "Tous droits réservés."
+            },
+            search: { placeholder: "Rechercher..." }
+        },
+        en: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Schools", centres: "CPGE Centers", grandes_ecoles_maroc: "Grandes Écoles Morocco",
+                grandes_ecoles_france: "Grandes Écoles France", um6p: "UM6P",
+                filieres: "Tracks", mp: "MP - Maths & Physics", psi: "PSI - Physics & SI",
+                tsi: "TSI - Technology & SI", documents: "Documents", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Past exams",
+                actualites: "News", contact: "Contact", espace: "Member Area"
+            },
+            centres: {
+                page_title: "🏫 CPGE Centers in Morocco",
+                page_subtitle: "28 public and public-private partnership establishments",
+                filter_filiere: "Track",
+                filter_type: "Type",
+                filter_sort: "Sort by",
+                filter_search: "Search",
+                filter_reset: "Reset",
+                all: "All",
+                all_type: "All",
+                public: "Public",
+                ppp: "PPP",
+                sort_taux: "Success rate",
+                sort_nom: "Name (A-Z)",
+                sort_ville: "City (A-Z)",
+                region_all: "All regions",
+                results: "Showing",
+                no_results: "No center matches your criteria",
+                voir: "View",
+                taux_moyen: "Average rate",
+                type_public: "Public",
+                type_ppp: "PPP",
+                sup: "SUP",
+                spe: "SPE"
+            },
+            footer: {
+                quote: '"Built with ❤️ for the Moroccan preparatory class community"',
+                copyright: "All rights reserved."
+            },
+            search: { placeholder: "Search..." }
+        },
+        ar: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "المدارس", centres: "مراكز CPGE", grandes_ecoles_maroc: "المدارس العليا المغربية",
+                grandes_ecoles_france: "المدارس العليا الفرنسية", um6p: "UM6P",
+                filieres: "الشعب", mp: "MP - الرياضيات والفيزياء", psi: "PSI - الفيزياء وعلوم المهندس",
+                tsi: "TSI - التكنولوجيا وعلوم المهندس", documents: "الوثائق", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "امتحانات سابقة",
+                actualites: "الأخبار", contact: "اتصال", espace: "الفضاء الشخصي"
+            },
+            centres: {
+                page_title: "🏫 مراكز CPGE في المغرب",
+                page_subtitle: "28 مؤسسة عمومية وشراكة بين القطاعين العام والخاص",
+                filter_filiere: "الشعبة",
+                filter_type: "النوع",
+                filter_sort: "ترتيب حسب",
+                filter_search: "بحث",
+                filter_reset: "إعادة تعيين",
+                all: "الكل",
+                all_type: "الكل",
+                public: "عمومي",
+                ppp: "شراكة",
+                sort_taux: "نسبة النجاح",
+                sort_nom: "الاسم (أ-ي)",
+                sort_ville: "المدينة (أ-ي)",
+                region_all: "جميع المناطق",
+                results: "عرض",
+                no_results: "لا يوجد مركز يطابق معاييرك",
+                voir: "عرض",
+                taux_moyen: "المعدل العام",
+                type_public: "عمومي",
+                type_ppp: "شراكة",
+                sup: "SUP",
+                spe: "SPE"
+            },
+            footer: {
+                quote: '"بُني بحب ❤️ لمجتمع الفصول التحضيرية المغربية"',
+                copyright: "جميع الحقوق محفوظة."
+            },
+            search: { placeholder: "بحث..." }
+        },
+        tr: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Okullar", centres: "CPGE Merkezleri", grandes_ecoles_maroc: "Fas Büyük Okulları",
+                grandes_ecoles_france: "Fransa Büyük Okulları", um6p: "UM6P",
+                filieres: "Bölümler", mp: "MP - Matematik & Fizik", psi: "PSI - Fizik & Mühendislik",
+                tsi: "TSI - Teknoloji & Mühendislik", documents: "Dokümanlar", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Geçmiş sınavlar",
+                actualites: "Haberler", contact: "İletişim", espace: "Üye Alanı"
+            },
+            centres: {
+                page_title: "🏫 Fas'taki CPGE Merkezleri",
+                page_subtitle: "28 kamu ve kamu-özel ortaklığı kurumu",
+                filter_filiere: "Bölüm",
+                filter_type: "Tür",
+                filter_sort: "Sırala",
+                filter_search: "Ara",
+                filter_reset: "Sıfırla",
+                all: "Tümü",
+                all_type: "Tümü",
+                public: "Kamu",
+                ppp: "PPP",
+                sort_taux: "Başarı oranı",
+                sort_nom: "İsim (A-Z)",
+                sort_ville: "Şehir (A-Z)",
+                region_all: "Tüm bölgeler",
+                results: "Gösterilen",
+                no_results: "Kriterlerinize uygun merkez bulunamadı",
+                voir: "Gör",
+                taux_moyen: "Ortalama oran",
+                type_public: "Kamu",
+                type_ppp: "PPP",
+                sup: "SUP",
+                spe: "SPE"
+            },
+            footer: {
+                quote: '"Fas hazırlık sınıfı topluluğu için ❤️ ile inşa edildi"',
+                copyright: "Tüm hakları saklıdır."
+            },
+            search: { placeholder: "Ara..." }
+        }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'fr';
+
+    function getTranslation(key) {
+        const keys = key.split('.');
+        let value = TRANSLATIONS[currentLang];
+        for (const k of keys) {
+            if (value && value[k] !== undefined) {
+                value = value[k];
+            } else {
+                return undefined;
             }
+        }
+        return value;
+    }
 
-            // Initialiser les filtres
-            populateRegionFilters();
-            applyFilters();
+    function applyTranslations() {
+        const elements = {
+            'site.name': ['siteName', 'footerSiteName'],
+            'nav.ecoles': ['navEcoles'],
+            'nav.centres': ['navCentres', 'footerCentres'],
+            'nav.grandes_ecoles_maroc': ['navGrandesEcolesMaroc', 'footerGrandesEcolesMaroc'],
+            'nav.grandes_ecoles_france': ['navGrandesEcolesFrance', 'footerGrandesEcolesFrance'],
+            'nav.um6p': ['navUm6p', 'footerUm6p'],
+            'nav.filieres': ['navFilieres', 'footerFilieres'],
+            'nav.mp': ['navMp'],
+            'nav.psi': ['navPsi'],
+            'nav.tsi': ['navTsi'],
+            'nav.documents': ['navDocuments', 'footerDocuments'],
+            'nav.sup': ['navSup'],
+            'nav.spe': ['navSpe'],
+            'nav.drive_complet': ['navDrive'],
+            'nav.annales': ['navAnnales', 'footerAnnales'],
+            'nav.xens': ['navXens'],
+            'nav.ccs': ['navCcs'],
+            'nav.ccmp': ['navCcmp'],
+            'nav.ccinp': ['navCcinp'],
+            'nav.cnc': ['navCnc'],
+            'nav.actualites': ['navActualites', 'footerActualites'],
+            'nav.contact': ['navContact', 'footerContact'],
+            'nav.espace': ['navEspace'],
+            'centres.page_title': ['centresPageTitle'],
+            'centres.page_subtitle': ['centresPageSubtitle'],
+            'centres.filter_filiere': ['filterFiliereLabel'],
+            'centres.filter_type': ['filterTypeLabel'],
+            'centres.filter_sort': ['filterSortLabel'],
+            'centres.filter_search': ['filterSearchLabel'],
+            'centres.filter_reset': ['filterReset'],
+            'centres.all': ['filterAll'],
+            'centres.all_type': ['filterAllType'],
+            'centres.public': ['filterPublic'],
+            'centres.ppp': ['filterPPP'],
+            'centres.sort_taux': ['sortTaux'],
+            'centres.sort_nom': ['sortNom'],
+            'centres.sort_ville': ['sortVille'],
+            'centres.region_all': ['regionAll'],
+            'footer.quote': ['footerQuote'],
+            'footer.copyright': ['footerCopyright'],
+            'search.placeholder': ['globalSearchInput']
+        };
 
-            // Recherche en temps réel
-            document.getElementById('searchInput').addEventListener('input', applyFilters);
+        for (const [key, ids] of Object.entries(elements)) {
+            const value = getTranslation(key);
+            if (value !== undefined) {
+                for (const id of ids) {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        if (el.tagName === 'INPUT') {
+                            el.placeholder = value;
+                        } else {
+                            el.textContent = value;
+                        }
+                    }
+                }
+            }
+        }
+
+        const langBtn = document.getElementById('langBtn');
+        if (langBtn) {
+            const names = { fr: 'Français', en: 'English', ar: 'العربية', tr: 'Türkçe' };
+            const flags = { fr: '🇫🇷', en: '🇬🇧', ar: '🇲🇦', tr: '🇹🇷' };
+            langBtn.innerHTML = `<i class="fas fa-globe"></i> ${flags[currentLang]} ${names[currentLang]}`;
+        }
+
+        const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.dir = dir;
+        document.documentElement.lang = currentLang;
+        if (dir === 'rtl') {
+            document.body.classList.add('rtl');
+        } else {
+            document.body.classList.remove('rtl');
+        }
+    }
+
+    function changeLanguage(lang) {
+        if (lang === currentLang) return;
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        applyTranslations();
+        renderCentres();
+    }
+
+    // ============================================================
+    // 3. GESTION DU THÈME
+    // ============================================================
+    function initTheme() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (!themeToggle) return;
+
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        themeToggle.onclick = function() {
+            const current = document.documentElement.getAttribute('data-theme');
+            if (current === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        };
+    }
+
+    // ============================================================
+    // 4. LOGIQUE DE FILTRAGE & TRI
+    // ============================================================
+    function populateRegionFilters() {
+        const regions = [...new Set(centresData.map(c => c.region))].sort();
+        const buttons = document.getElementById('regionButtons');
+
+        regions.forEach(r => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.dataset.region = r;
+            btn.textContent = r;
+            btn.onclick = function() { filterByRegion(r); };
+            buttons.appendChild(btn);
+        });
+    }
+
+    function filterByRegion(region) {
+        selectedRegion = region;
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.region === region);
+        });
+        applyFilters();
+    }
+
+    function applyFilters() {
+        const filiere = document.getElementById('filiereFilter').value;
+        const type = document.getElementById('typeFilter').value;
+        const sort = document.getElementById('sortFilter').value;
+        const searchInput = document.getElementById('searchInput');
+        const search = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+        let filtered = centresData.filter(c => {
+            if (selectedRegion !== 'all' && c.region !== selectedRegion) return false;
+            if (type !== 'all' && c.type !== type) return false;
+            if (filiere !== 'all') {
+                const hasFiliere = c.filieres.some(f => f.nom === filiere && (f.sup !== null || f.spe !== null));
+                if (!hasFiliere) return false;
+            }
+            if (search) {
+                const match = c.nom.toLowerCase().includes(search) ||
+                              c.sigle.toLowerCase().includes(search) ||
+                              c.ville.toLowerCase().includes(search);
+                if (!match) return false;
+            }
+            return true;
         });
 
-        // ============================================================
-        // 2. POPULER LES FILTRES
-        // ============================================================
-        function populateRegionFilters() {
-            const regions = [...new Set(centresData.map(c => c.region))].sort();
-            const select = document.getElementById('regionFilter');
-            const buttons = document.getElementById('regionButtons');
-
-            regions.forEach(r => {
-                // Select
-                const opt = document.createElement('option');
-                opt.value = r;
-                opt.textContent = r;
-                select.appendChild(opt);
-
-                // Buttons
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.dataset.region = r;
-                btn.textContent = r;
-                btn.onclick = function() { filterByRegion(r); };
-                buttons.appendChild(btn);
-            });
+        if (sort === 'taux') {
+            filtered.sort((a, b) => (b.tauxGlobal || 0) - (a.tauxGlobal || 0));
+        } else if (sort === 'nom') {
+            filtered.sort((a, b) => a.nom.localeCompare(b.nom));
+        } else if (sort === 'ville') {
+            filtered.sort((a, b) => a.ville.localeCompare(b.ville));
         }
 
-        // ============================================================
-        // 3. FILTRES
-        // ============================================================
-        function filterByRegion(region) {
-            document.getElementById('regionFilter').value = region;
-            // Mettre à jour les boutons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.region === region);
-            });
-            applyFilters();
+        renderCentres(filtered);
+    }
+
+    function resetFilters() {
+        selectedRegion = 'all';
+        document.getElementById('filiereFilter').value = 'all';
+        document.getElementById('typeFilter').value = 'all';
+        document.getElementById('sortFilter').value = 'taux';
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) searchInput.value = '';
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.region === 'all');
+        });
+        applyFilters();
+    }
+
+    function getAverageTaux(centre) {
+        const taux = centre.filieres.map(f => f.taux).filter(t => t !== null && t !== undefined);
+        if (taux.length === 0) return 0;
+        return taux.reduce((a, b) => a + b, 0) / taux.length;
+    }
+
+    // ============================================================
+    // 5. RENDU DES CENTRES
+    // ============================================================
+    function renderCentres(centres) {
+        const container = document.getElementById('centresList');
+        const countDisplay = document.getElementById('countDisplay');
+        if (countDisplay) countDisplay.textContent = centres.length;
+
+        if (centres.length === 0) {
+            container.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <p>${getTranslation('centres.no_results') || 'Aucun centre ne correspond à vos critères'}</p>
+                </div>
+            `;
+            return;
         }
 
-        function applyFilters() {
-            const region = document.getElementById('regionFilter').value;
-            const filiere = document.getElementById('filiereFilter').value;
-            const type = document.getElementById('typeFilter').value;
-            const sort = document.getElementById('sortFilter').value;
-            const search = document.getElementById('searchInput').value.toLowerCase().trim();
+        let html = '';
+        centres.forEach(c => {
+            const tauxDisplay = (c.tauxGlobal !== null && c.tauxGlobal !== undefined) ? `<span class="taux-value">${c.tauxGlobal.toFixed(1)}%</span>` : '—';
 
-            let filtered = centresData.filter(c => {
-                // Région
-                if (region !== 'all' && c.region !== region) return false;
-
-                // Type
-                if (type !== 'all' && c.type !== type) return false;
-
-                // Filière
-                if (filiere !== 'all') {
-                    const hasFiliere = c.filieres.some(f => f.nom === filiere && (f.sup !== null || f.spe !== null));
-                    if (!hasFiliere) return false;
+            let filieresHtml = '';
+            c.filieres.forEach(f => {
+                if (f.sup !== null || f.spe !== null) {
+                    const cls = f.nom.toLowerCase();
+                    let label = f.nom;
+                    if (f.sup !== null && f.spe !== null) {
+                        label += ` (SUP:${f.sup} SPE:${f.spe})`;
+                    } else if (f.sup !== null) {
+                        label += ` (SUP:${f.sup})`;
+                    } else if (f.spe !== null) {
+                        label += ` (SPE:${f.spe})`;
+                    }
+                    filieresHtml += `<span class="filiere-tag ${cls}">${label}</span>`;
                 }
+            });
 
-                // Recherche
-                if (search) {
-                    const match = c.nom.toLowerCase().includes(search) ||
-                                  c.sigle.toLowerCase().includes(search) ||
-                                  c.ville.toLowerCase().includes(search);
-                    if (!match) return false;
+            let optionsHtml = '';
+            c.options.forEach(opt => {
+                optionsHtml += `<span class="option-badge">${opt}</span>`;
+            });
+
+            const typeClass = c.type === 'PPP' ? 'ppp' : 'public';
+            const typeLabel = c.type === 'PPP' ? '🤝 PPP' : '🏛️ Public';
+
+            html += `
+                <div class="centre-card-full">
+                    <div class="centre-info">
+                        <div class="centre-name">${c.nom}</div>
+                        <div class="centre-sigle">${c.sigle} · ${c.ville} (${c.region})</div>
+                        <span class="centre-type ${typeClass}">${typeLabel}</span>
+                        ${optionsHtml}
+                    </div>
+                    <div class="centre-filieres">
+                        ${filieresHtml}
+                    </div>
+                    <div class="centre-taux">
+                        ${getTranslation('centres.taux_moyen') || 'Taux moyen'}<br/>
+                        <span class="taux-value">${tauxDisplay}</span>
+                    </div>
+                    <a href="centre/${c.id}.html" class="btn-detail">
+                        <i class="fas fa-arrow-right"></i> ${getTranslation('centres.voir') || 'Voir'}
+                    </a>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    // 6. RECHERCHE
+    // ============================================================
+    function triggerSearch() {
+        const input = document.getElementById('globalSearchInput');
+        if (input) {
+            const query = input.value.trim();
+            if (query.length >= 2) {
+                const results = centresData.filter(c => {
+                    return c.nom.toLowerCase().includes(query.toLowerCase()) ||
+                           c.ville.toLowerCase().includes(query.toLowerCase()) ||
+                           c.sigle.toLowerCase().includes(query.toLowerCase());
+                });
+                if (results.length > 0) {
+                    alert('🔍 Résultats trouvés : ' + results.length + ' centre(s)\n\n' +
+                          results.map(r => '- ' + r.nom + ' (' + r.ville + ')').join('\n'));
+                } else {
+                    alert('🔍 Aucun résultat trouvé pour "' + query + '"');
                 }
-
-                return true;
-            });
-
-            // Trier
-            if (sort === 'taux') {
-                filtered.sort((a, b) => {
-                    const tauxA = getAverageTaux(a);
-                    const tauxB = getAverageTaux(b);
-                    return tauxB - tauxA;
-                });
-            } else if (sort === 'nom') {
-                filtered.sort((a, b) => a.nom.localeCompare(b.nom));
-            } else if (sort === 'ville') {
-                filtered.sort((a, b) => a.ville.localeCompare(b.ville));
+            } else {
+                alert('Veuillez entrer au moins 2 caractères.');
             }
+        }
+    }
 
-            renderCentres(filtered);
+    // ============================================================
+    // 7. INITIALISATION
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        applyTranslations();
+        initTheme();
+        populateRegionFilters();
+        applyFilters();
+
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', applyFilters);
         }
 
-        function resetFilters() {
-            document.getElementById('regionFilter').value = 'all';
-            document.getElementById('filiereFilter').value = 'all';
-            document.getElementById('typeFilter').value = 'all';
-            document.getElementById('sortFilter').value = 'taux';
-            document.getElementById('searchInput').value = '';
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.region === 'all');
+        document.querySelectorAll('.lang-dropdown a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                if (lang) {
+                    changeLanguage(lang);
+                }
             });
-            applyFilters();
-        }
+        });
 
-        // ============================================================
-        // 4. CALCUL DU TAUX MOYEN
-        // ============================================================
-        function getAverageTaux(centre) {
-            const taux = centre.filieres.map(f => f.taux).filter(t => t !== null && t !== undefined);
-            if (taux.length === 0) return 0;
-            return taux.reduce((a, b) => a + b, 0) / taux.length;
-        }
-
-        // ============================================================
-        // 5. RENDU DES CENTRES
-        // ============================================================
-        function renderCentres(centres) {
-            const container = document.getElementById('centresList');
-            const countDisplay = document.getElementById('countDisplay');
-            countDisplay.textContent = centres.length;
-
-            if (centres.length === 0) {
-                container.innerHTML = `
-                    <div class="no-results">
-                        <i class="fas fa-search"></i>
-                        <p>Aucun centre ne correspond à vos critères</p>
-                    </div>
-                `;
-                return;
-            }
-
-            // Grouper par région
-            const regions = {};
-            centres.forEach(c => {
-                if (!regions[c.region]) regions[c.region] = [];
-                regions[c.region].push(c);
+        const globalSearchInput = document.getElementById('globalSearchInput');
+        if (globalSearchInput) {
+            globalSearchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    triggerSearch();
+                }
             });
-
-            let html = '';
-            const regionNames = Object.keys(regions).sort();
-
-            regionNames.forEach(region => {
-                const items = regions[region];
-                html += `
-                    <div class="region-header">
-                        <span class="region-icon">📍</span>
-                        ${region}
-                        <span class="region-count">${items.length} centre${items.length > 1 ? 's' : ''}</span>
-                    </div>
-                `;
-
-                items.forEach(c => {
-                    const avgTaux = getAverageTaux(c);
-                    const tauxDisplay = avgTaux > 0 ? `<span class="taux-value">${avgTaux.toFixed(1)}%</span>` : '—';
-
-                    // Filières
-                    let filieresHtml = '';
-                    c.filieres.forEach(f => {
-                        if (f.sup !== null || f.spe !== null) {
-                            const cls = f.nom.toLowerCase();
-                            let label = f.nom;
-                            if (f.sup !== null && f.spe !== null) {
-                                label += ` (SUP:${f.sup} SPE:${f.spe})`;
-                            } else if (f.sup !== null) {
-                                label += ` (SUP:${f.sup})`;
-                            } else if (f.spe !== null) {
-                                label += ` (SPE:${f.spe})`;
-                            }
-                            filieresHtml += `<span class="filiere-tag ${cls}">${label}</span>`;
-                        }
-                    });
-
-                    // Options
-                    let optionsHtml = '';
-                    c.options.forEach(opt => {
-                        optionsHtml += `<span class="option-badge">${opt}</span>`;
-                    });
-
-                    // Type
-                    const typeClass = c.type === 'PPP' ? 'ppp' : 'public';
-                    const typeLabel = c.type === 'PPP' ? '🤝 PPP' : '🏛️ Public';
-
-                    html += `
-                        <div class="centre-card-full">
-                            <div class="centre-info">
-                                <div class="centre-name">${c.nom}</div>
-                                <div class="centre-sigle">${c.sigle} · ${c.ville}</div>
-                                <span class="centre-type ${typeClass}">${typeLabel}</span>
-                                ${optionsHtml}
-                            </div>
-                            <div class="centre-filieres">
-                                ${filieresHtml}
-                            </div>
-                            <div class="centre-taux">
-                                Taux moyen<br/>
-                                <span class="taux-value">${tauxDisplay}</span>
-                            </div>
-                            <button class="btn-detail" onclick="showCentreDetail('${c.id}')">
-                                <i class="fas fa-arrow-right"></i> Voir
-                            </button>
-                        </div>
-                    `;
-                });
-            });
-
-            container.innerHTML = html;
         }
-
-        // ============================================================
-        // 6. DÉTAIL D'UN CENTRE (à venir)
-        // ============================================================
-        function showCentreDetail(id) {
-            alert('🔜 Page détaillée du centre à venir prochainement !\nID: ' + id);
-        }
+    });
     </script>
 
 </body>

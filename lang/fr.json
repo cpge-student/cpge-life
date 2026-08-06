@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "CPGE Life",
+    "name": "CPGE scientifique",
     "slogan": "Prépare ton avenir avec excellence.",
     "description": "Classes Préparatoires aux Grandes Écoles · Maroc"
   },
@@ -47,35 +47,226 @@
     "cnc": "CNC"
   },
   "centres": {
+    "page_title": "🏫 Les Centres CPGE du Maroc",
+    "page_subtitle": "28 établissements publics et partenariat public-privé",
     "title": "Les meilleures CPGE du Maroc",
     "subtitle": "28 établissements sélectionnés pour leur excellence académique, leur taux d'admission et la qualité de l'encadrement.",
-    "btn_all": "Voir tous les classements"
+    "btn_all": "Voir tous les classements",
+    "filter_filiere": "Filière",
+    "filter_type": "Type",
+    "filter_sort": "Trier par",
+    "filter_search": "Recherche",
+    "filter_reset": "Réinitialiser",
+    "all": "Toutes",
+    "taux": "Taux de réussite",
+    "nom": "Nom (A-Z)",
+    "ville": "Ville (A-Z)",
+    "public": "Public",
+    "ppp": "PPP",
+    "results": "Affichage de",
+    "centre": "centre",
+    "centres_plural": "centres",
+    "no_results": "Aucun centre ne correspond à vos critères",
+    "taux_moyen": "Taux moyen"
+  },
+  "ecoles": {
+    "maroc": {
+      "title": "🏫 Grandes Écoles du MAROC",
+      "subtitle": "Découvrez toutes les écoles d'ingénieurs accessibles après les CPGE",
+      "search": "Rechercher une école...",
+      "filter": "Filtrer par",
+      "all_filieres": "Toutes les filières",
+      "places": "places",
+      "total_places": "Places totales",
+      "no_results": "Aucune école ne correspond à votre recherche.",
+      "presentation": "Présentation",
+      "minmax": "Min & Max",
+      "filieres": "Filières",
+      "vie_etudiante": "Vie étudiante"
+    },
+    "france": {
+      "title": "🇫🇷 Grandes Écoles d'Ingénieurs - France",
+      "subtitle": "Découvrez toutes les écoles françaises accessibles après les CPGE",
+      "search": "Rechercher une école...",
+      "filter": "Filtrer par",
+      "all_banques": "Toutes les banques",
+      "rank": "#",
+      "ecole": "École",
+      "ville": "Ville",
+      "directeur": "Directeur",
+      "evolution": "Évol.",
+      "banque": "Banque",
+      "cout": "Coût 1A",
+      "site": "Site",
+      "details": "Détails",
+      "no_results": "Aucune école ne correspond à votre recherche."
+    }
   },
   "filieres_section": {
     "title": "Choisir sa filière CPGE",
     "subtitle": "3 filières, chacune avec ses spécificités, ses concours et ses débouchés.",
-    "btn_voir": "Voir la filière"
+    "btn_voir": "Voir la filière",
+    "btn_centres": "Centres proposant",
+    "concours": "Concours préparés",
+    "matieres": "Matières",
+    "banques": "Banques d'épreuves",
+    "taux_reussite": "Taux de réussite"
   },
-  "temoignages": {
-    "title": "Ils nous font confiance"
-  },
-  "footer": {
-    "quote": "Construit avec ❤️ pour la communauté des préparationnaires marocains",
-    "faq": "FAQ",
-    "mentions": "Mentions légales",
-    "copyright": "Tous droits réservés."
-  },
-  "search": {
-    "placeholder": "Rechercher un cours, une école, un document...",
-    "no_results": "Aucun résultat trouvé",
-    "results": "résultats trouvés",
-    "categories": {
-      "cours": "Cours",
-      "ecoles": "Écoles",
-      "centres": "Centres CPGE",
-      "annales": "Annales",
-      "documents": "Documents"
+  "filieres": {
+    "mp": {
+      "title": "MP — Maths & Physique",
+      "subtitle": "La voie royale vers les plus grandes écoles",
+      "description": "La prépa MP (Mathématiques et Physique) se distingue par sa nature hautement théorique et abstraite, mettant l'accent sur le formalisme conceptuel plutôt que sur l'application pratique.",
+      "matieres": ["Mathématiques", "Physique", "Informatique"],
+      "banques": ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 79.2,
+      "concours": ["X-ENS", "Centrale", "Mines Pont", "CCINP", "E3A", "CC", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["X-ENS", "CentraleSupélec", "Mines Paris", "Ponts ParisTech", "ENSTA Paris", "ISAE-SUPAERO", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "INSEA", "ESI", "EMINES", "IST&I"]
+    },
+    "psi": {
+      "title": "PSI — Physique & Sciences de l'Ingénieur",
+      "subtitle": "La voie de l'innovation technologique",
+      "description": "La filière PSI (Physique et Sciences de l'Ingénieur) se différencie nettement de la MP par son ancrage concret et son approche technologique des sciences.",
+      "matieres": ["Physique", "Chimie", "Sciences de l'Ingénieur"],
+      "banques": ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 88.4,
+      "concours": ["X-ENS", "Centrale", "Mines Pont", "CCINP", "E3A", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["X-ENS", "CentraleSupélec", "Mines Paris", "Ponts ParisTech", "ENSTA Paris", "ISAE-SUPAERO", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "EMINES", "IST&I"]
+    },
+    "tsi": {
+      "title": "TSI — Technologies & Sciences Industrielles",
+      "subtitle": "La voie de l'industrie et de la technologie",
+      "description": "La filière TSI (Technologie et Sciences Industrielles) se distingue des voies MP et PSI par son public et sa pédagogie ancrée dans le réel.",
+      "matieres": ["Génie Électrique", "Génie Mécanique", "Physique"],
+      "banques": ["CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 86.2,
+      "concours": ["Centrale", "CCINP", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["CentraleSupélec", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "EMINES", "IST&I"]
     }
+  },
+  "annales": {
+    "title": "📜 Annales des Concours",
+    "subtitle": "Retrouvez toutes les épreuves des concours nationaux et internationaux",
+    "banques": {
+      "xens": "🎓 X-ENS",
+      "ccs": "📐 CCS",
+      "ccmp": "⛏️ CCMP",
+      "ccinp": "📝 CCINP",
+      "cnc": "🏆 CNC"
+    },
+    "stats": {
+      "mp": "MP",
+      "psi": "PSI",
+      "tsi": "TSI",
+      "total": "Total épreuves"
+    },
+    "filieres": {
+      "mp": "MP",
+      "psi": "PSI",
+      "tsi": "TSI"
+    },
+    "tableau": {
+      "annee": "Année",
+      "epreuves": "épreuves disponibles",
+      "coefficients": "Coefficients",
+      "masquer_coeff": "Masquer coefficients",
+      "non_disponible": "Non disponible",
+      "voir": "Voir",
+      "telecharger": "Télécharger"
+    }
+  },
+  "documents": {
+    "title": "📄 Documents & Ressources",
+    "subtitle": "Cours, TD, DS, extraits de concours et drives complets par filière",
+    "sup": "SUP",
+    "spe": "SPE",
+    "sup_label": "SUP 1A",
+    "spe_label": "SPE 2A",
+    "mp": "MP",
+    "psi": "PSI",
+    "tsi": "TSI",
+    "cours": "📚 Cours",
+    "td": "📝 TD et DS",
+    "classiques": "📜 Classiques et extraits",
+    "programme": "Programme complet",
+    "voir_programme": "Voir le programme",
+    "drives": "☁️ Drives complets par filière",
+    "drive_mp": "Drive MP",
+    "drive_psi": "Drive PSI",
+    "drive_tsi": "Drive TSI",
+    "acceder": "Accéder au drive",
+    "lien_a_venir": "Lien à venir",
+    "placeholder_cours": "Cette section est entièrement remplie avec tous les modules.",
+    "placeholder_td": "Structure prête. Déposez vos fichiers dans :",
+    "placeholder_classiques": "Structure prête. Déposez vos fichiers dans :",
+    "matieres": {
+      "maths": "Mathématiques",
+      "physique": "Physique",
+      "chimie": "Chimie",
+      "si": "Sciences de l'Ingénieur",
+      "informatique": "Informatique",
+      "rcl": "RCL",
+      "francais": "Français",
+      "anglais": "Anglais",
+      "genie_electrique": "Génie Électrique",
+      "genie_mecanique": "Génie Mécanique"
+    }
+  },
+  "actualites": {
+    "title": "📰 Actualités",
+    "subtitle": "Toute l'actualité des CPGE, des concours et de la vie étudiante",
+    "tags": {
+      "concours": "Concours",
+      "methodo": "Méthodologie",
+      "orientation": "Orientation",
+      "vie": "Vie étudiante",
+      "conseil": "Conseil"
+    },
+    "lire_suite": "Lire la suite",
+    "article_complet": "📄 Article complet à venir"
+  },
+  "contact": {
+    "title": "📧 Contactez-nous",
+    "subtitle": "Une question, une suggestion ? N'hésitez pas à nous écrire !",
+    "form_title": "Envoyez un message",
+    "form_subtitle": "Nous vous répondrons dans les plus brefs délais.",
+    "name": "Nom complet",
+    "email": "Email",
+    "subject": "Sujet",
+    "message": "Message",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "success": "✅ Message envoyé avec succès ! Nous vous répondrons rapidement.",
+    "error": "❌ Une erreur est survenue. Veuillez réessayer.",
+    "subjects": {
+      "question": "❓ Question générale",
+      "suggestion": "💡 Suggestion",
+      "bug": "🐛 Signalement d'un bug",
+      "partenariat": "🤝 Partenariat",
+      "autre": "📝 Autre"
+    },
+    "info": {
+      "email": "Email",
+      "phone": "Téléphone",
+      "follow": "Suivez-nous",
+      "availability": "Disponibilité",
+      "response": "Réponse garantie sous 48h."
+    }
+  },
+  "faq": {
+    "title": "❓ Foire aux questions",
+    "subtitle": "Toutes les réponses à vos questions sur CPGE scientifique",
+    "categories": {
+      "all": "Toutes",
+      "general": "Général",
+      "filieres": "Filières",
+      "cours": "Cours",
+      "annales": "Annales",
+      "compte": "Compte"
+    },
+    "no_answer": "Vous n'avez pas trouvé votre réponse ?",
+    "contact_us": "Contactez-nous directement, nous vous répondrons dans les plus brefs délais.",
+    "btn_contact": "Nous contacter"
   },
   "auth": {
     "login": "Se connecter",
@@ -96,7 +287,12 @@
     "terms": "J'accepte les conditions générales",
     "login_success": "Connexion réussie !",
     "login_error": "Email ou mot de passe incorrect",
-    "register_success": "Compte créé avec succès !"
+    "register_success": "Compte créé avec succès !",
+    "password_hint": "Au moins 8 caractères",
+    "select_filiere": "Sélectionnez",
+    "select_annee": "Sélectionnez",
+    "sup": "SUP (1ère année)",
+    "spe": "SPE (2ème année)"
   },
   "membre": {
     "title": "Espace Membre",
@@ -108,6 +304,150 @@
     "parametres": "Paramètres",
     "cours_consultes": "Cours consultés",
     "derniers_cours": "Derniers cours consultés",
-    "revoir": "Revoir"
+    "revoir": "Revoir",
+    "retirer": "Retirer",
+    "aucun_historique": "Aucun historique de consultation",
+    "aucun_telechargement": "Aucun téléchargement",
+    "aucun_favori": "Aucun favori",
+    "save_settings": "Enregistrer les modifications",
+    "theme": "Thème",
+    "theme_light": "Clair",
+    "theme_dark": "Sombre",
+    "theme_system": "Système"
+  },
+  "um6p": {
+    "title": "🇲🇦 UM6P",
+    "subtitle": "Université Mohammed VI Polytechnique",
+    "play_video": "Lire la vidéo",
+    "pause": "Pause",
+    "stats": {
+      "students": "Étudiants",
+      "doctorants": "Doctorants",
+      "nationalites": "Nationalités",
+      "exchange": "Étudiants d'échange",
+      "programmes": "Programmes"
+    },
+    "tabs": {
+      "presentation": "Présentation",
+      "classements": "Classements",
+      "ecoles": "Écoles et collèges",
+      "campus": "Campus et branches",
+      "frais": "Frais et bourses",
+      "candidater": "Candidater",
+      "doctorat": "Doctorat",
+      "contact": "Contact"
+    },
+    "presentation": {
+      "title": "📖 Présentation de l'UM6P",
+      "mission": "🎯 Mission et vision",
+      "governance": "🏛️ Gouvernance",
+      "partenariats": "🤝 Partenariats"
+    },
+    "classements": {
+      "title": "📊 Classements mondiaux",
+      "africa": "Meilleure université d'Afrique en 2025",
+      "arab": "2ᵉ université du monde arabe",
+      "qs": "3ᵉ université de la région arabe",
+      "green": "Classée parmi les universités les plus durables",
+      "evolution": "📈 Évolution des classements",
+      "accreditations": "✅ Accréditations"
+    },
+    "ecoles": {
+      "cc": "College of Computing (CC)",
+      "cc_desc": "Informatique, IA, Cybersécurité",
+      "emines": "EMINES",
+      "emines_desc": "Management Industriel",
+      "isti": "IST&I",
+      "isti_desc": "Sciences, Technologies et Innovation"
+    },
+    "campus": {
+      "title": "📍 Campus et branches",
+      "benguerir": "Campus Benguerir",
+      "rabat": "Campus Rabat",
+      "laayoune": "Campus Laâyoune",
+      "global_hubs": "🌍 Branches internationales (Global Hubs)",
+      "paris": "Global Hub Paris",
+      "montreal": "Global Hub Montréal",
+      "newyork": "Global Hub New York"
+    },
+    "frais": {
+      "title": "💰 Frais et bourses",
+      "scolarite": "📋 Frais de scolarité et logement",
+      "ecole": "École",
+      "inscription": "Inscription",
+      "scolarite_label": "Scolarité",
+      "logement": "Logement",
+      "bourses": "🎓 Bourses d'études",
+      "excellence": "🏆 Bourses d'Excellence",
+      "sociales": "🤝 Bourses Sociales",
+      "cumulables": "Les deux types de bourses sont cumulables."
+    },
+    "candidater": {
+      "title": "📝 Candidater",
+      "conditions": "📋 Conditions d'admission générales",
+      "conditions_ecole": "🏫 Conditions par école",
+      "calendrier": "📅 Calendrier des candidatures",
+      "pieces": "📄 Pièces à fournir",
+      "lien": "🔗 Lien vers la plateforme de candidature",
+      "candidater_ligne": "Candidater en ligne sur le site de l'UM6P"
+    },
+    "doctorat": {
+      "title": "🔬 Doctorat à l'UM6P",
+      "domaines": "🧪 Domaines de recherche",
+      "laboratoires": "🏛️ Laboratoires de recherche",
+      "conditions": "📋 Conditions d'admission en doctorat",
+      "bourses": "💰 Bourses de doctorat"
+    },
+    "contact": {
+      "title": "📧 Contact",
+      "adresses": "📍 Adresses",
+      "telephones": "📞 Téléphones",
+      "emails": "📧 Emails",
+      "horaires": "🕐 Horaires",
+      "site": "Retrouvez toutes les informations sur le site officiel"
+    }
+  },
+  "footer": {
+    "quote": "Construit avec ❤️ pour la communauté des préparationnaires marocains",
+    "faq": "FAQ",
+    "mentions": "Mentions légales",
+    "copyright": "Tous droits réservés."
+  },
+  "search": {
+    "placeholder": "Rechercher un cours, une école, un document...",
+    "no_results": "Aucun résultat trouvé",
+    "results": "résultats trouvés",
+    "see_all": "Voir tous les résultats",
+    "categories": {
+      "cours": "Cours",
+      "ecoles": "Écoles",
+      "centres": "Centres CPGE",
+      "annales": "Annales",
+      "documents": "Documents"
+    }
+  },
+  "admin": {
+    "title": "📊 Tableau de bord Admin",
+    "login_title": "🔐 Accès Admin",
+    "login_subtitle": "Entrez vos identifiants pour accéder au tableau de bord",
+    "login_btn": "Se connecter",
+    "logout": "Déconnexion",
+    "export": "Exporter JSON",
+    "import": "Importer JSON",
+    "copy": "Copier tout",
+    "session_active": "Session active",
+    "modifier": "Modifier",
+    "stat": {
+      "etablissements": "Établissements",
+      "filieres": "Filières",
+      "etudiants": "Étudiants",
+      "ressources": "Ressources"
+    },
+    "sections": {
+      "filieres": "📐 Filières",
+      "evenements": "⏰ Événements",
+      "temoignages": "💬 Témoignages",
+      "centres": "🏫 Centres en vedette"
+    }
   }
 }

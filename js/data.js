@@ -8,7 +8,7 @@ const SITE_DATA = {
     // 1. IDENTITÉ DU SITE
     // ========================================
     identity: {
-        name: "CPGE Life",
+        name: "CPGE scientifique",
         slogan: "Prépare ton avenir avec excellence.",
         description: "Classes Préparatoires aux Grandes Écoles · Maroc"
     },
@@ -124,8 +124,7 @@ const SITE_DATA = {
             ville: "Rabat",
             filieres: ["MP", "PSI"],
             eleves: 291,
-            taux: "93.5% (MP), 84.1% (PSI)",
-            classement: "#1"
+            taux: "93.5% (MP), 84.1% (PSI)"
         },
         {
             id: "lmv-ca",
@@ -134,8 +133,7 @@ const SITE_DATA = {
             ville: "Casablanca",
             filieres: ["MP", "PSI"],
             eleves: 262,
-            taux: "91.0% (MP), 88.2% (PSI)",
-            classement: "#2"
+            taux: "91.0% (MP), 88.2% (PSI)"
         },
         {
             id: "lit-ma",
@@ -144,8 +142,7 @@ const SITE_DATA = {
             ville: "Marrakech",
             filieres: ["MP", "PSI"],
             eleves: 281,
-            taux: "94.7% (MP), 91.1% (PSI)",
-            classement: "#3"
+            taux: "94.7% (MP), 91.1% (PSI)"
         },
         {
             id: "ltm-mo",
@@ -154,8 +151,7 @@ const SITE_DATA = {
             ville: "Mohammedia",
             filieres: ["MP", "TSI"],
             eleves: 119,
-            taux: "82.1% (MP), 81.3% (TSI)",
-            classement: "#4"
+            taux: "82.1% (MP), 81.3% (TSI)"
         },
         {
             id: "lrs-ag",
@@ -164,8 +160,7 @@ const SITE_DATA = {
             ville: "Agadir",
             filieres: ["MP", "PSI", "TSI"],
             eleves: 203,
-            taux: "88.0% (MP), 92.9% (PSI), 90.8% (TSI)",
-            classement: "#5"
+            taux: "88.0% (MP), 92.9% (PSI), 90.8% (TSI)"
         },
         {
             id: "lmi-fe",
@@ -174,8 +169,7 @@ const SITE_DATA = {
             ville: "Fès",
             filieres: ["MP", "PSI"],
             eleves: 198,
-            taux: "91.9% (MP), 85.7% (PSI)",
-            classement: "#6"
+            taux: "91.9% (MP), 85.7% (PSI)"
         }
     ],
 
@@ -211,11 +205,11 @@ const SITE_DATA = {
         },
         {
             nom: "Documents",
-            sous: ["Cours", "TD et DS", "Extraits de concours", "Drive complet"]
+            sous: ["SUP","SPE", "Drive complet"]
         },
         {
             nom: "Annales",
-            sous: ["CNC", "Banque CCINP", "Banque Mines", "Banque X-ENS"]
+            sous: ["CNC", "CCINP", "CCMP", "CCS", "Banque X-ENS"]
         },
         {
             nom: "Actualités",

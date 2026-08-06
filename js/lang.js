@@ -1,6 +1,6 @@
 // ============================================
 // FICHIER : /js/lang.js
-// DESCRIPTION : Gestion du multilingue
+// DESCRIPTION : Gestion multilingue centralisée
 // ============================================
 
 const LANGUAGES = {
@@ -12,11 +12,15 @@ const LANGUAGES = {
 
 let currentLang = localStorage.getItem('lang') || 'fr';
 let translations = {};
+let isTranslating = false;
 
 // ============================================================
 // CHARGEMENT DES TRADUCTIONS
 // ============================================================
 async function loadLanguage(lang) {
+    if (isTranslating) return;
+    isTranslating = true;
+
     try {
         const response = await fetch(`lang/${lang}.json`);
         if (!response.ok) throw new Error(`Fichier ${lang}.json introuvable`);
@@ -25,13 +29,16 @@ async function loadLanguage(lang) {
         localStorage.setItem('lang', lang);
         applyTranslations();
         updateLangDirection();
+        document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: lang } }));
+        isTranslating = false;
         return true;
     } catch (error) {
         console.warn(`Erreur chargement ${lang}:`, error);
-        // Fallback vers français
         if (lang !== 'fr') {
+            isTranslating = false;
             return loadLanguage('fr');
         }
+        isTranslating = false;
         return false;
     }
 }
@@ -40,12 +47,13 @@ async function loadLanguage(lang) {
 // APPLICATION DES TRADUCTIONS
 // ============================================================
 function applyTranslations() {
-    // Sélecteurs avec attributs data-i18n
+    if (!translations || Object.keys(translations).length === 0) return;
+
+    // Éléments avec data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         const value = getNestedValue(translations, key);
-        if (value !== undefined) {
-            // Si c'est un input, mettre dans placeholder ou value
+        if (value !== undefined && value !== null) {
             if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                 if (el.getAttribute('data-i18n-type') === 'placeholder') {
                     el.placeholder = value;
@@ -58,44 +66,84 @@ function applyTranslations() {
         }
     });
 
-    // Mettre à jour le bouton de langue
+    // Éléments avec data-i18n-html
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        const value = getNestedValue(translations, key);
+        if (value !== undefined && value !== null) {
+            el.innerHTML = value;
+        }
+    });
+
+    // Placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const value = getNestedValue(translations, key);
+        if (value !== undefined && value !== null) {
+            el.placeholder = value;
+        }
+    });
+
+    // Titles
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        const key = el.getAttribute('data-i18n-title');
+        const value = getNestedValue(translations, key);
+        if (value !== undefined && value !== null) {
+            el.title = value;
+        }
+    });
+
+    // Alt
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+        const key = el.getAttribute('data-i18n-alt');
+        const value = getNestedValue(translations, key);
+        if (value !== undefined && value !== null) {
+            el.alt = value;
+        }
+    });
+
+    // Bouton de langue
     const langBtn = document.querySelector('.lang-btn');
     if (langBtn) {
         const langInfo = LANGUAGES[currentLang];
-        langBtn.innerHTML = `<i class="fas fa-globe"></i> ${langInfo.flag} ${langInfo.name}`;
+        if (langInfo) {
+            langBtn.innerHTML = `<i class="fas fa-globe"></i> ${langInfo.flag} ${langInfo.name}`;
+        }
     }
 
-    // Mettre à jour les liens du dropdown
+    // Dropdown des langues
     document.querySelectorAll('.lang-dropdown a').forEach(link => {
         const lang = link.getAttribute('data-lang');
-        if (lang) {
+        if (lang && LANGUAGES[lang]) {
             const info = LANGUAGES[lang];
             link.innerHTML = `${info.flag} ${info.name}`;
         }
     });
 
-    // Mettre à jour le titre de la page
+    // Titre de la page
     if (translations.site && translations.site.name) {
-        document.title = translations.site.name + ' - ' + (translations.site.slogan || '');
+        const slogan = translations.site.slogan || '';
+        document.title = translations.site.name + (slogan ? ' - ' + slogan : '');
     }
 }
 
 // ============================================================
-// FONCTION UTILITAIRE
+// UTILITAIRES
 // ============================================================
 function getNestedValue(obj, path) {
-    return path.split('.').reduce((acc, part) => acc && acc[part] !== undefined ? acc[part] : undefined, obj);
+    if (!obj || !path) return undefined;
+    return path.split('.').reduce((acc, part) => {
+        if (acc && acc[part] !== undefined && acc[part] !== null) {
+            return acc[part];
+        }
+        return undefined;
+    }, obj);
 }
 
-// ============================================================
-// DIRECTION RTL/LTR
-// ============================================================
 function updateLangDirection() {
     const dir = LANGUAGES[currentLang]?.dir || 'ltr';
     document.documentElement.dir = dir;
     document.documentElement.lang = currentLang;
-
-    // Ajuster le style pour RTL
     if (dir === 'rtl') {
         document.body.classList.add('rtl');
     } else {
@@ -103,27 +151,23 @@ function updateLangDirection() {
     }
 }
 
-// ============================================================
-// CHANGEMENT DE LANGUE
-// ============================================================
 async function changeLanguage(lang) {
-    if (lang === currentLang) return;
+    if (lang === currentLang || isTranslating) return;
     await loadLanguage(lang);
-    // Recharger les données dynamiques si nécessaire
+    // Recharger les données dynamiques
     if (window.renderEcoles) window.renderEcoles();
     if (window.renderFilieres) window.renderFilieres();
     if (window.renderCentres) window.renderCentres();
+    if (window.renderTemoignages) window.renderTemoignages();
 }
 
 // ============================================================
 // INITIALISATION
 // ============================================================
-document.addEventListener('DOMContentLoaded', async function() {
-    // Charger la langue sauvegardée
+document.addEventListener('DOMContentLoaded', function() {
     const savedLang = localStorage.getItem('lang') || 'fr';
-    await loadLanguage(savedLang);
+    loadLanguage(savedLang);
 
-    // Gestionnaire des clics sur les langues
     document.querySelectorAll('.lang-dropdown a').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -139,3 +183,5 @@ document.addEventListener('DOMContentLoaded', async function() {
 window.changeLanguage = changeLanguage;
 window.currentLang = () => currentLang;
 window.t = (key) => getNestedValue(translations, key);
+window.getTranslations = () => translations;
+window.loadLanguage = loadLanguage;

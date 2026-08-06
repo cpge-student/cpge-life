@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "CPGE Life",
+    "name": "CPGE scientifique",
     "slogan": "Geleceğini mükemmellikle hazırla.",
     "description": "Büyük Okullar için Hazırlık Sınıfları · Fas"
   },
@@ -47,35 +47,226 @@
     "cnc": "CNC"
   },
   "centres": {
+    "page_title": "🏫 Fas'taki CPGE Merkezleri",
+    "page_subtitle": "28 kamu ve kamu-özel ortaklığı kurumu",
     "title": "Fas'ın en iyi CPGE'leri",
     "subtitle": "Akademik mükemmellik, kabul oranı ve eğitim kalitesi için seçilen 28 kurum.",
-    "btn_all": "Tüm sıralamaları gör"
+    "btn_all": "Tüm sıralamaları gör",
+    "filter_filiere": "Bölüm",
+    "filter_type": "Tür",
+    "filter_sort": "Sırala",
+    "filter_search": "Ara",
+    "filter_reset": "Sıfırla",
+    "all": "Tümü",
+    "taux": "Başarı oranı",
+    "nom": "İsim (A-Z)",
+    "ville": "Şehir (A-Z)",
+    "public": "Kamu",
+    "ppp": "PPP",
+    "results": "Gösterilen",
+    "centre": "merkez",
+    "centres_plural": "merkez",
+    "no_results": "Kriterlerinize uygun merkez bulunamadı",
+    "taux_moyen": "Ortalama oran"
+  },
+  "ecoles": {
+    "maroc": {
+      "title": "🏫 FAS'ın Büyük Okulları",
+      "subtitle": "CPGE sonrası ulaşılabilen tüm mühendislik okullarını keşfedin",
+      "search": "Okul ara...",
+      "filter": "Filtrele",
+      "all_filieres": "Tüm bölümler",
+      "places": "kontenjan",
+      "total_places": "Toplam kontenjan",
+      "no_results": "Aramanıza uygun okul bulunamadı.",
+      "presentation": "Tanıtım",
+      "minmax": "Min & Max",
+      "filieres": "Bölümler",
+      "vie_etudiante": "Öğrenci hayatı"
+    },
+    "france": {
+      "title": "🇫🇷 Mühendislik Büyük Okulları - Fransa",
+      "subtitle": "CPGE sonrası ulaşılabilen tüm Fransız okullarını keşfedin",
+      "search": "Okul ara...",
+      "filter": "Filtrele",
+      "all_banques": "Tüm bankalar",
+      "rank": "#",
+      "ecole": "Okul",
+      "ville": "Şehir",
+      "directeur": "Müdür",
+      "evolution": "Değişim",
+      "banque": "Banka",
+      "cout": "1. Yıl Ücreti",
+      "site": "Website",
+      "details": "Detaylar",
+      "no_results": "Aramanıza uygun okul bulunamadı."
+    }
   },
   "filieres_section": {
     "title": "CPGE bölümünü seç",
     "subtitle": "Her biri kendine özgü özellikleri, yarışmaları ve kariyer olanakları olan 3 bölüm.",
-    "btn_voir": "Bölümü gör"
+    "btn_voir": "Bölümü gör",
+    "btn_centres": "Sunan merkezler",
+    "concours": "Hazırlanan yarışmalar",
+    "matieres": "Dersler",
+    "banques": "Sınav bankaları",
+    "taux_reussite": "Başarı oranı"
   },
-  "temoignages": {
-    "title": "Bize güveniyorlar"
-  },
-  "footer": {
-    "quote": "Fas hazırlık sınıfı topluluğu için ❤️ ile inşa edildi",
-    "faq": "SSS",
-    "mentions": "Yasal uyarılar",
-    "copyright": "Tüm hakları saklıdır."
-  },
-  "search": {
-    "placeholder": "Bir ders, okul veya belge ara...",
-    "no_results": "Sonuç bulunamadı",
-    "results": "sonuç bulundu",
-    "categories": {
-      "cours": "Dersler",
-      "ecoles": "Okullar",
-      "centres": "CPGE Merkezleri",
-      "annales": "Geçmiş sınavlar",
-      "documents": "Dokümanlar"
+  "filieres": {
+    "mp": {
+      "title": "MP — Matematik & Fizik",
+      "subtitle": "En iyi okullara giden kraliyet yolu",
+      "description": "MP (Matematik ve Fizik) hazırlık sınıfı, yüksek derecede teorik ve soyut doğasıyla, pratik uygulamadan çok kavramsal formalizme vurgu yaparak ayrılır.",
+      "matieres": ["Matematik", "Fizik", "Bilgisayar Bilimi"],
+      "banques": ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 79.2,
+      "concours": ["X-ENS", "Centrale", "Mines Pont", "CCINP", "E3A", "CC", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["X-ENS", "CentraleSupélec", "Mines Paris", "Ponts ParisTech", "ENSTA Paris", "ISAE-SUPAERO", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "INSEA", "ESI", "EMINES", "IST&I"]
+    },
+    "psi": {
+      "title": "PSI — Fizik & Mühendislik Bilimleri",
+      "subtitle": "Teknolojik inovasyonun yolu",
+      "description": "PSI (Fizik ve Mühendislik Bilimleri) bölümü, somut temeli ve bilime teknolojik yaklaşımıyla MP'den belirgin şekilde ayrılır.",
+      "matieres": ["Fizik", "Kimya", "Mühendislik Bilimleri"],
+      "banques": ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 88.4,
+      "concours": ["X-ENS", "Centrale", "Mines Pont", "CCINP", "E3A", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["X-ENS", "CentraleSupélec", "Mines Paris", "Ponts ParisTech", "ENSTA Paris", "ISAE-SUPAERO", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "EMINES", "IST&I"]
+    },
+    "tsi": {
+      "title": "TSI — Teknoloji & Endüstri Bilimleri",
+      "subtitle": "Sanayi ve teknolojinin yolu",
+      "description": "TSI (Teknoloji ve Endüstri Bilimleri) bölümü, kitlesi ve gerçekliğe dayalı pedagojisiyle MP ve PSI'den ayrılır.",
+      "matieres": ["Elektrik Mühendisliği", "Makine Mühendisliği", "Fizik"],
+      "banques": ["CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 86.2,
+      "concours": ["Centrale", "CCINP", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["CentraleSupélec", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "EMINES", "IST&I"]
     }
+  },
+  "annales": {
+    "title": "📜 Sınav Arşivleri",
+    "subtitle": "Ulusal ve uluslararası yarışmaların tüm sınavlarını bulun",
+    "banques": {
+      "xens": "🎓 X-ENS",
+      "ccs": "📐 CCS",
+      "ccmp": "⛏️ CCMP",
+      "ccinp": "📝 CCINP",
+      "cnc": "🏆 CNC"
+    },
+    "stats": {
+      "mp": "MP",
+      "psi": "PSI",
+      "tsi": "TSI",
+      "total": "Toplam sınav"
+    },
+    "filieres": {
+      "mp": "MP",
+      "psi": "PSI",
+      "tsi": "TSI"
+    },
+    "tableau": {
+      "annee": "Yıl",
+      "epreuves": "sınav mevcut",
+      "coefficients": "Katsayılar",
+      "masquer_coeff": "Katsayıları gizle",
+      "non_disponible": "Mevcut değil",
+      "voir": "Gör",
+      "telecharger": "İndir"
+    }
+  },
+  "documents": {
+    "title": "📄 Dokümanlar & Kaynaklar",
+    "subtitle": "Dersler, TD, DS, sınav özetleri ve bölümlere göre tam Drive'lar",
+    "sup": "SUP",
+    "spe": "SPE",
+    "sup_label": "SUP 1A",
+    "spe_label": "SPE 2A",
+    "mp": "MP",
+    "psi": "PSI",
+    "tsi": "TSI",
+    "cours": "📚 Dersler",
+    "td": "📝 TD ve DS",
+    "classiques": "📜 Klasikler ve özetler",
+    "programme": "Tam program",
+    "voir_programme": "Programı gör",
+    "drives": "☁️ Bölümlere göre tam Drive'lar",
+    "drive_mp": "MP Drive",
+    "drive_psi": "PSI Drive",
+    "drive_tsi": "TSI Drive",
+    "acceder": "Drive'a eriş",
+    "lien_a_venir": "Bağlantı yakında",
+    "placeholder_cours": "Bu bölüm tüm modüllerle tamamen doldurulmuştur.",
+    "placeholder_td": "Yapı hazır. Dosyalarınızı şuraya yükleyin:",
+    "placeholder_classiques": "Yapı hazır. Dosyalarınızı şuraya yükleyin:",
+    "matieres": {
+      "maths": "Matematik",
+      "physique": "Fizik",
+      "chimie": "Kimya",
+      "si": "Mühendislik Bilimleri",
+      "informatique": "Bilgisayar Bilimi",
+      "rcl": "RCL",
+      "francais": "Fransızca",
+      "anglais": "İngilizce",
+      "genie_electrique": "Elektrik Mühendisliği",
+      "genie_mecanique": "Makine Mühendisliği"
+    }
+  },
+  "actualites": {
+    "title": "📰 Haberler",
+    "subtitle": "CPGE, yarışmalar ve öğrenci hayatı hakkında tüm haberler",
+    "tags": {
+      "concours": "Yarışma",
+      "methodo": "Metodoloji",
+      "orientation": "Yönlendirme",
+      "vie": "Öğrenci hayatı",
+      "conseil": "Tavsiye"
+    },
+    "lire_suite": "Devamını oku",
+    "article_complet": "📄 Tam makale yakında"
+  },
+  "contact": {
+    "title": "📧 Bize ulaşın",
+    "subtitle": "Bir sorunuz, öneriniz mi var? Bize yazmaktan çekinmeyin!",
+    "form_title": "Mesaj gönder",
+    "form_subtitle": "En kısa sürede size dönüş yapacağız.",
+    "name": "Tam ad",
+    "email": "E-posta",
+    "subject": "Konu",
+    "message": "Mesaj",
+    "send": "Mesajı gönder",
+    "sending": "Gönderiliyor...",
+    "success": "✅ Mesaj başarıyla gönderildi! En kısa sürede size dönüş yapacağız.",
+    "error": "❌ Bir hata oluştu. Lütfen tekrar deneyin.",
+    "subjects": {
+      "question": "❓ Genel soru",
+      "suggestion": "💡 Öneri",
+      "bug": "🐛 Hata bildirimi",
+      "partenariat": "🤝 Ortaklık",
+      "autre": "📝 Diğer"
+    },
+    "info": {
+      "email": "E-posta",
+      "phone": "Telefon",
+      "follow": "Bizi takip edin",
+      "availability": "Müsaitlik",
+      "response": "48 saat içinde yanıt garantisi."
+    }
+  },
+  "faq": {
+    "title": "❓ Sık Sorulan Sorular",
+    "subtitle": "CPGE scientifique hakkındaki tüm sorularınızın cevapları",
+    "categories": {
+      "all": "Tümü",
+      "general": "Genel",
+      "filieres": "Bölümler",
+      "cours": "Dersler",
+      "annales": "Geçmiş sınavlar",
+      "compte": "Hesap"
+    },
+    "no_answer": "Cevabınızı bulamadınız mı?",
+    "contact_us": "Doğrudan bize ulaşın, en kısa sürede size dönüş yapacağız.",
+    "btn_contact": "Bize ulaşın"
   },
   "auth": {
     "login": "Giriş yap",
@@ -96,7 +287,12 @@
     "terms": "Hüküm ve koşulları kabul ediyorum",
     "login_success": "Giriş başarılı!",
     "login_error": "E-posta veya şifre hatalı",
-    "register_success": "Hesap başarıyla oluşturuldu!"
+    "register_success": "Hesap başarıyla oluşturuldu!",
+    "password_hint": "En az 8 karakter",
+    "select_filiere": "Seçin",
+    "select_annee": "Seçin",
+    "sup": "SUP (1. yıl)",
+    "spe": "SPE (2. yıl)"
   },
   "membre": {
     "title": "Üye Alanı",
@@ -108,6 +304,150 @@
     "parametres": "Ayarlar",
     "cours_consultes": "İncelenen dersler",
     "derniers_cours": "Son incelenen dersler",
-    "revoir": "Tekrar et"
+    "revoir": "Tekrar et",
+    "retirer": "Kaldır",
+    "aucun_historique": "Geçmiş kaydı yok",
+    "aucun_telechargement": "İndirme yok",
+    "aucun_favori": "Favori yok",
+    "save_settings": "Değişiklikleri kaydet",
+    "theme": "Tema",
+    "theme_light": "Aydınlık",
+    "theme_dark": "Karanlık",
+    "theme_system": "Sistem"
+  },
+  "um6p": {
+    "title": "🇲🇦 UM6P",
+    "subtitle": "Mohammed VI Politeknik Üniversitesi",
+    "play_video": "Videoyu oynat",
+    "pause": "Duraklat",
+    "stats": {
+      "students": "Öğrenciler",
+      "doctorants": "Doktora öğrencileri",
+      "nationalites": "Uyruklar",
+      "exchange": "Değişim öğrencileri",
+      "programmes": "Programlar"
+    },
+    "tabs": {
+      "presentation": "Tanıtım",
+      "classements": "Sıralamalar",
+      "ecoles": "Okullar ve fakülteler",
+      "campus": "Kampüs ve şubeler",
+      "frais": "Ücretler ve burslar",
+      "candidater": "Başvuru",
+      "doctorat": "Doktora",
+      "contact": "İletişim"
+    },
+    "presentation": {
+      "title": "📖 UM6P Tanıtımı",
+      "mission": "🎯 Misyon ve vizyon",
+      "governance": "🏛️ Yönetim",
+      "partenariats": "🤝 Ortaklıklar"
+    },
+    "classements": {
+      "title": "📊 Dünya sıralamaları",
+      "africa": "2025'te Afrika'nın en iyi üniversitesi",
+      "arab": "Arap dünyasının 2. üniversitesi",
+      "qs": "Arap bölgesinin 3. üniversitesi",
+      "green": "En sürdürülebilir üniversiteler arasında",
+      "evolution": "📈 Sıralama gelişimi",
+      "accreditations": "✅ Akreditasyonlar"
+    },
+    "ecoles": {
+      "cc": "Bilişim Fakültesi (CC)",
+      "cc_desc": "Bilgisayar Bilimi, YZ, Siber Güvenlik",
+      "emines": "EMINES",
+      "emines_desc": "Endüstriyel Yönetim",
+      "isti": "IST&I",
+      "isti_desc": "Bilim, Teknoloji ve İnovasyon"
+    },
+    "campus": {
+      "title": "📍 Kampüs ve şubeler",
+      "benguerir": "Benguerir Kampüsü",
+      "rabat": "Rabat Kampüsü",
+      "laayoune": "Laâyoune Kampüsü",
+      "global_hubs": "🌍 Uluslararası şubeler (Global Hubs)",
+      "paris": "Global Hub Paris",
+      "montreal": "Global Hub Montréal",
+      "newyork": "Global Hub New York"
+    },
+    "frais": {
+      "title": "💰 Ücretler ve burslar",
+      "scolarite": "📋 Öğrenim ve konaklama ücretleri",
+      "ecole": "Okul",
+      "inscription": "Kayıt",
+      "scolarite_label": "Öğrenim",
+      "logement": "Konaklama",
+      "bourses": "🎓 Burslar",
+      "excellence": "🏆 Başarı Bursları",
+      "sociales": "🤝 Sosyal Burslar",
+      "cumulables": "Her iki burs türü de birikimlidir."
+    },
+    "candidater": {
+      "title": "📝 Başvuru",
+      "conditions": "📋 Genel kabul koşulları",
+      "conditions_ecole": "🏫 Okula göre koşullar",
+      "calendrier": "📅 Başvuru takvimi",
+      "pieces": "📄 Gerekli belgeler",
+      "lien": "🔗 Başvuru platformu bağlantısı",
+      "candidater_ligne": "UM6P web sitesinde çevrimiçi başvuru yapın"
+    },
+    "doctorat": {
+      "title": "🔬 UM6P'de Doktora",
+      "domaines": "🧪 Araştırma alanları",
+      "laboratoires": "🏛️ Araştırma laboratuvarları",
+      "conditions": "📋 Doktora kabul koşulları",
+      "bourses": "💰 Doktora bursları"
+    },
+    "contact": {
+      "title": "📧 İletişim",
+      "adresses": "📍 Adresler",
+      "telephones": "📞 Telefon numaraları",
+      "emails": "📧 E-postalar",
+      "horaires": "🕐 Çalışma saatleri",
+      "site": "Resmi web sitesinde tüm bilgileri bulun"
+    }
+  },
+  "footer": {
+    "quote": "Fas hazırlık sınıfı topluluğu için ❤️ ile inşa edildi",
+    "faq": "SSS",
+    "mentions": "Yasal uyarılar",
+    "copyright": "Tüm hakları saklıdır."
+  },
+  "search": {
+    "placeholder": "Bir ders, okul veya belge ara...",
+    "no_results": "Sonuç bulunamadı",
+    "results": "sonuç bulundu",
+    "see_all": "Tüm sonuçları gör",
+    "categories": {
+      "cours": "Dersler",
+      "ecoles": "Okullar",
+      "centres": "CPGE Merkezleri",
+      "annales": "Geçmiş sınavlar",
+      "documents": "Dokümanlar"
+    }
+  },
+  "admin": {
+    "title": "📊 Yönetici Paneli",
+    "login_title": "🔐 Yönetici Girişi",
+    "login_subtitle": "Panele erişmek için kimlik bilgilerinizi girin",
+    "login_btn": "Giriş yap",
+    "logout": "Çıkış yap",
+    "export": "JSON Dışa Aktar",
+    "import": "JSON İçe Aktar",
+    "copy": "Tümünü kopyala",
+    "session_active": "Aktif oturum",
+    "modifier": "Düzenle",
+    "stat": {
+      "etablissements": "Kurumlar",
+      "filieres": "Bölümler",
+      "etudiants": "Öğrenciler",
+      "ressources": "Kaynaklar"
+    },
+    "sections": {
+      "filieres": "📐 Bölümler",
+      "evenements": "⏰ Etkinlikler",
+      "temoignages": "💬 Referanslar",
+      "centres": "🏫 Öne çıkan merkezler"
+    }
   }
 }

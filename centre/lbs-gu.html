@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Lycée Bab Sahra - CPGE scientifique</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <!-- Police Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <!-- Notre CSS -->
+    <link rel="stylesheet" href="../css/styles.css"/>
+
+    <style>
+        /* ===== RTL ===== */
+        .rtl .header-inner { flex-direction: row-reverse; }
+        .rtl .logo { flex-direction: row-reverse; }
+        .rtl .nav-list { flex-direction: row-reverse; }
+        .rtl .header-actions { flex-direction: row-reverse; }
+        .rtl .footer-top { flex-direction: row-reverse; }
+        @media (max-width: 768px) {
+            .rtl .header-inner { flex-direction: column; }
+            .rtl .footer-top { flex-direction: column; }
+        }
+
+        /* ===== DROPDOWN LANGUE ===== */
+        .lang-selector {
+            position: relative;
+            display: inline-block;
+        }
+        .lang-selector .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: auto;
+            min-width: 160px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-xl);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            z-index: 9999;
+            margin-top: 4px;
+        }
+        .lang-selector:hover .lang-dropdown,
+        .lang-selector .lang-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .lang-selector .lang-dropdown li {
+            list-style: none;
+        }
+        .lang-selector .lang-dropdown li a {
+            display: block;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .lang-selector .lang-dropdown li a:hover {
+            background: var(--bg-input);
+            color: var(--color-secondary);
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            .lang-selector .lang-dropdown {
+                right: 0;
+                left: auto;
+                min-width: 140px;
+            }
+        }
+        @media (max-width: 480px) {
+            .lang-selector .lang-dropdown {
+                right: 0;
+                left: auto;
+                min-width: 130px;
+            }
+            .lang-selector .lang-dropdown li a {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== PAGE CENTRE ===== */
+        .centre-detail-page {
+            padding: 40px 0 60px;
+            background: var(--bg-body);
+        }
+
+        .centre-detail-page .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-secondary);
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+        .centre-detail-page .back-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .centre-header {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 30px 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+        }
+
+        .centre-header .header-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .centre-header .header-top .centre-image {
+            flex-shrink: 0;
+            width: 200px;
+            height: 150px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .centre-header .header-top .centre-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .centre-header .header-top .centre-image img:hover {
+            opacity: 0.9;
+        }
+
+        .centre-header .header-top .centre-image .no-image {
+            font-size: 3rem;
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        .centre-header .header-top .title {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .centre-header .header-top .title h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .centre-header .header-top .title .sigle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .centre-header .header-top .title .ville {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .centre-header .header-top .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .centre-header .header-top .badges span {
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .centre-header .header-top .badges .public { background: #3B82F6; }
+        .centre-header .header-top .badges .mp { background: #4F46E5; }
+        .centre-header .header-top .badges .psi { background: #06B6D4; }
+        .centre-header .header-top .badges .tsi { background: #F59E0B; }
+
+        .centre-header .header-top .contact-info {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            min-width: 200px;
+            flex-shrink: 0;
+        }
+
+        .centre-header .header-top .contact-info a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+        .centre-header .header-top .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== FENÊTRE MODALE (ZOOM IMAGE) ===== */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.85);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 85%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        /* ===== GRID 2 COLONNES ===== */
+        .centre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .centre-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .centre-card h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ===== TABLEAUX ===== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 8px;
+        }
+
+        .table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .table-wrapper table th,
+        .table-wrapper table td {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .table-wrapper table th {
+            background: var(--bg-input);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .table-wrapper table td {
+            color: var(--text-secondary);
+        }
+
+        .table-wrapper table .total-row {
+            background: var(--bg-input);
+            font-weight: 700;
+        }
+
+        .table-wrapper table .highlight {
+            color: var(--color-secondary);
+            font-weight: 700;
+        }
+
+        /* ===== STATS MINI ===== */
+        .stats-mini {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stats-mini .stat-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stats-mini .stat-item .number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+        }
+
+        .stats-mini .stat-item .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== MAPS ===== */
+        .map-container {
+            width: 100%;
+            height: 350px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-item {
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .contact-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 4px 0;
+        }
+
+        .contact-item a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .centre-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-mini {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .centre-header {
+                padding: 20px;
+            }
+            .centre-header .header-top {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .centre-header .header-top .centre-image {
+                width: 100%;
+                height: 200px;
+            }
+            .centre-header .header-top .contact-info {
+                text-align: left;
+                width: 100%;
+            }
+            .centre-card {
+                padding: 16px 18px;
+            }
+            .stats-mini {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .centre-header .header-top .title h1 {
+                font-size: 1.4rem;
+            }
+            .stats-mini {
+                grid-template-columns: 1fr;
+            }
+            .centre-card {
+                padding: 12px 14px;
+            }
+            .table-wrapper table {
+                font-size: 0.7rem;
+            }
+            .table-wrapper table th,
+            .table-wrapper table td {
+                padding: 4px 6px;
+            }
+        }
+
+        /* ===== SUPPRESSION TÉMOIGNAGES ===== */
+        .temoignages-section {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HEADER / NAVBAR -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="container header-inner">
+
+            <div class="logo" onclick="window.location.href='../index.html'">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text" id="siteName">CPGE scientifique</span>
+            </div>
+
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" id="navEcoles">Écoles</a>
+                        <ul class="dropdown">
+                            <li><a href="../centres.html" id="navCentres">Centres CPGE</a></li>
+                            <li><a href="../grandes-ecoles-maroc.html" id="navGrandesEcolesMaroc">Grandes Écoles Maroc</a></li>
+                            <li><a href="../grandes-ecoles-france.html" id="navGrandesEcolesFrance">Grandes Écoles France</a></li>
+                            <li><a href="../um6p.html" id="navUm6p">UM6P</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../filieres.html" id="navFilieres">Filières</a>
+                        <ul class="dropdown">
+                            <li><a href="../filiere-mp.html" id="navMp">MP - Maths & Physique</a></li>
+                            <li><a href="../filiere-psi.html" id="navPsi">PSI - Physique & SI</a></li>
+                            <li><a href="../filiere-tsi.html" id="navTsi">TSI - Technologie & SI</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../documents.html" id="navDocuments">Documents</a>
+                        <ul class="dropdown">
+                            <li><a href="../documents.html#sup" id="navSup">SUP</a></li>
+                            <li><a href="../documents.html#spe" id="navSpe">SPE</a></li>
+                            <li><a href="../documents.html#drives" id="navDrive">Drives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../annales.html" id="navAnnales">Annales</a>
+                        <ul class="dropdown">
+                            <li><a href="../annales.html#x-ens" id="navXens">X-ENS</a></li>
+                            <li><a href="../annales.html#ccs" id="navCcs">CCS</a></li>
+                            <li><a href="../annales.html#ccmp" id="navCcmp">CCMP</a></li>
+                            <li><a href="../annales.html#ccinp" id="navCcinp">CCINP</a></li>
+                            <li><a href="../annales.html#cnc" id="navCnc">CNC</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="../actualites.html" id="navActualites">Actualités</a></li>
+                    <li class="nav-item"><a href="../contact.html" id="navContact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" id="globalSearchInput" placeholder="Rechercher..." />
+                    <button onclick="triggerSearch()"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="lang-selector">
+                    <button class="lang-btn" id="langBtn"><i class="fas fa-globe"></i> FR</button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" data-lang="fr">🇫🇷 Français</a></li>
+                        <li><a href="#" data-lang="en">🇬🇧 English</a></li>
+                        <li><a href="#" data-lang="ar">🇲🇦 العربية</a></li>
+                        <li><a href="#" data-lang="tr">🇹🇷 Türkçe</a></li>
+                    </ul>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="../connexion.html" class="btn-membre" id="navEspace"><i class="fas fa-user"></i> Espace</a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- PAGE CENTRE -->
+    <!-- ============================================================ -->
+    <section class="centre-detail-page">
+        <div class="container">
+
+            <a href="../centres.html" class="back-link" id="backLink">
+                <i class="fas fa-arrow-left"></i> Retour aux centres
+            </a>
+
+            <!-- ===== EN-TÊTE ===== -->
+            <div class="centre-header">
+                <div class="header-top">
+                    <!-- Photo du centre -->
+                    <div class="centre-image">
+                        <img src="lbs-gu.png" alt="Lycée Bab Sahra - Guelmim " id="centreImage" onclick="openModal(this.src)" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                        <div class="no-image" style="display:none;">🏫</div>
+                    </div>
+
+                    <div class="title">
+                        <h1 id="centreName">Lycée Bab Sahra</h1>
+                        <div class="sigle" id="centreSigle">LBS-Gu</div>
+                        <div class="ville" id="centreVille">📍 Guelmim , Guelmim-Oued Noun</div>
+                        <div class="badges">
+                            <span class="public">Public</span>
+                            <span class="mp">MP</span>
+                            <span class="psi">PSI</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div><i class="fas fa-phone"></i> <a href="tel:+212528872109">05 28 87 21 09</a></div>
+                        <div style="margin-top:8px;font-size:0.85rem;color:var(--text-muted);">
+                            <i class="fas fa-map-marker-alt"></i> Avenue Hommam Al Fatwaki - Guelmim
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fenêtre modale pour afficher la grande image -->
+            <div id="imageModal" class="image-modal" onclick="closeModal()">
+                <span class="modal-close">&times;</span>
+                <img class="modal-content" id="img01">
+            </div>
+
+            <!-- ===== STATS MINI ===== -->
+            <div class="stats-mini">
+                <div class="stat-item">
+                    <div class="number" id="totalEleves">176</div>
+                    <div class="label">Total élèves</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" id="totalClasses">6</div>
+                    <div class="label">Classes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" id="moyenneClasse">29</div>
+                    <div class="label">Moyenne/classe</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number" id="tauxReussite">87.06%</div>
+                    <div class="label">Taux réussite</div>
+                </div>
+            </div>
+
+            <!-- ===== GRID ===== -->
+            <div class="centre-grid">
+
+                <!-- ===== GAUCHE : STATISTIQUES ===== -->
+                <div class="centre-card">
+                    <h2><i class="fas fa-chart-bar"></i> Effectifs par filière</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Filière</th>
+                                    <th>SUP</th>
+                                    <th>SPE</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>MP</strong></td>
+                                    <td>35</td>
+                                    <td>30</td>
+                                    <td class="highlight">65</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PSI</strong></td>
+                                    <td>60</td>
+                                    <td>51</td>
+                                    <td class="highlight">111</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td><strong>TOTAL</strong></td>
+                                    <td>95</td>
+                                    <td>81</td>
+                                    <td class="highlight">176</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ===== DROITE : RÉPARTITION PAR GENRE ===== -->
+                <div class="centre-card">
+                    <h2><i class="fas fa-chart-bar"></i> Classes par filière</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Filière</th>
+                                    <th>SUP</th>
+                                    <th>SPE</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>MP</strong></td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PSI</strong></td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td><strong>TOTAL</strong></td>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td>6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ===== TAUX DE PASSAGE SUP → SPE ===== -->
+                <div class="centre-card">
+                    <h2><i class="fas fa-arrow-right"></i> Taux de passage SUP → SPE (2023/2024)</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Filière</th>
+                                    <th>MPSI-1</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Taux admis SPE MP</strong></td>
+                                    <td>100%</td>
+                                </tr>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th>Filière</th>
+                                    <th>PCSI-1</th>
+                                    <th>PCSI-2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Taux admis SPE PSI</strong></td>
+                                    <td>100%</td>
+                                    <td>96.6%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ===== RÉSULTATS CNC 2024 ===== -->
+                <div class="centre-card">
+                    <h2><i class="fas fa-trophy"></i> Résultats CNC 2024</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Filière</th>
+                                    <th>Candidats</th>
+                                    <th>Admissibles</th>
+                                    <th>Admis</th>
+                                    <th>Non admis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>MP</strong></td>
+                                    <td>29</td>
+                                    <td>27 (93.1%)</td>
+                                    <td class="highlight">25 (86.2%)</td>
+                                    <td>4 (13.8%)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PSI</strong></td>
+                                    <td>56</td>
+                                    <td>53 (94.6%)</td>
+                                    <td class="highlight">49 (87.5%)</td>
+                                    <td>7 (12.5%)</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td><strong>TOTAL</strong></td>
+                                    <td>85</td>
+                                    <td>80 (94.12%)</td>
+                                    <td class="highlight">74 (87.06%)</td>
+                                    <td>11 (12.94	%)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== GOOGLE MAPS ===== -->
+	    <div class="centre-card" style="margin-bottom:30px;">
+    		<h2><i class="fas fa-map-pin"></i> Localisation</h2>
+    		<div class="map-container">
+        	    <iframe 
+            		src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3871.4420585752687!2d-10.05346093716283!3d28.9947609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb502d8836258e1%3A0xce8a36a8b4cd9371!2sLyc%C3%A9e%20Bab%20Sahra!5e1!3m2!1sfr!2sma!4v1785670860171!5m2!1sfr!2sma"
+			width="100%" 
+            		height="100%" 
+            		style="border:0;" 
+            		allowfullscreen="" 
+            		loading="lazy" 
+            		referrerpolicy="no-referrer-when-downgrade">
+        	    </iframe>
+    	    	</div>
+    	    	<div style="margin-top:12px;font-size:0.9rem;color:var(--text-secondary);">
+        	<i class="fas fa-map-marker-alt" style="color:var(--color-secondary);"></i> 
+        Avenue Hommam Al Fatwaki - Guelmim
+    	    	</div>
+	    </div>
+
+            <!-- ===== CONTACT ===== -->
+            <div class="centre-card">
+                <h2><i class="fas fa-address-card"></i> Contact</h2>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+                    <div>
+                        <h3 style="font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:8px;">🏫 Centre</h3>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;">
+                            <i class="fas fa-phone"></i> <a href="tel:+212528872109">05 28 87 21 09</a><br/>
+                        </p>
+                    </div>
+                    <div>
+                        <h3 style="font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:8px;">🎓 BDE : Abdelhay ZEMZGUI </h3>
+                        <p style="color:var(--text-secondary);font-size:0.9rem;">
+                            <i class="fas fa-phone"></i> <a href="tel:+212609010324">06 09 01 03 24</a><br/>
+			    <i class="fas fa-envelope"></i> <a href="">#############</a><br/>
+                            <i class="fab fa-instagram"></i> <a href="" target="_blank"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <span class="logo-icon">📚</span>
+                    <span class="logo-text" id="footerSiteName">CPGE scientifique</span>
+                    <p class="footer-quote" id="footerQuote">"Construit avec ❤️ pour la communauté des préparationnaires marocains"</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/ctrlaltstudy" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/hamza-margal-a6496741b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:bde.ltm.2026@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+212631909130"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="../centres.html" id="footerCentres">Centres CPGE</a>
+                <a href="../grandes-ecoles-maroc.html" id="footerGrandesEcolesMaroc">Grandes Écoles Maroc</a>
+                <a href="../grandes-ecoles-france.html" id="footerGrandesEcolesFrance">Grandes Écoles France</a>
+                <a href="../um6p.html" id="footerUm6p">UM6P</a>
+                <a href="../filieres.html" id="footerFilieres">Filières</a>
+                <a href="../documents.html" id="footerDocuments">Documents</a>
+                <a href="../annales.html" id="footerAnnales">Annales</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CPGE scientifique. <span id="footerCopyright">Tous droits réservés.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================================ -->
+    <script>
+    // ============================================================
+    // 1. TRADUCTIONS
+    // ============================================================
+    const TRANSLATIONS = {
+        fr: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Écoles", centres: "Centres CPGE", grandes_ecoles_maroc: "Grandes Écoles Maroc",
+                grandes_ecoles_france: "Grandes Écoles France", um6p: "UM6P",
+                filieres: "Filières", mp: "MP - Maths & Physique", psi: "PSI - Physique & SI",
+                tsi: "TSI - Technologie & SI", documents: "Documents", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Annales",
+                actualites: "Actualités", contact: "Contact", espace: "Espace"
+            },
+            footer: {
+                quote: '"Construit avec ❤️ pour la communauté des préparationnaires marocains"',
+                copyright: "Tous droits réservés."
+            },
+            back: "Retour aux centres"
+        },
+        en: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Schools", centres: "CPGE Centers", grandes_ecoles_maroc: "Grandes Écoles Morocco",
+                grandes_ecoles_france: "Grandes Écoles France", um6p: "UM6P",
+                filieres: "Tracks", mp: "MP - Maths & Physics", psi: "PSI - Physics & SI",
+                tsi: "TSI - Technology & SI", documents: "Documents", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Past exams",
+                actualites: "News", contact: "Contact", espace: "Member Area"
+            },
+            footer: {
+                quote: '"Built with ❤️ for the Moroccan preparatory class community"',
+                copyright: "All rights reserved."
+            },
+            back: "Back to centers"
+        },
+        ar: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "المدارس", centres: "مراكز CPGE", grandes_ecoles_maroc: "المدارس العليا المغربية",
+                grandes_ecoles_france: "المدارس العليا الفرنسية", um6p: "UM6P",
+                filieres: "الشعب", mp: "MP - الرياضيات والفيزياء", psi: "PSI - الفيزياء وعلوم المهندس",
+                tsi: "TSI - التكنولوجيا وعلوم المهندس", documents: "الوثائق", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "امتحانات سابقة",
+                actualites: "الأخبار", contact: "اتصال", espace: "الفضاء الشخصي"
+            },
+            footer: {
+                quote: '"بُني بحب ❤️ لمجتمع الفصول التحضيرية المغربية"',
+                copyright: "جميع الحقوق محفوظة."
+            },
+            back: "العودة إلى المراكز"
+        },
+        tr: {
+            site: { name: "CPGE scientifique" },
+            nav: {
+                ecoles: "Okullar", centres: "CPGE Merkezleri", grandes_ecoles_maroc: "Fas Büyük Okulları",
+                grandes_ecoles_france: "Fransa Büyük Okulları", um6p: "UM6P",
+                filieres: "Bölümler", mp: "MP - Matematik & Fizik", psi: "PSI - Fizik & Mühendislik",
+                tsi: "TSI - Teknoloji & Mühendislik", documents: "Dokümanlar", sup: "SUP",
+                spe: "SPE", drive_complet: "Drives", annales: "Geçmiş sınavlar",
+                actualites: "Haberler", contact: "İletişim", espace: "Üye Alanı"
+            },
+            footer: {
+                quote: '"Fas hazırlık sınıfı topluluğu için ❤️ ile inşa edildi"',
+                copyright: "Tüm hakları saklıdır."
+            },
+            back: "Merkezlere dön"
+        }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'fr';
+
+    function getTranslation(key) {
+        const keys = key.split('.');
+        let value = TRANSLATIONS[currentLang];
+        for (const k of keys) {
+            if (value && value[k] !== undefined) {
+                value = value[k];
+            } else {
+                return undefined;
+            }
+        }
+        return value;
+    }
+
+    function applyTranslations() {
+        const elements = {
+            'site.name': ['siteName', 'footerSiteName'],
+            'nav.ecoles': ['navEcoles'],
+            'nav.centres': ['navCentres', 'footerCentres'],
+            'nav.grandes_ecoles_maroc': ['navGrandesEcolesMaroc', 'footerGrandesEcolesMaroc'],
+            'nav.grandes_ecoles_france': ['navGrandesEcolesFrance', 'footerGrandesEcolesFrance'],
+            'nav.um6p': ['navUm6p', 'footerUm6p'],
+            'nav.filieres': ['navFilieres', 'footerFilieres'],
+            'nav.mp': ['navMp'],
+            'nav.psi': ['navPsi'],
+            'nav.tsi': ['navTsi'],
+            'nav.documents': ['navDocuments', 'footerDocuments'],
+            'nav.sup': ['navSup'],
+            'nav.spe': ['navSpe'],
+            'nav.drive_complet': ['navDrive'],
+            'nav.annales': ['navAnnales', 'footerAnnales'],
+            'nav.xens': ['navXens'],
+            'nav.ccs': ['navCcs'],
+            'nav.ccmp': ['navCcmp'],
+            'nav.ccinp': ['navCcinp'],
+            'nav.cnc': ['navCnc'],
+            'nav.actualites': ['navActualites', 'footerActualites'],
+            'nav.contact': ['navContact', 'footerContact'],
+            'nav.espace': ['navEspace'],
+            'footer.quote': ['footerQuote'],
+            'footer.copyright': ['footerCopyright'],
+            'back': ['backLink']
+        };
+
+        for (const [key, ids] of Object.entries(elements)) {
+            const value = getTranslation(key);
+            if (value !== undefined) {
+                for (const id of ids) {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        if (el.tagName === 'INPUT') {
+                            el.placeholder = value;
+                        } else {
+                            el.textContent = value;
+                        }
+                    }
+                }
+            }
+        }
+
+        const langBtn = document.getElementById('langBtn');
+        if (langBtn) {
+            const names = { fr: 'Français', en: 'English', ar: 'العربية', tr: 'Türkçe' };
+            const flags = { fr: '🇫🇷', en: '🇬🇧', ar: '🇲🇦', tr: '🇹🇷' };
+            langBtn.innerHTML = `<i class="fas fa-globe"></i> ${flags[currentLang]} ${names[currentLang]}`;
+        }
+
+        const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.dir = dir;
+        document.documentElement.lang = currentLang;
+        if (dir === 'rtl') {
+            document.body.classList.add('rtl');
+        } else {
+            document.body.classList.remove('rtl');
+        }
+    }
+
+    function changeLanguage(lang) {
+        if (lang === currentLang) return;
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        applyTranslations();
+    }
+
+    // ============================================================
+    // 2. GESTION DU THÈME
+    // ============================================================
+    function initTheme() {
+        const themeToggle = document.getElementById('themeToggle');
+        if (!themeToggle) return;
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        themeToggle.onclick = function() {
+            const current = document.documentElement.getAttribute('data-theme');
+            if (current === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        };
+    }
+
+    // ============================================================
+    // 3. RECHERCHE
+    // ============================================================
+    function triggerSearch() {
+        const input = document.getElementById('globalSearchInput');
+        if (input) {
+            const query = input.value.trim();
+            if (query.length >= 2) {
+                alert('🔍 Recherche de : "' + query + '"');
+            } else {
+                alert('Veuillez entrer au moins 2 caractères.');
+            }
+        }
+    }
+
+    // ============================================================
+    // 4. GESTION DE L'IMAGE ET ZOOM MODAL
+    // ============================================================
+    function openModal(imageSrc) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("img01");
+        modal.style.display = "block";
+        modalImg.src = imageSrc;
+    }
+
+    function closeModal() {
+        var modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const img = document.getElementById('centreImage');
+        if (img) {
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                const fallback = this.nextElementSibling;
+                if (fallback) {
+                    fallback.style.display = 'flex';
+                }
+            });
+        }
+    });
+
+    // ============================================================
+    // 5. INITIALISATION
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        applyTranslations();
+        initTheme();
+
+        document.querySelectorAll('.lang-dropdown a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                if (lang) {
+                    changeLanguage(lang);
+                }
+            });
+        });
+
+        const searchInput = document.getElementById('globalSearchInput');
+        if (searchInput) {
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    triggerSearch();
+                }
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>

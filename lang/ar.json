@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "CPGE Life",
+    "name": "CPGE scientifique",
     "slogan": "حضّر مستقبلك بامتياز.",
     "description": "الفصول التحضيرية للمدارس العليا · المغرب"
   },
@@ -47,35 +47,226 @@
     "cnc": "CNC"
   },
   "centres": {
+    "page_title": "🏫 مراكز CPGE في المغرب",
+    "page_subtitle": "28 مؤسسة عمومية وشراكة بين القطاعين العام والخاص",
     "title": "أفضل مراكز CPGE في المغرب",
     "subtitle": "28 مؤسسة تم اختيارها لتميزها الأكاديمي، ومعدل القبول وجودة التأطير.",
-    "btn_all": "عرض جميع التصنيفات"
+    "btn_all": "عرض جميع التصنيفات",
+    "filter_filiere": "الشعبة",
+    "filter_type": "النوع",
+    "filter_sort": "ترتيب حسب",
+    "filter_search": "بحث",
+    "filter_reset": "إعادة تعيين",
+    "all": "الكل",
+    "taux": "نسبة النجاح",
+    "nom": "الاسم (أ-ي)",
+    "ville": "المدينة (أ-ي)",
+    "public": "عمومي",
+    "ppp": "شراكة",
+    "results": "عرض",
+    "centre": "مركز",
+    "centres_plural": "مراكز",
+    "no_results": "لا يوجد مركز يطابق معاييرك",
+    "taux_moyen": "المعدل العام"
+  },
+  "ecoles": {
+    "maroc": {
+      "title": "🏫 المدارس العليا في المغرب",
+      "subtitle": "اكتشف جميع مدارس المهندسين المتاحة بعد CPGE",
+      "search": "ابحث عن مدرسة...",
+      "filter": "تصفية حسب",
+      "all_filieres": "جميع الشعب",
+      "places": "مقعد",
+      "total_places": "مجموع المقاعد",
+      "no_results": "لا توجد مدرسة تطابق بحثك.",
+      "presentation": "تقديم",
+      "minmax": "الحد الأدنى والأقصى",
+      "filieres": "الشعب",
+      "vie_etudiante": "الحياة الطلابية"
+    },
+    "france": {
+      "title": "🇫🇷 المدارس العليا للمهندسين - فرنسا",
+      "subtitle": "اكتشف جميع المدارس الفرنسية المتاحة بعد CPGE",
+      "search": "ابحث عن مدرسة...",
+      "filter": "تصفية حسب",
+      "all_banques": "جميع البنوك",
+      "rank": "#",
+      "ecole": "المدرسة",
+      "ville": "المدينة",
+      "directeur": "المدير",
+      "evolution": "التطور",
+      "banque": "البنك",
+      "cout": "التكلفة السنة 1",
+      "site": "الموقع",
+      "details": "التفاصيل",
+      "no_results": "لا توجد مدرسة تطابق بحثك."
+    }
   },
   "filieres_section": {
     "title": "اختر شعبتك في CPGE",
     "subtitle": "3 شعب، لكل منها خصوصياتها ومسابقاتها وآفاقها المهنية.",
-    "btn_voir": "عرض الشعبة"
+    "btn_voir": "عرض الشعبة",
+    "btn_centres": "المراكز التي تقدم",
+    "concours": "المسابقات المحضرة",
+    "matieres": "المواد",
+    "banques": "بنوك الامتحانات",
+    "taux_reussite": "نسبة النجاح"
   },
-  "temoignages": {
-    "title": "هم يثقون بنا"
-  },
-  "footer": {
-    "quote": "بُني بحب ❤️ لمجتمع الفصول التحضيرية المغربية",
-    "faq": "الأسئلة الشائعة",
-    "mentions": "إشعارات قانونية",
-    "copyright": "جميع الحقوق محفوظة."
-  },
-  "search": {
-    "placeholder": "ابحث عن درس، مدرسة، وثيقة...",
-    "no_results": "لم يتم العثور على نتائج",
-    "results": "نتائج تم العثور عليها",
-    "categories": {
-      "cours": "الدروس",
-      "ecoles": "المدارس",
-      "centres": "مراكز CPGE",
-      "annales": "امتحانات سابقة",
-      "documents": "الوثائق"
+  "filieres": {
+    "mp": {
+      "title": "MP — الرياضيات والفيزياء",
+      "subtitle": "الطريق الملكي إلى أفضل المدارس",
+      "description": "تتميز شعبة MP (الرياضيات والفيزياء) بطابعها النظري والتجريدي العالي، مع التركيز على الشكلية المفاهيمية بدلاً من التطبيق العملي.",
+      "matieres": ["الرياضيات", "الفيزياء", "المعلوماتية"],
+      "banques": ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 79.2,
+      "concours": ["X-ENS", "Centrale", "Mines Pont", "CCINP", "E3A", "CC", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["X-ENS", "CentraleSupélec", "Mines Paris", "Ponts ParisTech", "ENSTA Paris", "ISAE-SUPAERO", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "INSEA", "ESI", "EMINES", "IST&I"]
+    },
+    "psi": {
+      "title": "PSI — الفيزياء وعلوم المهندس",
+      "subtitle": "طريق الابتكار التكنولوجي",
+      "description": "تختلف شعبة PSI (الفيزياء وعلوم المهندس) بشكل ملحوظ عن MP في ارتباطها الواقعي ومنهجها التكنولوجي للعلوم.",
+      "matieres": ["الفيزياء", "الكيمياء", "علوم المهندس"],
+      "banques": ["X-ENS", "Mines", "CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 88.4,
+      "concours": ["X-ENS", "Centrale", "Mines Pont", "CCINP", "E3A", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["X-ENS", "CentraleSupélec", "Mines Paris", "Ponts ParisTech", "ENSTA Paris", "ISAE-SUPAERO", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "EMINES", "IST&I"]
+    },
+    "tsi": {
+      "title": "TSI — التكنولوجيا وعلوم المهندس",
+      "subtitle": "طريق الصناعة والتكنولوجيا",
+      "description": "تختلف شعبة TSI (التكنولوجيا وعلوم المهندس) عن MP و PSI في جمهورها وطريقة تدريسها المرتكزة على الواقع.",
+      "matieres": ["الهندسة الكهربائية", "الهندسة الميكانيكية", "الفيزياء"],
+      "banques": ["CCINP", "Centrale", "CNC", "UM6P"],
+      "taux": 86.2,
+      "concours": ["Centrale", "CCINP", "ECC", "EAMR", "IST&I", "EMINES"],
+      "ecoles": ["CentraleSupélec", "EMI Rabat", "ENSAM Maroc", "EHTP", "ENIM", "EMINES", "IST&I"]
     }
+  },
+  "annales": {
+    "title": "📜 امتحانات سابقة للمسابقات",
+    "subtitle": "ابحث عن جميع امتحانات المسابقات الوطنية والدولية",
+    "banques": {
+      "xens": "🎓 X-ENS",
+      "ccs": "📐 CCS",
+      "ccmp": "⛏️ CCMP",
+      "ccinp": "📝 CCINP",
+      "cnc": "🏆 CNC"
+    },
+    "stats": {
+      "mp": "MP",
+      "psi": "PSI",
+      "tsi": "TSI",
+      "total": "مجموع الامتحانات"
+    },
+    "filieres": {
+      "mp": "MP",
+      "psi": "PSI",
+      "tsi": "TSI"
+    },
+    "tableau": {
+      "annee": "السنة",
+      "epreuves": "امتحان متاح",
+      "coefficients": "المعاملات",
+      "masquer_coeff": "إخفاء المعاملات",
+      "non_disponible": "غير متاح",
+      "voir": "عرض",
+      "telecharger": "تحميل"
+    }
+  },
+  "documents": {
+    "title": "📄 الوثائق والموارد",
+    "subtitle": "دروس، تمارين موجهة، فروض، مقتطفات من المسابقات وDrives كاملة حسب الشعبة",
+    "sup": "SUP",
+    "spe": "SPE",
+    "sup_label": "SUP السنة 1",
+    "spe_label": "SPE السنة 2",
+    "mp": "MP",
+    "psi": "PSI",
+    "tsi": "TSI",
+    "cours": "📚 الدروس",
+    "td": "📝 التمارين الموجهة والفروض",
+    "classiques": "📜 الكلاسيكيات والمقتطفات",
+    "programme": "البرنامج الكامل",
+    "voir_programme": "عرض البرنامج",
+    "drives": "☁️ Drives كاملة حسب الشعبة",
+    "drive_mp": "Drive MP",
+    "drive_psi": "Drive PSI",
+    "drive_tsi": "Drive TSI",
+    "acceder": "الوصول إلى Drive",
+    "lien_a_venir": "الرابط قريباً",
+    "placeholder_cours": "هذا القسم مملوء بالكامل بجميع الوحدات.",
+    "placeholder_td": "الهيكل جاهز. قم بتحميل ملفاتك في:",
+    "placeholder_classiques": "الهيكل جاهز. قم بتحميل ملفاتك في:",
+    "matieres": {
+      "maths": "الرياضيات",
+      "physique": "الفيزياء",
+      "chimie": "الكيمياء",
+      "si": "علوم المهندس",
+      "informatique": "المعلوماتية",
+      "rcl": "RCL",
+      "francais": "الفرنسية",
+      "anglais": "الإنجليزية",
+      "genie_electrique": "الهندسة الكهربائية",
+      "genie_mecanique": "الهندسة الميكانيكية"
+    }
+  },
+  "actualites": {
+    "title": "📰 الأخبار",
+    "subtitle": "كل أخبار CPGE والمسابقات والحياة الطلابية",
+    "tags": {
+      "concours": "مسابقة",
+      "methodo": "منهجية",
+      "orientation": "توجيه",
+      "vie": "حياة طلابية",
+      "conseil": "نصيحة"
+    },
+    "lire_suite": "اقرأ المزيد",
+    "article_complet": "📄 المقال كامل قريباً"
+  },
+  "contact": {
+    "title": "📧 اتصل بنا",
+    "subtitle": "سؤال، اقتراح؟ لا تتردد في الكتابة لنا!",
+    "form_title": "أرسل رسالة",
+    "form_subtitle": "سنجيب عليك في أقرب وقت ممكن.",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "subject": "الموضوع",
+    "message": "الرسالة",
+    "send": "إرسال الرسالة",
+    "sending": "جاري الإرسال...",
+    "success": "✅ تم إرسال الرسالة بنجاح! سنجيب عليك قريباً.",
+    "error": "❌ حدث خطأ. يرجى المحاولة مرة أخرى.",
+    "subjects": {
+      "question": "❓ سؤال عام",
+      "suggestion": "💡 اقتراح",
+      "bug": "🐛 الإبلاغ عن خلل",
+      "partenariat": "🤝 شراكة",
+      "autre": "📝 أخرى"
+    },
+    "info": {
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "follow": "تابعنا",
+      "availability": "التوفر",
+      "response": "الرد مضمون خلال 48 ساعة."
+    }
+  },
+  "faq": {
+    "title": "❓ الأسئلة الشائعة",
+    "subtitle": "جميع الإجابات على أسئلتك حول CPGE scientifique",
+    "categories": {
+      "all": "الكل",
+      "general": "عام",
+      "filieres": "الشعب",
+      "cours": "الدروس",
+      "annales": "الامتحانات السابقة",
+      "compte": "الحساب"
+    },
+    "no_answer": "لم تجد إجابتك؟",
+    "contact_us": "اتصل بنا مباشرة، سنجيب عليك في أقرب وقت ممكن.",
+    "btn_contact": "اتصل بنا"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -96,7 +287,12 @@
     "terms": "أوافق على الشروط والأحكام",
     "login_success": "تم تسجيل الدخول بنجاح!",
     "login_error": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
-    "register_success": "تم إنشاء الحساب بنجاح!"
+    "register_success": "تم إنشاء الحساب بنجاح!",
+    "password_hint": "على الأقل 8 أحرف",
+    "select_filiere": "اختر",
+    "select_annee": "اختر",
+    "sup": "SUP (السنة الأولى)",
+    "spe": "SPE (السنة الثانية)"
   },
   "membre": {
     "title": "الفضاء الشخصي",
@@ -108,6 +304,150 @@
     "parametres": "الإعدادات",
     "cours_consultes": "الدروس التي تمت مشاهدتها",
     "derniers_cours": "آخر الدروس التي تمت مشاهدتها",
-    "revoir": "مراجعة"
+    "revoir": "مراجعة",
+    "retirer": "إزالة",
+    "aucun_historique": "لا يوجد سجل للمشاهدة",
+    "aucun_telechargement": "لا توجد تنزيلات",
+    "aucun_favori": "لا توجد مفضلة",
+    "save_settings": "حفظ التغييرات",
+    "theme": "السمة",
+    "theme_light": "فاتح",
+    "theme_dark": "داكن",
+    "theme_system": "النظام"
+  },
+  "um6p": {
+    "title": "🇲🇦 UM6P",
+    "subtitle": "جامعة محمد السادس متعددة التخصصات التقنية",
+    "play_video": "تشغيل الفيديو",
+    "pause": "إيقاف مؤقت",
+    "stats": {
+      "students": "الطلاب",
+      "doctorants": "طلاب الدكتوراه",
+      "nationalites": "الجنسيات",
+      "exchange": "طلاب التبادل",
+      "programmes": "البرامج"
+    },
+    "tabs": {
+      "presentation": "تقديم",
+      "classements": "التصنيفات",
+      "ecoles": "المدارس والكليات",
+      "campus": "الحرم الجامعي والفروع",
+      "frais": "الرسوم والمنح",
+      "candidater": "التقديم",
+      "doctorat": "الدكتوراه",
+      "contact": "اتصال"
+    },
+    "presentation": {
+      "title": "📖 تقديم UM6P",
+      "mission": "🎯 الرسالة والرؤية",
+      "governance": "🏛️ الحوكمة",
+      "partenariats": "🤝 الشراكات"
+    },
+    "classements": {
+      "title": "📊 التصنيفات العالمية",
+      "africa": "أفضل جامعة في إفريقيا 2025",
+      "arab": "ثاني جامعة في العالم العربي",
+      "qs": "ثالث جامعة في المنطقة العربية",
+      "green": "مصنفة بين الجامعات الأكثر استدامة",
+      "evolution": "📈 تطور التصنيفات",
+      "accreditations": "✅ الاعتمادات"
+    },
+    "ecoles": {
+      "cc": "كلية الحوسبة (CC)",
+      "cc_desc": "المعلوماتية، الذكاء الاصطناعي، الأمن السيبراني",
+      "emines": "EMINES",
+      "emines_desc": "التسيير الصناعي",
+      "isti": "IST&I",
+      "isti_desc": "العلوم والتكنولوجيا والابتكار"
+    },
+    "campus": {
+      "title": "📍 الحرم الجامعي والفروع",
+      "benguerir": "حرم بن جرير",
+      "rabat": "حرم الرباط",
+      "laayoune": "حرم العيون",
+      "global_hubs": "🌍 الفروع الدولية (Global Hubs)",
+      "paris": "Global Hub باريس",
+      "montreal": "Global Hub مونتريال",
+      "newyork": "Global Hub نيويورك"
+    },
+    "frais": {
+      "title": "💰 الرسوم والمنح",
+      "scolarite": "📋 رسوم الدراسة والسكن",
+      "ecole": "المدرسة",
+      "inscription": "التسجيل",
+      "scolarite_label": "الرسوم الدراسية",
+      "logement": "السكن",
+      "bourses": "🎓 المنح الدراسية",
+      "excellence": "🏆 منح التفوق",
+      "sociales": "🤝 المنح الاجتماعية",
+      "cumulables": "كلا النوعين من المنح قابلان للتراكم."
+    },
+    "candidater": {
+      "title": "📝 التقديم",
+      "conditions": "📋 شروط القبول العامة",
+      "conditions_ecole": "🏫 شروط القبول حسب المدرسة",
+      "calendrier": "📅 تقويم التقديم",
+      "pieces": "📄 الوثائق المطلوبة",
+      "lien": "🔗 رابط منصة التقديم",
+      "candidater_ligne": "تقديم عبر الإنترنت على موقع UM6P"
+    },
+    "doctorat": {
+      "title": "🔬 الدكتوراه في UM6P",
+      "domaines": "🧪 مجالات البحث",
+      "laboratoires": "🏛️ مختبرات البحث",
+      "conditions": "📋 شروط القبول في الدكتوراه",
+      "bourses": "💰 منح الدكتوراه"
+    },
+    "contact": {
+      "title": "📧 اتصل بنا",
+      "adresses": "📍 العناوين",
+      "telephones": "📞 أرقام الهواتف",
+      "emails": "📧 البريد الإلكتروني",
+      "horaires": "🕐 ساعات العمل",
+      "site": "ابحث عن جميع المعلومات على الموقع الرسمي"
+    }
+  },
+  "footer": {
+    "quote": "بُني بحب ❤️ لمجتمع الفصول التحضيرية المغربية",
+    "faq": "الأسئلة الشائعة",
+    "mentions": "إشعارات قانونية",
+    "copyright": "جميع الحقوق محفوظة."
+  },
+  "search": {
+    "placeholder": "ابحث عن درس، مدرسة، وثيقة...",
+    "no_results": "لم يتم العثور على نتائج",
+    "results": "نتائج تم العثور عليها",
+    "see_all": "عرض جميع النتائج",
+    "categories": {
+      "cours": "الدروس",
+      "ecoles": "المدارس",
+      "centres": "مراكز CPGE",
+      "annales": "امتحانات سابقة",
+      "documents": "الوثائق"
+    }
+  },
+  "admin": {
+    "title": "📊 لوحة تحكم المدير",
+    "login_title": "🔐 دخول المدير",
+    "login_subtitle": "أدخل بيانات الاعتماد للوصول إلى لوحة التحكم",
+    "login_btn": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "export": "تصدير JSON",
+    "import": "استيراد JSON",
+    "copy": "نسخ الكل",
+    "session_active": "جلسة نشطة",
+    "modifier": "تعديل",
+    "stat": {
+      "etablissements": "المؤسسات",
+      "filieres": "الشعب",
+      "etudiants": "الطلاب",
+      "ressources": "الموارد"
+    },
+    "sections": {
+      "filieres": "📐 الشعب",
+      "evenements": "⏰ الأحداث",
+      "temoignages": "💬 الشهادات",
+      "centres": "🏫 المراكز المميزة"
+    }
   }
 }

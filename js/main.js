@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="filiere-banques">
                     <strong>Banques autorisées :</strong> ${banquesHtml}
                 </div>
-                <a href="#" class="btn">Voir la filière →</a>
+                <a href="filiere-${filiere.id.toLowerCase()}.html" class="btn">Voir la filière →</a>
             `;
 
             filieresGrid.appendChild(card);
